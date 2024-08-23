@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:47:00 by arigonza          #+#    #+#             */
-/*   Updated: 2024/08/22 12:16:34 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/08/23 12:22:31 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@
 
 // Errors
 # define ARG_ERR "Error on the arguments"
-# define PARS_ERROR "Parsing error"
+# define PARS_ERR "Parsing error"
+# define CD_ERR "Error on cd command"
+# define PWD_ERR "Error on pwd command"
 
+// Constants
+# define PATH_MAX 5
 
 // Colors Start
 # define FRED "\033[0;31m"

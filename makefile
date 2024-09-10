@@ -6,21 +6,31 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/08/22 12:08:03 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/10 23:57:06 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := minishell
 
-CC := 
+CC := gcc
 
-FLAGS := -Wall -Werror -Wextra -lreadline
+FLAGS := -Wall -Werror -Wextra
+
+RLINE := -lreadline
 
 FSANITIZE := -fsanitize=thread -g3
 
 OBJDIR := obj
 
-SRC =
+LIBFT = libft/libft.a
+
+SRC = built-ins/builtins.c  test.c
+
+$(LIBFT) :
+	@echo "|---------------------------|"
+	@echo "|      $(YELLOW)Compiling libft$(DEF_COLOR)      |"
+	@echo "|---------------------------|"
+	@make -s -C libft
 
 OBJ = $(patsubst src/%.c, $(OBJDIR)/%.o, $(SRC))
 
@@ -29,8 +39,12 @@ $(OBJDIR)/%.o : src/%.c | $(OBJDIR)
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	@echo "$(YELLOW)$(DEF_COLOR)"
+$(NAME) : $(OBJ) $(LIBFT)
+	@echo "|---------------------------|"
+	@echo "|    $(YELLOW)Compiling MINISHELL$(DEF_COLOR)    |"
+	@echo "|---------------------------|"
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 
+	@echo "$(GREEN)MINISHELL COMPILED$(DEF_COLOR)"
 
 $(OBJDIR) :
 	@mkdir -p $(OBJDIR)
@@ -38,11 +52,13 @@ $(OBJDIR) :
 clean :
 	@echo "$(YELLOW)Deleting all object files....$(DEF_COLOR)"
 	@rm -rf $(OBJDIR)
+	@make -s -C libft clean
 	@echo "$(RED)All object files were deleteated...$(DEF_COLOR)"
 
 fclean : clean
 	@echo "$(YELLOW)Deleting executable files....$(DEF_COLOR)"
 	@rm -f $(NAME)
+	@make -s -C libft fclean
 	@echo "$(RED)All executable files has been deleted.$(DEF_COLOR)"
 	
 re : fclean all

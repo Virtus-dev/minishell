@@ -6,16 +6,20 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/09 15:38:29 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/10 23:19:22 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#include "constants.h"
+#include "../libft/includes/libft.h"
 #include <unistd.h>
 #include <stdio.h>
-#include "constants.h"
+#include <stdlib.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 #include <sys/types.h>
 #include <sys/errno.h>
 #include <signal.h>
@@ -42,6 +46,6 @@ typedef struct	s_data
 } t_data;
 
 void    ft_echo(char *msg);
-
+void	ft_pwd();
 
 #endif

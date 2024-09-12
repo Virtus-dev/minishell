@@ -6,24 +6,31 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/10 23:58:40 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:35:12 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-void ft_echo(char* msg)
+void ft_echo(char* msg, t_data *data)
 {
-	printf("%s\n", msg);
+	ft_putstr_fd(msg, data->fdout);
+	ft_putchar_fd('\n', data->fdout);
 }
 
-void	ft_cd(char* path)
+void	ft_cd(t_data *data)
 {
-	if (chdir(path) != 0)
+	t_key	*home;
+	
+	if (chdir(data->argv[1]) != 0)
 		perror(CD_ERR);
+	else if (data->argc == 1)
+	{
+		home = ft_get_keymap(data->env, "HOME");	
+	}
 }
 
-void	ft_pwd()
+void	ft_pwd(t_data *data)
 {
 	char *cwd;
 
@@ -32,8 +39,8 @@ void	ft_pwd()
 		perror(PWD_ERR);
     else
     {
-		printf(cwd);
-		printf("\n");
+		ft_putstr_fd(cwd, data->fdout);
+		ft_putchar_fd('\n', data->fdout);
 	}
 	free(cwd);
 }

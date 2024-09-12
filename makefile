@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/10 23:57:06 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/12 19:28:35 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,30 +24,24 @@ OBJDIR := obj
 
 LIBFT = libft/libft.a
 
-SRC = built-ins/builtins.c  test.c
+SRC = src/built-ins/builtins.c src/utils/map_utils.c src/utils/structs_init.c \
+		test.c
 
 $(LIBFT) :
-	@echo "|---------------------------|"
-	@echo "|      $(YELLOW)Compiling libft$(DEF_COLOR)      |"
-	@echo "|---------------------------|"
 	@make -s -C libft
+	@echo "$(GREEN)LIBFT COMPILED$(DEF_COLOR)"
 
 OBJ = $(patsubst src/%.c, $(OBJDIR)/%.o, $(SRC))
 
-$(OBJDIR)/%.o : src/%.c | $(OBJDIR)
+$(OBJDIR)/%.o : src/%.c
+	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(LIBFT)
-	@echo "|---------------------------|"
-	@echo "|    $(YELLOW)Compiling MINISHELL$(DEF_COLOR)    |"
-	@echo "|---------------------------|"
 	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 
 	@echo "$(GREEN)MINISHELL COMPILED$(DEF_COLOR)"
-
-$(OBJDIR) :
-	@mkdir -p $(OBJDIR)
 
 clean :
 	@echo "$(YELLOW)Deleting all object files....$(DEF_COLOR)"

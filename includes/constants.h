@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:47:00 by arigonza          #+#    #+#             */
-/*   Updated: 2024/08/23 12:22:31 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/16 16:51:15 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define PARS_ERR "Parsing error"
 # define CD_ERR "Error on cd command"
 # define PWD_ERR "Error on pwd command"
+# define MALLOC_ERR "Malloc error"
 
 // Constants
 # define PATH_MAX 5

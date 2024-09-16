@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/12 19:35:33 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/16 23:58:42 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 #include <signal.h>
 
 // Structs
-typedef struct s_value	t_value;
 typedef struct	s_token
 {
     char			*str;
@@ -37,20 +36,14 @@ typedef struct	s_token
 typedef struct	s_key
 {
 	char		*key;
-	t_value		*value;
-}	t_key;
-
-typedef struct s_value
-{
 	char		*value;
-	t_key		*key;		
-}	t_value;
+}	t_key;
 
 typedef struct  s_map
 {
-    t_key		**key;
-    t_value		**value;
-	int			size;
+    t_key		**keys;
+	size_t		size;
+    size_t      capacity;
 }   t_map;
 
 typedef struct	s_data
@@ -71,8 +64,11 @@ void	ft_pwd(t_data *data);
 void	ft_cd(t_data *data);
 
 // MAP UTILS
+void    ft_map_init(t_map *map);
+t_key	*ft_new_key(char *name, char *value);
 t_key	*ft_get_keymap(t_map *map, char *key);
-t_value	*ft_get_valmap(t_map *map, char *value);
+t_key	*ft_get_valmap(t_map *map, char *value);
+t_map	*ft_fill_map(char **env);
 
 // STRUCT UTILS
 t_data	*ft_init_data(int argc, char **argv, char **env);

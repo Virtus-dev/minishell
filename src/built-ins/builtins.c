@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/12 19:35:12 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/14 11:14:13 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ void ft_echo(char* msg, t_data *data)
 void	ft_cd(t_data *data)
 {
 	t_key	*home;
-	
+
 	if (chdir(data->argv[1]) != 0)
 		perror(CD_ERR);
 	else if (data->argc == 1)
 	{
-		home = ft_get_keymap(data->env, "HOME");	
+		home = ft_get_keymap(data->env, "HOME");
+		printf("%s", home);
+		
 	}
 }
 

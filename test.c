@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/12 19:36:14 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/17 00:40:28 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **env)
 	printf("Press ctrl+D to exit\n");
 	while ((data->input = readline(NULL)) != NULL)
 	{
-		if (data->input && data->input)
+		if (data->input)
 		{
 			add_history(data->input);
 		}

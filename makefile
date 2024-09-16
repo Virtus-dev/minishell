@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/12 19:28:35 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/16 16:43:14 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := minishell
 
 CC := gcc
 
-FLAGS := -Wall -Werror -Wextra
+FLAGS := -Wall -Werror -Wextra -g
 
 RLINE := -lreadline
 
@@ -27,6 +27,8 @@ LIBFT = libft/libft.a
 SRC = src/built-ins/builtins.c src/utils/map_utils.c src/utils/structs_init.c \
 		test.c
 
+all : $(NAME)
+
 $(LIBFT) :
 	@make -s -C libft
 	@echo "$(GREEN)LIBFT COMPILED$(DEF_COLOR)"
@@ -36,8 +38,6 @@ OBJ = $(patsubst src/%.c, $(OBJDIR)/%.o, $(SRC))
 $(OBJDIR)/%.o : src/%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-all : $(NAME)
 
 $(NAME) : $(OBJ) $(LIBFT)
 	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 

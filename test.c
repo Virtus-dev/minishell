@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/17 00:40:28 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:18:20 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@ int main(int argc, char **argv, char **env)
 	t_data	*data;
 	
 	data = ft_init_data(argc, argv, env);
-	printf("Press ctrl+D to exit\n");
-	while ((data->input = readline(NULL)) != NULL)
+	while (1)
 	{
-		if (data->input)
+		data->input = readline("Waiting for instructions...\n");
+		if (data->input == NULL)
 		{
-			add_history(data->input);
-		}
+			ft_putstr_fd("QUITTING MINISHELL\n", data->fdout);
+			break;
+		};
 		if (!ft_strcmp(data->input, "pwd"))
 			ft_pwd(data);
-		if (!ft_strcmp(data->argv[0], "cd"))
-			ft_cd(data);
+		if (!ft_strcmp(data->input, "cd"))
+			ft_cd(data, data->input);
 	}
 	free(data->input);
 	clear_history();

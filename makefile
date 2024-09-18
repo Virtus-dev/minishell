@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/16 16:43:14 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/18 16:10:51 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,11 @@ NAME := minishell
 
 CC := gcc
 
-FLAGS := -Wall -Werror -Wextra -g
+CFLAGS := -Wall -Werror -Wextra -g
 
 RLINE := -lreadline
+
+SANITIZE := sanitize
 
 FSANITIZE := -fsanitize=thread -g3
 
@@ -24,7 +26,8 @@ OBJDIR := obj
 
 LIBFT = libft/libft.a
 
-SRC = src/built-ins/builtins.c src/utils/map_utils.c src/utils/structs_init.c \
+SRC = src/built-ins/builtins.c src/built-ins/cd.c \
+      src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
 		test.c
 
 all : $(NAME)
@@ -40,7 +43,7 @@ $(OBJDIR)/%.o : src/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) : $(OBJ) $(LIBFT)
-	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 
 	@echo "$(GREEN)MINISHELL COMPILED$(DEF_COLOR)"
 
 clean :
@@ -64,6 +67,10 @@ norm :
 	@norminette includes/
 	@echo "$(DEF_COLOR)"
 
+$(SANITIZE) : $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
+	@echo "$(CYAN)Compiling minishell with fsanitize$(DEF_COLOR)"
+	
 
 # Colors
 

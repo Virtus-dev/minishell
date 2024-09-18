@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/16 23:59:31 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:25:04 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_add_key(t_map *map, t_key *key)
 
 t_key	*ft_get_keymap(t_map *map, char *key)
 {
-    int	i;
+    size_t	i;
 	
 	i = 0;
 	while (i < map->size)
@@ -62,7 +62,7 @@ t_key	*ft_get_keymap(t_map *map, char *key)
 
 t_key	*ft_get_valmap(t_map *map, char *value)
 {
-	int	i;
+	size_t	i;
 	
 	i = 0;
 	while (i < map->size)

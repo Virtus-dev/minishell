@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs_init.c                                     :+:      :+:    :+:   */
+/*   map_utils_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/17 15:26:12 by arigonza         ###   ########.fr       */
+/*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
+/*   Updated: 2024/09/18 16:05:41 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_data	*ft_init_data(int argc, char **argv, char **env)
+int	ft_key_exist(t_map *map, char *key)
 {
-	t_data   *data;
+	int	i;
 
-	data = malloc(sizeof(t_data));
-	data->argc = argc;
-	data->argv = ft_dbstrdup(argv);
-	data->fdin = STDIN_FILENO;
-	data->fdout = STDOUT_FILENO;
-	data->env = ft_fill_map(env);
-
-	return (data);
+	i = 0;
+	while (map && map->keys[i])
+	{
+		if (ft_strcmp(key, map->keys[i]->key) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-void	ft_map_init(t_map *map)
+void	ft_update_map(t_map *map, char *value, char *key)
 {
-	map->size = 0;
-	map->capacity = 10;
-	map->keys = malloc(sizeof(t_key *) * map->capacity);
-	if (!map->keys)
-		perror(MALLOC_ERR);
+	t_key	*nkey;
+	
+	if (ft_key_exist(map, key))
+	{
+		nkey = ft_get_keymap(map, key);
+		free(nkey->value);
+		nkey->value = ft_strdup(value);
+	}
 }

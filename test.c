@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/18 16:18:20 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:05:30 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int main(int argc, char **argv, char **env)
 			ft_pwd(data);
 		if (!ft_strcmp(data->input, "cd"))
 			ft_cd(data, data->input);
+		if (!ft_strcmp(data->input, "env"))
+			ft_env(data);
 	}
 	free(data->input);
 	clear_history();

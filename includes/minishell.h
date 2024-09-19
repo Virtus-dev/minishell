@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/19 11:55:35 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:08:49 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct	s_data
 void	ft_echo(t_data *data);
 void	ft_pwd(t_data *data);
 void	ft_cd(t_data *data, char *owd);
+void	ft_env(t_data *data);
 
 // MAP UTILS
 void	ft_map_init(t_map *map);
@@ -72,6 +73,7 @@ void	ft_add_key(t_map *map, t_key *key);
 t_map	*ft_fill_map(char **env);
 int		ft_key_exist(t_map *map, char *key);
 void	ft_update_map(t_map *map, char *value, char *key);
+void	ft_print_map(t_data *data);
 
 // STRUCT UTILS
 t_data	*ft_init_data(int argc, char **argv, char **env);

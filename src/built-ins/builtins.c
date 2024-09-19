@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/19 12:32:19 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:07:44 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  */
 void ft_echo(t_data *data)
 {
-	char	argv_dup;
+	char	*argv_dup;
 
 	if (!ft_flag_exist(data->argv[1]))
 	{
@@ -27,6 +27,8 @@ void ft_echo(t_data *data)
 	}
 	else
 	{
+		// Aqui estoy sustituyendo de mala manera lo
+		// que vendria a ser el tokken de echo.
 		argv_dup = ft_strdup(data->argv[1]);
 		argv_dup = ft_chrignore(argv_dup, '\n');
 		ft_putstr_fd(argv_dup, data->fdout);

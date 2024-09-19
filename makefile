@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/18 16:10:51 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/19 11:50:38 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIBFT = libft/libft.a
 
 SRC = src/built-ins/builtins.c src/built-ins/cd.c \
       src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
-		test.c
+		src/utils/utils.c test.c
 
 all : $(NAME)
 

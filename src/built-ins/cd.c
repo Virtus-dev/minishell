@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:26:51 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/18 16:25:24 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:05:17 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	ft_cd(t_data *data, char *owd)
 		else
 			ft_putstr_fd("bash: cd: HOME not setted yet\n", data->fdout);
 	}
-	chdir(data->argv[1]);
+	else if (chdir(data->argv[1]))
+		ft_putstr_fd("bash: cd: permission denied\n", data->fdout);
 	free (owd);
 }
 

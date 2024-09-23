@@ -6,19 +6,19 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/17 15:26:12 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:32:46 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_data	*ft_init_data(int argc, char **argv, char **env)
+t_data	*ft_init_data(int argc, char **input, char **env)
 {
 	t_data   *data;
 
 	data = malloc(sizeof(t_data));
 	data->argc = argc;
-	data->argv = ft_dbstrdup(argv);
+	data->argv = ft_dbstrdup(input);
 	data->fdin = STDIN_FILENO;
 	data->fdout = STDOUT_FILENO;
 	data->env = ft_fill_map(env);

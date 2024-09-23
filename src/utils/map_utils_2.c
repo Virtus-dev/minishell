@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/20 11:36:14 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:41:48 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	ft_key_exist(t_map *map, char *key)
 	while (map && map->keys[i])
 	{
 		if (ft_strcmp(key, map->keys[i]->key) == 0)
-			return (1);
+			return (TRUE);
 		i++;
 	}
-	return (0);
+	return (FALSE);
 }
 
 void	ft_update_map(t_map *map, char *value, char *key)

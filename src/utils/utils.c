@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/23 12:46:12 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:20:50 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	ft_flag_exist(char *str)
 	while (str[i] && str[i] == '-')
 	{
 		if (str[i] == 'n')
-			return (1);
+			return (TRUE);
 		i++;
 	}
-	return (0);
+	return (FALSE);
 }
 
 int	ft_check_expformat(char *argv)
@@ -37,8 +37,18 @@ int	ft_check_expformat(char *argv)
 	while (argv[i])
 	{
 		if (!ft_isalnum(argv[i]))
-			return (0);
+			return (FALSE);
 		i++;
 	}
 	return (TRUE);
+}
+
+void	ft_free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+		free(matrix[i++]);
+	free(matrix);
 }

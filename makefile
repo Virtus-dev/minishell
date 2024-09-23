@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/19 13:08:39 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/20 11:21:23 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ OBJDIR := obj
 LIBFT = libft/libft.a
 
 SRC = src/built-ins/builtins.c src/built-ins/cd.c src/built-ins/env.c\
+		src/built-ins/export.c\
       src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
 		src/utils/utils.c test.c
 

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/19 13:10:18 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:36:14 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,26 @@ void	ft_print_map(t_data *data)
 		ft_putstr_fd("=", data->fdout);
 		ft_putstr_fd(data->env->keys[i]->value, data->fdout);
 		ft_putchar_fd('\n', data->fdout);
+		i++;
+	}
+}
+
+void	ft_mapcmp_update(t_map *map, char *values)
+{
+	char	**splited;
+	int		i;
+	
+	i = 0;
+	splited = ft_split(values, '=');
+	while (splited[i])
+	{
+		if (ft_key_exist(map, splited[i]))
+		{
+			ft_update_map(map, splited[i + 1], splited[i]);
+			i += 2;
+		}
+		else
+			ft_add_key(map, ft_new_key(splited[i], splited[i + 1]));
 		i++;
 	}
 }

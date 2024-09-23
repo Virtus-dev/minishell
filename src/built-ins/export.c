@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:55:05 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/23 12:37:42 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:00:46 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ void	ft_export(t_data *data)
 			}
 			else
 			{
-				if (!ft_key_exist(data->exp, splited[i]))
+				if (!ft_key_exist(data->exp, splited[i]) && !ft_key_exist(data->env, splited[i]))
 					ft_add_key(data->exp, ft_new_key(splited[i], splited[i + 1]));
-				if (!ft_key_exist(data->env, splited[i]))
-					ft_add_key(data->env, ft_new_key(splited[i], splited[i + 1]));
 			}
+			i++;
 		}
 		free(splited);
 	}

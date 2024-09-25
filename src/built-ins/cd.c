@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:26:51 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/23 17:26:25 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:40:03 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ void	ft_cd(t_data *data, char *owd)
 	free (owd);
 }
 
-void    ft_oldpwd(t_data *data, char *owd, char *nwd)
+void	ft_oldpwd(t_data *data, char *owd, char *nwd)
 {
-    t_key   *nkey;
-    
-    if (ft_strcmp(owd, nwd) != 0)
-    {
-        nkey = ft_new_key("OLDPWD", owd);
-        ft_add_key(data->env, nkey);
+	t_key	*nkey;
+
+	if (ft_strcmp(owd, nwd) != 0)
+	{
+		nkey = ft_new_key("OLDPWD", owd);
+		ft_add_key(data->env, nkey);
     }
 }
 
-void    ft_update_dir(t_data *data, char *owd)
+void	ft_update_dir(t_data *data, char *owd)
 {
     char	*nwd;
 

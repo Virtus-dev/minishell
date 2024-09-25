@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:47:00 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/16 16:51:15 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:48:24 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 
 // Constants
 # define PATH_MAX 5
+# define ECHO 1
+# define CD 2
+# define PWD 3
+# define EXP 4
+# define UNST 5
+# define ENV 6
+# define EXIT 7
+# define DEF 8
 
 // Colors Start
 # define FRED "\033[0;31m"

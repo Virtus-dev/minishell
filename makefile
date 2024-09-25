@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/20 11:21:23 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/25 14:24:45 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,13 @@ RLINE := -lreadline
 SANITIZE := sanitize
 
 FSANITIZE := -fsanitize=thread -g3
-
+INCLUDES = -Iincludes/ -Ilibft/includes
 OBJDIR := obj
 
 LIBFT = libft/libft.a
 
 SRC = src/built-ins/builtins.c src/built-ins/cd.c src/built-ins/env.c\
-		src/built-ins/export.c\
+		src/built-ins/export.c src/built-ins/exit.c\
       src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
 		src/utils/utils.c test.c
 
@@ -40,7 +40,7 @@ OBJ = $(patsubst src/%.c, $(OBJDIR)/%.o, $(SRC))
 
 $(OBJDIR)/%.o : src/%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME) : $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 

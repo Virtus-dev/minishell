@@ -6,11 +6,11 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/23 17:41:48 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:53:16 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 int	ft_key_exist(t_map *map, char *key)
 {
@@ -53,6 +53,13 @@ void	ft_print_map(t_data *data)
 	}
 }
 
+/**
+ * @brief Compares if a key exists on a map, if exists updates it's value,
+ * if it's not, creates it.
+ * 
+ * @param map The "key-value" data structure to check from.
+ * @param values the env variables.
+ */
 void	ft_mapcmp_update(t_map *map, char *values)
 {
 	char	**splited;
@@ -71,4 +78,20 @@ void	ft_mapcmp_update(t_map *map, char *values)
 			ft_add_key(map, ft_new_key(splited[i], splited[i + 1]));
 		i++;
 	}
+}
+
+void	ft_free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->keys[i])
+	{
+		free(map->keys[i]->key);
+		free(map->keys[i]->value);
+		free(map->keys[i]);
+		i++;
+	}
+	free(map->keys);
+	free(map);
 }

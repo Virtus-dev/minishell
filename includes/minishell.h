@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 15:55:55 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:49:33 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #include <readline/history.h>
 #include <sys/types.h>
 #include <sys/errno.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
 #include <signal.h>
 
 // Structs
@@ -58,6 +60,7 @@ typedef struct	s_data
     pid_t		child;
     int			fdin;
     int			fdout;
+	int			status;
 }				t_data;
 
 // BUILT_INS

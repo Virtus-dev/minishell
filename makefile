@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/25 14:24:45 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/25 16:14:25 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := minishell
 
 CC := gcc
 
-CFLAGS := -Wall -Werror -Wextra -g
+CFLAGS := -Wall -Werror -Wextra
 
 RLINE := -lreadline
 
@@ -26,7 +26,7 @@ OBJDIR := obj
 
 LIBFT = libft/libft.a
 
-SRC = src/built-ins/builtins.c src/built-ins/cd.c src/built-ins/env.c\
+SRC = src/built-ins/echo.c src/built-ins/pwd.c src/built-ins/cd.c src/built-ins/env.c\
 		src/built-ins/export.c src/built-ins/exit.c\
       src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
 		src/utils/utils.c test.c
@@ -44,7 +44,7 @@ $(OBJDIR)/%.o : src/%.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME) : $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 
 	@echo "$(GREEN)MINISHELL COMPILED$(DEF_COLOR)"
 
 clean :

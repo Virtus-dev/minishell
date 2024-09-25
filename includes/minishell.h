@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 13:51:06 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:55:55 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int		ft_flag_exist(char *str);
 int	    ft_check_expformat(char *argv);
 void	ft_free_matrix(char **str);
 void	ft_free_resources(t_data *data);
+int		ft_builtin_check(char *str);
 
 #endif

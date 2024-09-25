@@ -6,12 +6,17 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:07:58 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 14:25:52 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:41:59 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Error control, checks if the argument passed by, its a number.
+ * 
+ * @param t_data Structure wich holds all the information.
+ */
 void    ft_check_exit(t_data *data)
 {
     if (!ft_atoi(data->argv[1]))

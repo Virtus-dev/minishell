@@ -6,11 +6,11 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:26:51 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/23 18:40:03 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:25:24 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 void	ft_cd(t_data *data, char *owd)
 {

@@ -6,11 +6,11 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:55:05 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/23 16:00:46 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:25:34 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
 /**
  * @brief Replicates the 'export' command, wich creates

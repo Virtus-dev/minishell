@@ -97,4 +97,12 @@ void	ft_free_matrix(char **str);
 void	ft_free_resources(t_data *data);
 int		ft_builtin_check(char *str);
 
+// PARSING
+int check_quotes(char *line);
+int check_line(char *line);
+//TOKENS
+int is_del(char c, const char *delimiter);
+char *ft_strtok(char *line, const char *delimiter);
+int count_words(char *str);
+char **tokenize_command(char *input);
 #endif

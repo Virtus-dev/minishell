@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:55:05 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 14:25:34 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:58:29 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_export(t_data *data)
 	i = 0;
 	while (data->argv[i])
 	{
-		splited = ft_split(data->argv[i], '=');
+		splited = ft_mini_split(data->argv[i], '=');
 		if (ft_check_expformat(data->argv[i]))
 			i++;
 		else

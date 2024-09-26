@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 14:53:16 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/26 16:52:16 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_mapcmp_update(t_map *map, char *values)
 	int		i;
 	
 	i = 0;
-	splited = ft_split(values, '=');
+	splited = ft_mini_split(values, '=');
 	while (splited[i])
 	{
 		if (ft_key_exist(map, splited[i]))

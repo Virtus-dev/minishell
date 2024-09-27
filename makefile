@@ -29,7 +29,8 @@ LIBFT = libft/libft.a
 SRC = src/built-ins/echo.c src/built-ins/pwd.c src/built-ins/cd.c src/built-ins/env.c\
 		src/built-ins/export.c src/built-ins/exit.c\
       src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
-		src/utils/utils.c test.c
+		src/utils/utils.c test.c \
+	  src/parsing/parsing.c src/tokens/tokens.c \
 
 all : $(NAME)
 
@@ -44,7 +45,7 @@ $(OBJDIR)/%.o : src/%.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME) : $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
 	@echo "$(GREEN)MINISHELL COMPILED$(DEF_COLOR)"
 
 clean :
@@ -58,7 +59,7 @@ fclean : clean
 	@rm -f $(NAME)
 	@make -s -C libft fclean
 	@echo "$(RED)All executable files has been deleted.$(DEF_COLOR)"
-	
+
 re : fclean all
 
 norm :
@@ -71,7 +72,7 @@ norm :
 $(SANITIZE) : $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
 	@echo "$(CYAN)Compiling minishell with fsanitize$(DEF_COLOR)"
-	
+
 
 # Colors
 

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:55:53 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/26 17:49:49 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:36:36 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_env(t_data *data)
 {
-	ft_print_map(data);
+	ft_print_map(data, data->env);
 }

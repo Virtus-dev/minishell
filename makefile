@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/25 16:14:25 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/27 13:19:35 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ norm :
 	@echo "$(DEF_COLOR)"
 
 $(SANITIZE) : $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(FSANITIZE) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
 	@echo "$(CYAN)Compiling minishell with fsanitize$(DEF_COLOR)"
 
 

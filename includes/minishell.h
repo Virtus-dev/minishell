@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 19:49:33 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:37:01 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_add_key(t_map *map, t_key *key);
 t_map	*ft_fill_map(char **env);
 int		ft_key_exist(t_map *map, char *key);
 void	ft_update_map(t_map *map, char *value, char *key);
-void	ft_print_map(t_data *data);
+void	ft_print_map(t_data *data, t_map *map);
 void	ft_mapcmp_update(t_map *map, char *values);
 void	ft_free_map(t_map *map);
 

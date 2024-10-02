@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 12:55:53 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/27 11:36:36 by arigonza         ###   ########.fr       */
+/*   Created: 2024/09/26 17:35:25 by arigonza          #+#    #+#             */
+/*   Updated: 2024/09/26 17:47:25 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(t_data *data)
+void	ft_unset(t_data *data, char **keys)
 {
-	ft_print_map(data, data->env);
+	int	i;
+
+	i = 0;
+	while (keys[i])
+	{
+		if (ft_key_exist(data->env, keys[i]))
+			free(ft_get_keymap(data->env, keys[i]));
+		if (ft_key_exist(data->exp, keys[i]))
+			free(ft_get_keymap(data->exp, keys[i]));
+		i++;
+	}
 }

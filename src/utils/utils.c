@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 14:54:27 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/27 12:48:26 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ int	ft_check_expformat(char *argv)
 	int		i;
 
 	i = 0;
+	printf("%s\n", argv);
 	if (argv[0] != '_' || ft_isalpha(argv[0]))
 		return (FALSE);
+	printf("en el check\n");
 	i++;
 	while (argv[i])
 	{

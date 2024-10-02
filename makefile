@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/25 14:24:45 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/27 13:19:35 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,11 @@ OBJDIR := obj
 
 LIBFT = libft/libft.a
 
-SRC = src/built-ins/builtins.c src/built-ins/cd.c src/built-ins/env.c\
+SRC = src/built-ins/echo.c src/built-ins/pwd.c src/built-ins/cd.c src/built-ins/env.c\
 		src/built-ins/export.c src/built-ins/exit.c\
       src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
-		src/utils/utils.c test.c
+		src/utils/utils.c test.c \
+	  src/parsing/parsing.c src/tokens/tokens.c \
 
 all : $(NAME)
 
@@ -43,7 +44,7 @@ $(OBJDIR)/%.o : src/%.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME) : $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE) 
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
 	@echo "$(GREEN)MINISHELL COMPILED$(DEF_COLOR)"
 
 clean :
@@ -57,7 +58,7 @@ fclean : clean
 	@rm -f $(NAME)
 	@make -s -C libft fclean
 	@echo "$(RED)All executable files has been deleted.$(DEF_COLOR)"
-	
+
 re : fclean all
 
 norm :
@@ -68,9 +69,9 @@ norm :
 	@echo "$(DEF_COLOR)"
 
 $(SANITIZE) : $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(FSANITIZE) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(FSANITIZE) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
 	@echo "$(CYAN)Compiling minishell with fsanitize$(DEF_COLOR)"
-	
+
 
 # Colors
 

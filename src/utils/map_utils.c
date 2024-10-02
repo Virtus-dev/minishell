@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 14:53:27 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:34:23 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_map	*ft_fill_map(char **env)
 	while (env[i])
 	{
 		j = 0;
-		splited = ft_split(env[i], '=');
+		splited = ft_mini_split(env[i], '=');
 		while (splited[j] && splited[j + 1])
 		{
 			ft_add_key(map, ft_new_key(splited[j], splited[j + 1]));

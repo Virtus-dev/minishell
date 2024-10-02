@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:07:58 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 14:41:59 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:11:10 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
  */
 void    ft_check_exit(t_data *data)
 {
+    //if (data->argv[2])
+    //    return (1);
     if (!ft_atoi(data->argv[1]))
     {
         ft_putstr_fd(data->argv[0], data->fdout);

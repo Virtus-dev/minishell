@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/27 13:34:23 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:11:01 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_add_key(t_map *map, t_key *key)
 	{
 		map->capacity *= 2;
 		t_key	**new_keys;
-		new_keys = realloc(map->keys, sizeof(t_key *) * map->capacity);
+		new_keys = (t_key**)realloc(map->keys, sizeof(t_key *) * map->capacity);
 		if (!new_keys)
 			return ;
 		map->keys = new_keys;

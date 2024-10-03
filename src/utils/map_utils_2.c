@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/27 11:36:20 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:05:54 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_key_exist(t_map *map, char *key)
 	int	i;
 
 	i = 0;
+	if (map && map->keys)
+		return (0);
 	while (map && map->keys[i])
 	{
 		if (ft_strcmp(key, map->keys[i]->key) == 0)
@@ -36,6 +38,8 @@ void	ft_update_map(t_map *map, char *value, char *key)
 		free(nkey->value);
 		nkey->value = ft_strdup(value);
 	}
+	else
+		ft_add_key(map, ft_new_key(key, value));
 }
 
 void	ft_print_map(t_data *data, t_map *map)
@@ -43,7 +47,7 @@ void	ft_print_map(t_data *data, t_map *map)
 	size_t	i;
 
 	i = 0;
-	while (map->size > i)
+	while (map->keys[i])
 	{
 		ft_putstr_fd(map->keys[i]->key, data->fdout);
 		ft_putstr_fd("=", data->fdout);

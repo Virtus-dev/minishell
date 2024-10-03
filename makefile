@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/09/27 13:19:35 by arigonza         ###   ########.fr        #
+#    Updated: 2024/09/29 12:33:03 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := minishell
 
 CC := gcc
 
-CFLAGS := -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra -g
 
 RLINE := -lreadline
 
@@ -28,6 +28,7 @@ LIBFT = libft/libft.a
 
 SRC = src/built-ins/echo.c src/built-ins/pwd.c src/built-ins/cd.c src/built-ins/env.c\
 		src/built-ins/export.c src/built-ins/exit.c\
+		src/exec/exec.c\
       src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
 		src/utils/utils.c test.c \
 	  src/parsing/parsing.c src/tokens/tokens.c \

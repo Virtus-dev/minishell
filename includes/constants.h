@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:47:00 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 15:48:24 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/04 12:26:57 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # define CD_ERR "Error on cd command"
 # define PWD_ERR "Error on pwd command"
 # define MALLOC_ERR "Malloc error"
+# define SIG_ERR "Sigaction error"
+# define SIGEMPT_ERR "Sig empty set error"
+# define SIGIGN_ERR "Failed to ignore SIGQUIT"
+# define SETINT_ERR "Failed to set SIGINT handler"
+# define SETINT_CHLD "Failed to set SIGINT handler for process"
+# define SETIGN_CHLD "Failed to set SIGQUIT handler for process"
 
 // Constants
 # define PATH_MAX 5

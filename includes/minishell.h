@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/27 11:37:01 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:45:43 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <string.h>
 
 // Structs
 typedef struct	s_token

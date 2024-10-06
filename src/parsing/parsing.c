@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:59:23 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/02 12:38:22 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/05 22:01:56 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,11 @@ int check_line(char *line)
 		i++;
 	}
 	return(TRUE);
+}
+
+char *check_input(char *line)
+{
+	check_line(line);
+	validate_metachar(line);
+	
 }

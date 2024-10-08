@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/04 11:45:43 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/08 08:57:25 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,23 @@ int	    ft_check_expformat(char *argv);
 void	ft_free_matrix(char **str);
 void	ft_free_resources(t_data *data);
 int		ft_builtin_check(char *str);
+void	ft_execpath(t_data* data);
+void	ft_runexec(t_data *data);
 
 // PARSING
 int check_quotes(char *line);
 int check_line(char *line);
+int is_in_quotes(char *line, int index);
+int check_input(char *line);
+
 //TOKENS
 int is_del(char c, const char *delimiter);
 char *ft_strtok(char *line, const char *delimiter);
 int count_words(char *str);
 char **tokenize_command(char *input);
+//VALIDATIONS  
+int validate_pipe(char *line , int index);
+int validate_otredir(char *line , int index);
+int validate_itredir(char *line , int index);
+int validate_metachar(char *line);
 #endif

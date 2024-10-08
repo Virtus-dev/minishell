@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          #+#  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024-09-26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2024-09-26 15:39:10 by fracurul         ###   ########.fr       */
+/*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
+/*   Updated: 2024/10/08 10:46:05 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,38 @@ int is_del(char c, const char *delimiter)
 char *ft_strtok(char *line, const char *delimiter)
 {
 	static char *input = NULL; //guardar token entre llamadas.
-	char *t_start; //comienzo token.
+	char *token;
 	int i;
+	int start;
 
-	i = 1;
+	i =
+	start = 0;
 	if(line != NULL) //inicializamos input con el contenido de line.
 		input = line;
 	if(!input) //si no existe salimos.
 		return(NULL);
-	while(*input && is_del(*input, delimiter))//saltar del iniciales en caso de que haya.
-		input++;
-	if(*input == '\0')//si hemos llegado al final no existe token, por lo tanto salimos.
+	while(input[start] && is_del(*input, delimiter))//saltar del iniciales en caso de que haya.
+		start++;
+	if(input[start] == '\0')//si hemos llegado al final no existe token, por lo tanto salimos.
 	{
 		input = NULL;
 		return(FALSE);
 	}
-	t_start = input; //si existe, inicializamos el token,
-	while(*input && !is_del(*input, delimiter))//buscamos el final del token
+	i = start;
+	while(input[i])//recorremos la cadena
 	{
-		t_start[i++] = *input;
-		input++;
+		if(!is_in_quotes(input, i) && is_del(input[i], delimiter)) //si hay un del, fuera de comilla, terminamos y avanzamos
+		{
+			input[i] = '\0';
+			token = &input[start];
+			input = &input[i + 1];
+			return (token);
+		}
+		i++;
 	}
-	if(*input != '\0')//en caso de haber encontrado otro delimitador, lo remplazamos con '\0' para cerrar el token.
-	{
-		*input = '\0';
-		input++; //avanzar al siguiente caracter
-	}
-	return(t_start); //retornar token
+	token = &input[start]; //si llegamos al final sin encontrar del
+	input = NULL;
+	return (token);
 }
 
 int count_words(char *str)
@@ -80,7 +85,7 @@ char **tokenize_command(char *input)
 {
 	char **tokens; //doble array con los tokens
 	char *token; //token simple
-	const char *del = " \t|"; //delimitadores
+	const char *del = " \t|><"; //delimitadores
 	int pos;
 
 	tokens = (char **)malloc(count_words(input) * sizeof(char *));
@@ -94,7 +99,7 @@ char **tokenize_command(char *input)
 			ft_putstr_fd("minishell: too much argumentens", 1);
 			break;
 		}
-		token = ft_strtok(input, del);
+		token = ft_strtok(NULL, del);
 	}
 	tokens[pos] = NULL;
 	return(tokens);

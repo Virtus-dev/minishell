@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/27 12:09:30 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/08 09:08:54 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **env)
+/*int main(int argc, char **argv, char **env)
 {
 	t_data	*data;
 
@@ -46,4 +46,34 @@ int main(int argc, char **argv, char **env)
 	free(data->input);
 	clear_history();
 	return (FALSE);
+}*/
+
+int main()
+{
+	char *input;
+
+	while(1)
+	{
+		// guardar lectura del usuario en una var.
+		input = readline("Minishell$ ");
+		//si no hay contenido nos salimos (ctrl + D)
+		if(!input)
+		{
+			printf("Exit \n");
+			break;
+		}
+		//prueba.
+		printf("Entrada: %s\n", input);
+		//si tenemos entrada, la añadimos al historial.
+		if(input)
+			add_history(input);
+		
+		if(!check_input(input))
+		{
+			printf("syntax error\n");
+			continue;
+		}
+		//liberar lo que hemos leido, para realizar una nueva lectura.
+		free(input);
+	}
 }

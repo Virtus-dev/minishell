@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:59:23 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/05 22:01:56 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/08 09:10:06 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int check_quotes(char *line)
 			quote++;
 		if(*line == '\"' && (quote % 2 == 0))
 			dquote++;
+		line++;
 	}
 	if((quote % 2 == 0) && (dquote % 2 == 0))
 		return (TRUE);
@@ -66,16 +67,18 @@ int check_line(char *line)
 		return (FALSE);
 	while(line[i])
 	{
-		if(line[i] == '&' || line[i] == ';')
+		if((line[i] == '&' || line[i] == ';') && !is_in_quotes(line, i))
 			return(FALSE);
 		i++;
 	}
 	return(TRUE);
 }
 
-char *check_input(char *line)
+int check_input(char *line)
 {
-	check_line(line);
-	validate_metachar(line);
-	
+	if(!check_line(line) || !validate_metachar(line))
+		return(FALSE);
+	else
+		return(TRUE);
 }
+	

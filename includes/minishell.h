@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/08 08:57:25 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:22:05 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	ft_free_resources(t_data *data);
 int		ft_builtin_check(char *str);
 void	ft_execpath(t_data* data);
 void	ft_runexec(t_data *data);
+char	**ft_revert_env(t_map *map);
 
 // PARSING
 int check_quotes(char *line);

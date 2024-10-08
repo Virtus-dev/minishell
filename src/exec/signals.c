@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:06:17 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/04 11:57:54 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:24:03 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_set_signal(int sig, void (*handler)(int))
 	sa.sa_flags = 0;
 	if (sigaction(sig, &sa, NULL) == -1)
 	{
-		perror(SIG_ERR);
+		perror(SIGA_ERR);
 		return (-1);
 	}
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+         #
+#    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/10/08 07:26:39 by fracurul         ###   ########.fr        #
+#    Updated: 2024/10/08 15:18:40 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/08 09:08:54 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:30:27 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@
 	return (FALSE);
 }*/
 
-int main()
+int main(int argc, char **argv, char **env)
 {
-	char *input;
+	t_data	*data;
+	char 	*input;
+	data = ft_init_data(argc, env);
 
 	while(1)
 	{
@@ -72,6 +74,14 @@ int main()
 		{
 			printf("syntax error\n");
 			continue;
+		}
+		else
+		{
+			data->argv = tokenize_command(input);
+			if (ft_builtin_check(data->argv[0]))
+			{
+				
+			}
 		}
 		//liberar lo que hemos leido, para realizar una nueva lectura.
 		free(input);

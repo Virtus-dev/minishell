@@ -6,16 +6,16 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/08 15:22:40 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:39:16 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_builtin_check(char *str)
+int	ft_builtin_check(t_data * data, char *str)
 {
 	if (!ft_strcmp(str, "echo") || ft_strcmp(str, "ECHO"))
-		return (ECHO);
+		return (ft_echo(data), ECHO);
 	if (!ft_strcmp(str, "cd") || ft_strcmp(str, "CD"))
 		return (CD);
 	if (!ft_strcmp(str, "export") || ft_strcmp(str, "EXPORT"))

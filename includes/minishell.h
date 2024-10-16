@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/08 15:22:05 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:57:28 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct	s_data
 {
     char		*input;
     char		**argv;
-    t_token		*token;
+    t_token		**token;
     int			lvl;
 	t_map		*env;
     t_map		*exp;

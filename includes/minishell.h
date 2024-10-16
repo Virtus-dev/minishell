@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/16 15:27:20 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:51:04 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int check_input(char *line);
 
 //TOKENS
 int is_del(char c, const char *delimiter);
+int is_ddel(char *input, const char delimiter);
 char *ft_strtok(char *line, const char *delimiter);
 int count_words(char *str);
 char **tokenize_command(char *input);

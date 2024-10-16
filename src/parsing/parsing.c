@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:59:23 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/08 09:10:06 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:37:36 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int is_in_quotes(char *line, int index)
 		i++;
 	}
 	return(quote || dquote); //devolver la diferencia entre ' y ".
+	 1 * 1
 }
 
 int check_line(char *line)

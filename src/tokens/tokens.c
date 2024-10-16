@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/08 16:09:09 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:51:14 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ int is_del(char c, const char *delimiter)
 	while(delimiter[i])
 	{
 		if(delimiter[i] == c)
+			return(TRUE);
+	}
+	return(FALSE);
+}
+
+int is_ddel(char *input, const char delimiter)
+{
+	int i;
+
+	i = 0;
+	while(input[i])
+	{
+		if(input[i] == delimiter && input[i + 1] == delimiter )
 			return(TRUE);
 	}
 	return(FALSE);
@@ -48,12 +61,21 @@ char *ft_strtok(char *line, const char *delimiter)
 	i = start;
 	while(input[i])//recorremos la cadena
 	{
-		if(!is_in_quotes(input, i) && is_del(input[i], delimiter)) //si hay un del, fuera de comilla, terminamos y avanzamos
+		if(!is_in_quotes(input, i) && is_del(input[i], delimiter) //si hay un del, fuera de comilla, terminamos y avanzamos
+			&&	!is_ddel(input[i], '>') && !is_ddel(input[i], '<'))		
 		{
 			input[i] = '\0';
 			token = &input[start];
 			input = &input[i + 1];
 			return (token);
+		}
+		if(!is_in_quotes(input, i) && (is_ddel(input[i], '>') //nuevo
+			|| is_ddel(input[i], '<')))
+		{
+			input[i + 1] = '\0';
+			token = &input[start + 1];
+			input = &input[i + 2];
+			return (token);//nuevo hasta aqui.
 		}
 		i++;
 	}

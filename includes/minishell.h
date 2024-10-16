@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/08 15:52:34 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:39:38 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int check_input(char *line);
 
 //TOKENS
 int is_del(char c, const char *delimiter);
+int is_ddel(char *input, const char delimiter);
 char *ft_strtok(char *line, const char *delimiter);
 int count_words(char *str);
 char **tokenize_command(char *input);

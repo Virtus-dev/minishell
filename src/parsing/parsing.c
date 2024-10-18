@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:59:23 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/08 15:37:36 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:53:20 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int is_in_quotes(char *line, int index)
 		i++;
 	}
 	return(quote || dquote); //devolver la diferencia entre ' y ".
-	 1 * 1
 }
 
 int check_line(char *line)

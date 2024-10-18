@@ -6,16 +6,23 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/16 15:49:58 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:28:48 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Checks if the parameter passed by is or is not a built-in.
+ * 
+ * @param data Struct with all the main information. 
+ * @param str The supossed built-in we are going to check.
+ * @return int Executes and Returns the kind of built-in.
+ */
 int	ft_builtin_check(t_data * data, char *str)
 {
 	if (!ft_strcmp(str, "echo") || ft_strcmp(str, "ECHO"))
-		return (ft_echo(data), ECHO);
+		return (ECHO);
 	if (!ft_strcmp(str, "cd") || ft_strcmp(str, "CD"))
 		return (CD);
 	if (!ft_strcmp(str, "export") || ft_strcmp(str, "EXPORT"))

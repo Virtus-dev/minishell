@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/16 15:51:04 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:53:32 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@
 // Structs
 typedef struct	s_token
 {
-    char			*str;
+    char			**str;
     int				type;
-    struct s_token	*prev;
     struct s_token	*next;
 }	t_token;
 
@@ -53,7 +52,7 @@ typedef struct	s_data
 {
     char		*input;
     char		**argv;
-    t_token		**token;
+    t_token		*token;
     int			lvl;
 	t_map		*env;
     t_map		*exp;
@@ -70,6 +69,7 @@ void	ft_pwd(t_data *data);
 void	ft_cd(t_data *data, char *owd);
 void	ft_env(t_data *data);
 void	ft_export(t_data *data);
+void	ft_unset(t_data *data);
 void    ft_exit(t_data *data);
 
 // MAP UTILS
@@ -88,6 +88,12 @@ void	ft_free_map(t_map *map);
 // STRUCT UTILS
 t_data	*ft_init_data(int argc, char **env);
 void	ft_map_init(t_map *map);
+void	ft_load_token(t_data *data, char **tokens);
+
+// TOKEN UTILS
+t_token	*ft_new_token(char **cmd);
+void	ft_tokadd_back(t_token *lst, t_token *token);
+void	ft_freetok(t_token *token);
 
 // UTILS
 void	ft_oldpwd(t_data *data, char *owd, char *nwd);

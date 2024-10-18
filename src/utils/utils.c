@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/03 11:44:24 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:18:27 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_free_resources(t_data *data)
 {
 	free(data->input);
 	ft_free_matrix(data->argv);
-	free(data->token);
+	ft_freetok(data->token);
 	ft_free_map(data->env);
 	ft_free_map(data->exp);	
 }

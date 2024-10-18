@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/16 15:30:27 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:25:24 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int main(int argc, char **argv, char **env)
 {
 	t_data	*data;
 	char 	*input;
+	char	**str;
 	data = ft_init_data(argc, env);
 
 	while(1)
@@ -75,13 +76,11 @@ int main(int argc, char **argv, char **env)
 			printf("syntax error\n");
 			continue;
 		}
-		else
+		str = tokenize_command(input);
+		if (ft_builtin_check(str))
 		{
-			data->argv = tokenize_command(input);
-			if (ft_builtin_check(data->argv[0]))
-			{
-				
-			}
+			if (ft_strcmp(str[0], ".."))
+				chdir(ft_get_keymap(env, "OLDPWD"));
 		}
 		//liberar lo que hemos leido, para realizar una nueva lectura.
 		free(input);

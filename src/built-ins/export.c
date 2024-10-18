@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:55:05 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/28 18:11:02 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/17 10:31:31 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_export(t_data *data)
 	int		i;
 	char	**splited;
 
-	i = 2;
+	i = 1;
 	if (!data->argv[i])
 		ft_print_map(data, data->exp);
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/18 10:53:32 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:30:57 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int check_input(char *line);
 
 //TOKENS
 int is_del(char c, const char *delimiter);
-int is_ddel(char *input, const char delimiter);
+int is_ddel(char *input, const char delimiter, int i);
 char *ft_strtok(char *line, const char *delimiter);
 int count_words(char *str);
 char **tokenize_command(char *input);

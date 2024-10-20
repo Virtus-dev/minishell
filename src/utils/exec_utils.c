@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/17 11:28:48 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 09:31:44 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param str The supossed built-in we are going to check.
  * @return int Executes and Returns the kind of built-in.
  */
-int	ft_builtin_check(t_data * data, char *str)
+int	ft_builtin_check(char *str)
 {
 	if (!ft_strcmp(str, "echo") || ft_strcmp(str, "ECHO"))
 		return (ECHO);

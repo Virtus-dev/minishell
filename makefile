@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+         #
+#    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/10/16 15:40:16 by fracurul         ###   ########.fr        #
+#    Updated: 2024/10/20 09:39:01 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRC = src/built-ins/echo.c src/built-ins/pwd.c src/built-ins/cd.c src/built-ins/
       src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
 		src/utils/utils.c test.c \
 	  src/parsing/parsing.c src/tokens/tokens.c  src/validations/validations.c \
-	  src/exec/signals.c src/utils/exec_utils.c\
+	  src/exec/signals.c src/utils/exec_utils.c src/utils/token_utils.c\
 
 all : $(NAME)
 

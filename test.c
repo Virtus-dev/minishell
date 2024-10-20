@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/18 10:25:24 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 09:37:41 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 
 int main(int argc, char **argv, char **env)
 {
+	(void)argv;
 	t_data	*data;
 	char 	*input;
 	char	**str;
@@ -77,10 +78,13 @@ int main(int argc, char **argv, char **env)
 			continue;
 		}
 		str = tokenize_command(input);
-		if (ft_builtin_check(str))
+		if (ft_builtin_check(str[0]))
 		{
 			if (ft_strcmp(str[0], ".."))
-				chdir(ft_get_keymap(env, "OLDPWD"));
+			{
+				t_key *key = ft_get_keymap(data->env, "OLDPWD");
+				chdir(key->value);
+			}
 		}
 		//liberar lo que hemos leido, para realizar una nueva lectura.
 		free(input);

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:57:01 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/17 13:32:08 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 09:39:35 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_token	*ft_new_token(char **cmd)
 	t_token	*token;
 
 	token = malloc(sizeof(t_token));
-	token->str = ft_strdup(cmd);
+	token->str = ft_dbstrdup(cmd);
 	token->type = ft_builtin_check(cmd[0]);
 	token->next = NULL;
 	return (token);

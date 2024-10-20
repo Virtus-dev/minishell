@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:26:51 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/17 13:26:49 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 12:19:14 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_cd(t_data *data, char *owd)
 {
 	t_key	*home;
 
-	data->argv = data->token->str;
 	owd = getcwd(NULL, 0);
 	if (!chdir(data->argv[1]) && data->argc >= 2)
 		ft_update_dir(data, owd);

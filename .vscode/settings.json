@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "minishell.h": "c"
+        "minishell.h": "c",
+        "signal.h": "c",
+        "types.h": "c",
+        "signum.h": "c",
+        "sig_atomic_t.h": "c",
+        "sigset_t.h": "c",
+        "features.h": "c"
     }
 }

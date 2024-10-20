@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/18 13:31:17 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/20 12:15:34 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ int is_del(char c, const char *delimiter)
 	{
 		if(delimiter[i] == c)
 			return(TRUE);
+		i++;
 	}
 	return(FALSE);
 }
 
 int is_ddel(char *input, const char delimiter, int i)
 {
-	while(input[i])
-	{
-		if(input[i] == delimiter && input[i + 1] == delimiter )
-			return(TRUE);
-	}
+	if (!input[i] && !input[i + 1])
+		return (FALSE);
+	if(input[i] == delimiter && input[i + 1] == delimiter )
+		return(TRUE);
 	return(FALSE);
 }
 
@@ -42,7 +42,6 @@ char *ft_strtok(char *line, const char *delimiter)
 	int i;
 	int start;
 
-	i =
 	start = 0;
 	if(line != NULL) //inicializamos input con el contenido de line.
 		input = line;
@@ -100,20 +99,21 @@ int count_words(char *str)
 	return(wc);
 }
 
-char **tokenize_command(char *input)
+char **tokenize_command(char *input, int pos)
 {
 	char **tokens; //doble array con los tokens
 	char *token; //token simple
 	const char *del = " \t|><"; //delimitadores
-	int pos;
+	int			count;
 
 	tokens = (char **)malloc(count_words(input) * sizeof(char *));
+	count = count_words(input);
 	token = ft_strtok(input, del);
 	while(token != NULL)
 	{
 		tokens[pos] = token;
 		pos++;
-		if(pos >= (count_words(input) - 1))
+		if(pos > count)
 		{
 			ft_putstr_fd("minishell: too much argumentens", 1);
 			break;

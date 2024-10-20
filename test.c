@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 09:37:41 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 12:25:52 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int main(int argc, char **argv, char **env)
 	{
 		// guardar lectura del usuario en una var.
 		input = readline("Minishell$ ");
+		data->argv = tokenize_command(input, 0);
 		//si no hay contenido nos salimos (ctrl + D)
 		if(!input)
 		{
@@ -77,7 +78,8 @@ int main(int argc, char **argv, char **env)
 			printf("syntax error\n");
 			continue;
 		}
-		str = tokenize_command(input);
+		ft_exec(data);
+		str = tokenize_command(input, 0);
 		if (ft_builtin_check(str[0]))
 		{
 			if (ft_strcmp(str[0], ".."))

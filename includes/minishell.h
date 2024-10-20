@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/18 13:30:57 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/20 12:25:05 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,17 @@ void	ft_export(t_data *data);
 void	ft_unset(t_data *data);
 void    ft_exit(t_data *data);
 
+// EXEC
+void	ft_exec(t_data *data);
+
+// SIGNALS
+void	ft_handler(int sig);
+void	ft_child_handler(int sig);
+static int	ft_set_signal(int sig, void (*handler)(int));
+static void	ft_ignore_signals(void);
+void	ft_signal(void);
+void	ft_child_signal(void);
+
 // MAP UTILS
 void	ft_map_init(t_map *map);
 t_key	*ft_new_key(char *name, char *value);
@@ -118,7 +129,7 @@ int is_del(char c, const char *delimiter);
 int is_ddel(char *input, const char delimiter, int i);
 char *ft_strtok(char *line, const char *delimiter);
 int count_words(char *str);
-char **tokenize_command(char *input);
+char **tokenize_command(char *input, int pos);
 //VALIDATIONS  
 int validate_pipe(char *line , int index);
 int validate_otredir(char *line , int index);

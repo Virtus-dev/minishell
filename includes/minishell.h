@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 13:02:29 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 17:29:35 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@
 // Structs
 typedef struct	s_token
 {
-    char			**str;
-    int				type;
-    struct s_token	*next;
+    char			*cmd;
+    char			**cargs;
 }	t_token;
 
 typedef struct	s_key
@@ -127,7 +126,8 @@ int is_del(char c, const char *delimiter);
 int is_ddel(char *input, const char delimiter, int i);
 char *ft_strtok(char *line, const char *delimiter);
 int count_words(char *str);
-char **tokenize_command(char *input, int pos);
+//char **tokenize_command(char *input, int pos);
+t_token *tokenize_command(char *input, int *num_commands);
 //VALIDATIONS  
 int validate_pipe(char *line , int index);
 int validate_otredir(char *line , int index);

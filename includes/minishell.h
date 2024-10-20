@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 17:51:03 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/20 18:31:50 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct	s_data
 {
     char		*input;
     char		**argv;
-    t_token		*token;
+    t_token		**tokens;
     int			lvl;
 	t_map		*env;
     t_map		*exp;
@@ -96,12 +96,9 @@ void	ft_free_map(t_map *map);
 // STRUCT UTILS
 t_data	*ft_init_data(int argc, char **env);
 void	ft_map_init(t_map *map);
-void	ft_load_token(t_data *data, char **tokens);
 
 // TOKEN UTILS
-t_token	*ft_new_token(char **cmd);
-void	ft_tokadd_back(t_token *lst, t_token *token);
-void	ft_freetok(t_token *token);
+void	ft_freetok(t_token **token);
 
 // UTILS
 void	ft_oldpwd(t_data *data, char *owd, char *nwd);
@@ -128,10 +125,10 @@ char *ft_strtok(char *line, const char *delimiter);
 int count_words(char *str);
 //char **tokenize_command(char *input, int pos);
 t_token *tokenize_command(char *input, int *num_commands);
+
 //VALIDATIONS  
 int validate_pipe(char *line , int index);
 int validate_otredir(char *line , int index);
 int validate_itredir(char *line , int index);
 int validate_metachar(char *line);
 #endif
-liada

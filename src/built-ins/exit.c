@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:07:58 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 12:20:18 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 17:52:40 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void    ft_check_exit(t_data *data)
 		ft_free_resources(data);
 		exit(EXIT_FAILURE);
     }
-    data->token = data->token->next;
 }
 
 void    ft_exit(t_data *data)

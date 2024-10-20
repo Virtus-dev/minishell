@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 10:29:36 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 18:35:45 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,21 @@ void	ft_map_init(t_map *map)
 		perror(MALLOC_ERR);
 }
 
-void	ft_load_token(t_data *data, char **tokens)
+/*
+	TODO
+	Quizas valga mas la pena por sencillez aprovechar que strtok devuelve los tokens
+	por llamadas para cargar en argv dicha llamada individual, y asi no tener
+	que preocuparnos de las posiciones de los tokens. 	
+ */
+void	ft_load_tokens(t_data *data, char *input)
 {
 	int	i;
-	int	j;
-	char	**aux;
+	t_token	*token;
 
-	i = 0;
-	j = 0;
-	aux = NULL;
-	while (tokens[i])
-	{	
-		if (ft_builtin_check(tokens[i]))
-		{
-			aux[j++] = tokens[i++];
-			while (!ft_builtin_check(tokens[i]))
-				aux[j++] = tokens[i++];
-			
-			ft_tokadd_back(data->token, ft_new_token(ft_dbstrdup(aux)));
-		}
-		i++;
+	token = tokenize_command(input, 0);
+	while (token)
+	{
+		data->tokens[i] = token;
+		token = tokenize_command(input, 0);
 	}
 }

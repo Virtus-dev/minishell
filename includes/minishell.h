@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 12:25:05 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 13:02:29 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void	ft_exec(t_data *data);
 // SIGNALS
 void	ft_handler(int sig);
 void	ft_child_handler(int sig);
-static int	ft_set_signal(int sig, void (*handler)(int));
-static void	ft_ignore_signals(void);
 void	ft_signal(void);
 void	ft_child_signal(void);
 

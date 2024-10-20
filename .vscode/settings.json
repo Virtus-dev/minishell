@@ -6,6 +6,8 @@
         "signum.h": "c",
         "sig_atomic_t.h": "c",
         "sigset_t.h": "c",
-        "features.h": "c"
+        "features.h": "c",
+        "constants.h": "c",
+        "libft.h": "c"
     }
 }

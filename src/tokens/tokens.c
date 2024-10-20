@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/20 12:15:34 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/20 17:45:02 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int is_ddel(char *input, const char delimiter, int i)
 	return(FALSE);
 }
 
-char *ft_strtok(char *line, const char *delimiter)
+/*char *ft_strtok(char *line, const char *delimiter)
 {
 	static char *input = NULL; //guardar token entre llamadas.
 	char *token;
@@ -122,4 +122,102 @@ char **tokenize_command(char *input, int pos)
 	}
 	tokens[pos] = NULL;
 	return(tokens);
+}*/
+
+int count_words(char *str) {
+    int wc = 0;
+    int in_word = 0;
+
+    while (*str) {
+        if (is_del(*str, " \t")) {
+            if (in_word) {
+                in_word = 0;
+            }
+        } else {
+            if (!in_word) {
+                in_word = 1;
+                wc++;
+            }
+        }
+        str++;
+    }
+    return wc;
+}
+
+char *ft_strtok(char *line, const char *delimiter) {
+    static char *input = NULL;
+    char *token;
+    int start;
+
+    if (line != NULL)
+        input = line;
+    if (!input)
+        return NULL;
+
+    // Saltar los delimitadores iniciales
+    while (*input && is_del(*input, delimiter))
+        input++;
+
+    if (*input == '\0') {
+        input = NULL;
+        return NULL;
+    }
+
+    token = input;  // El token empieza aquí
+    start = 0;
+
+    // Recorremos hasta encontrar un delimitador
+    while (input[start]) {
+        if (is_del(input[start], delimiter)) {
+            // Si encontramos un delimitador, lo separamos
+            if (start == 0) {
+                input += 1;  // Avanzamos el input
+                return strndup(token, 1);  // Devolvemos el delimitador como token
+            }
+            input[start] = '\0';  // Terminamos el token actual
+            input += start + 1;   // Avanzamos para el siguiente token
+            return token;
+        }
+        start++;
+    }
+
+    // Si no hay más delimitadores, retornamos el resto como un token
+    input = NULL;
+    return token;
+}
+
+t_token *tokenize_command(char *input, int *num_commands) {
+    t_token *cmd = malloc(10 * sizeof(t_token));  // Máximo de 10 comandos (se puede ajustar)
+    char *token;
+    const char *del = " \t";  // Delimitadores
+    int pos = 0;
+    int parg = 0;
+
+    *num_commands = 0;  // Inicializamos el número de comandos
+
+    // Tokenizamos el primer comando
+    token = ft_strtok(input, del);
+    while (token != NULL) {
+        if (is_del(*token, "| >>")) {  // Si encontramos un pipe, separamos el comando
+            pos++;  // Avanzamos al siguiente comando
+            parg = 0;  // Reiniciamos el contador de argumentos
+            token = ft_strtok(NULL, del);  // Ignoramos el pipe
+            continue;
+        }
+
+        // Guardamos el comando y sus argumentos
+        if (parg == 0) {
+            cmd[pos].cmd = strdup(token);  // Guardamos el comando principal
+            cmd[pos].cargs = malloc(10 * sizeof(char*));  // Reservamos espacio para los argumentos
+        } else {
+            cmd[pos].cargs[parg - 1] = strdup(token);  // Guardamos el argumento
+        }
+
+        parg++;
+        token = ft_strtok(NULL, del);  // Siguiente token
+    }
+
+    cmd[pos].cargs[parg - 1] = NULL;  // Terminamos la lista de argumentos
+    *num_commands = pos + 1;  // Actualizamos el número de comandos
+    return cmd;
 }

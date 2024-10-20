@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 17:29:35 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/10/20 17:51:03 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,3 +134,4 @@ int validate_otredir(char *line , int index);
 int validate_itredir(char *line , int index);
 int validate_metachar(char *line);
 #endif
+liada

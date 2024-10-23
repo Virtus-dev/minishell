@@ -6,13 +6,13 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 18:35:45 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:02:37 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_data	*ft_init_data(int argc, char **env)
+t_data	*ft_init_data(int argc, char **env, t_token *tokens)
 {
 	t_data   *data;
 
@@ -22,7 +22,7 @@ t_data	*ft_init_data(int argc, char **env)
 	data->fdout = STDOUT_FILENO;
 	data->env = ft_fill_map(env);
 	data->exp = ft_fill_map(env);
-	data->token = malloc(sizeof(t_token*));
+	data->tokens = tokens;
 	
 	return (data);
 }
@@ -36,21 +36,32 @@ void	ft_map_init(t_map *map)
 		perror(MALLOC_ERR);
 }
 
-/*
-	TODO
-	Quizas valga mas la pena por sencillez aprovechar que strtok devuelve los tokens
-	por llamadas para cargar en argv dicha llamada individual, y asi no tener
-	que preocuparnos de las posiciones de los tokens. 	
- */
-void	ft_load_tokens(t_data *data, char *input)
+t_token get_next_token(t_token *token, int array_size)
 {
-	int	i;
-	t_token	*token;
+	static int position = 0;
 
-	token = tokenize_command(input, 0);
-	while (token)
+    if (position >= array_size)
+    {
+        t_token invalid_token = {NULL, NULL};
+        return invalid_token;
+    }
+	return (token[position++]);
+}
+
+void	ft_load_args(t_data *data)
+{
+	int	toklen;
+	int	i;
+	t_token	token;
+
+	i = 1;
+	toklen = ft_toklen(data->tokens);
+	token = get_next_token(data->tokens, toklen);
+	data->argv[0] = token.cmd;
+	while (token.cargs[i])
 	{
-		data->tokens[i] = token;
-		token = tokenize_command(input, 0);
+		data->argv[i] = token.cargs[i];
+		i++;
 	}
+	
 }

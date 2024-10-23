@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 18:31:50 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:04:25 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct	s_data
 {
     char		*input;
     char		**argv;
-    t_token		**tokens;
+    t_token		*tokens;
     int			lvl;
 	t_map		*env;
     t_map		*exp;
@@ -96,9 +96,12 @@ void	ft_free_map(t_map *map);
 // STRUCT UTILS
 t_data	*ft_init_data(int argc, char **env);
 void	ft_map_init(t_map *map);
+t_token get_next_token(t_token *token, int array_size);
+void	ft_load_args(t_data *data);
 
 // TOKEN UTILS
 void	ft_freetok(t_token **token);
+int     ft_toklen(t_token *token);
 
 // UTILS
 void	ft_oldpwd(t_data *data, char *owd, char *nwd);

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/23 16:04:25 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:57:50 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ void	ft_load_args(t_data *data);
 
 // TOKEN UTILS
 void	ft_freetok(t_token **token);
-int     ft_toklen(t_token *token);
+int     ft_toklen(t_token *tokens);
+void    free_tokens(t_token *tokens, int num_commands);
+int	    ft_matrix_size(char **matrix);
 
 // UTILS
 void	ft_oldpwd(t_data *data, char *owd, char *nwd);

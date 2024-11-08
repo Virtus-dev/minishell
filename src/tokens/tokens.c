@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/24 11:26:21 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:18:55 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ t_token *tokenize_command(char *input, int *num_commands) {
         // Guardamos el comando y sus argumentos
         if (parg == 0) {
             cmd[pos].cmd = strdup(token);  // Guardamos el comando principal
-            cmd[pos].cargs = malloc(10 * sizeof(char*));  // Reservamos espacio para los argumentos
+            cmd[pos].cargs = ft_calloc(10, sizeof(char*));  // Reservamos espacio para los argumentos
         } else {
             cmd[pos].cargs[parg - 1] = strdup(token);  // Guardamos el argumento
         }

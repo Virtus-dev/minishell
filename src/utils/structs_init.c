@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/24 12:58:59 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:40:30 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,21 @@ void	ft_load_args(t_data *data)
 
 	if (!data->tokens)
 		perror("No tokens found");
-	i = 1;
-	toklen = ft_toklen(data->tokens);
-	token = get_next_token(data->tokens, toklen);
-	data->argv = malloc(sizeof(char*) * ft_matrix_size(token.cargs));
-	data->argv[0] = token.cmd;
-	ft_putstr_fd("checking cargs\n", data->fdout);
-	if (token.cargs[0] != NULL)
+	i = 0;
+	if (!data->tokens[1].cmd)
+		token = data->tokens[0];
+	else
 	{
-		while (token.cargs[i])
-		{
-			data->argv[i] = token.cargs[i];
-			i++;
-		}
+		toklen = ft_toklen(data->tokens);
+		token = get_next_token(data->tokens, toklen);
+	}
+	if (!token.cmd)
+		perror("Empty token found");
+	data->argv = ft_calloc(sizeof(char*), (ft_matrix_size(token.cargs) + 1));
+	data->argv[0] = token.cmd;
+	while (token.cargs[i])
+	{
+		data->argv[i + 1] = token.cargs[i];
+		i++;
 	}
 }

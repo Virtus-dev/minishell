@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:57:01 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/24 12:57:12 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:56:55 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_matrix_size(char **matrix)
 {
 	int	i;
 	
+	if (!matrix)
+		return (0);
 	i = 0;
 	while (matrix[i])
 		i++;

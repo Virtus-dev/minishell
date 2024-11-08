@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/24 12:58:14 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:37:48 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+
 
 int main(int argc, char **argv, char **env)
 {
@@ -34,17 +35,19 @@ int main(int argc, char **argv, char **env)
         // Read user input
         input = readline("Minishell$ ");
         
+        printf("%s\n", input);
         // If no input (Ctrl+D), exit the shell
         if (!input)
         {
             printf("Exit\n");
-            break;
+            perror("NO input");
         }
+        printf("Entrada: %s\n", input);
         data->tokens = tokenize_command(input, &num_commands);
         ft_load_args(data);
         // Print the input for testing purposes
-        printf("Entrada: %s\n", input);
-
+        //printf("data arguments[0] = %s\n",data->tokens[2].cmd);
+        ft_exec(data);
         // If we have input, add it to the history
         if (input && *input)
         {
@@ -53,6 +56,7 @@ int main(int argc, char **argv, char **env)
 
         // Free the input to avoid memory leaks
         free(input);
+        //ft_free_matrix(data->argv);
     }
 
     // Free allocated data before exiting
@@ -77,14 +81,18 @@ int main() {
     char str[100] = "echo -n 'hola' >> test.txt";
     int num_commands = 0;
     t_token *commands = tokenize_command(str, &num_commands);
+    int i = 0;
+    int j = 0;
 
     // Imprimimos los resultados
-    for (int i = 0; i < num_commands; i++) {
+    while (commands[i].cmd) {
         printf("Command: %s\n", commands[i].cmd);
         printf("Arguments: ");
-        for (int j = 0; commands[i].cargs[j] != NULL; j++) {
+        while (commands[i].cargs[j] && j < 2) {
             printf("%s ", commands[i].cargs[j]);
+            j++;
         }
+        i++;
         printf("\n");
     }
 

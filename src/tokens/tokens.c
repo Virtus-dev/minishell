@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2024/11/08 18:18:55 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:10:47 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,14 +186,13 @@ char *ft_strtok(char *line, const char *delimiter) {
     return token;
 }
 
-t_token *tokenize_command(char *input, int *num_commands) {
-    t_token *cmd = malloc(10 * sizeof(t_token));  // Máximo de 10 comandos (se puede ajustar)
+t_token **tokenize_command(char *input) {
+    t_token **cmd = malloc(10 * sizeof(t_token*));  // Máximo de 10 comandos (se puede ajustar)
     char *token;
     const char *del = " \t";  // Delimitadores
     int pos = 0;
     int parg = 0;
-
-    *num_commands = 0;  // Inicializamos el número de comandos
+	//int	num_commands = 0;
 
     // Tokenizamos el primer comando
     token = ft_strtok(input, del);
@@ -207,17 +206,20 @@ t_token *tokenize_command(char *input, int *num_commands) {
 
         // Guardamos el comando y sus argumentos
         if (parg == 0) {
-            cmd[pos].cmd = strdup(token);  // Guardamos el comando principal
-            cmd[pos].cargs = ft_calloc(10, sizeof(char*));  // Reservamos espacio para los argumentos
+			cmd[pos] = malloc(sizeof(t_token));
+			if (!cmd[pos])
+				perror("Error alocating cmd");
+            cmd[pos]->cmd = strdup(token);  // Guardamos el comando principal
+            cmd[pos]->cargs = ft_calloc(10, sizeof(char*));  // Reservamos espacio para los argumentos
         } else {
-            cmd[pos].cargs[parg - 1] = strdup(token);  // Guardamos el argumento
+            cmd[pos]->cargs[parg - 1] = strdup(token);  // Guardamos el argumento
         }
 
         parg++;
         token = ft_strtok(NULL, del);  // Siguiente token
     }
 
-    cmd[pos].cargs[parg - 1] = NULL;  // Terminamos la lista de argumentos
-    *num_commands = pos + 1;  // Actualizamos el número de comandos
+    cmd[pos]->cargs[parg - 1] = NULL;  // Terminamos la lista de argumentos
+    //num_commands = pos + 1; // Actualizamos el número de comandos
     return cmd;
 }

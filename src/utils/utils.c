@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/24 12:05:30 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:39:36 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,9 @@ void	ft_free_matrix(char **matrix)
 void	ft_free_resources(t_data *data)
 {
 	free(data->input);
-	ft_free_matrix(data->argv);
-	free_tokens(data->tokens, 0);
+	if (data->argv)
+		ft_free_matrix(data->argv);
+	free_tokens(data->tokens);
 	ft_free_map(data->env);
 	ft_free_map(data->exp);	
 }

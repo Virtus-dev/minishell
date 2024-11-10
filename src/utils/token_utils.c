@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:57:01 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/08 16:56:55 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:31:20 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	ft_freetok(t_token **token)
 }
 */
 
-int	ft_toklen(t_token *tokens)
+int	ft_toklen(t_token **tokens)
 {
 	int	i;
 
 	i = 0;
-	while (tokens[i].cmd)
+	while (tokens[i])
 		i++;
 	return (i);
 }

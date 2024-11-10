@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/08 18:37:48 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:27:21 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int main(int argc, char **argv, char **env)
     (void)argv;
     t_data  *data;
     char    *input;
-    int     num_commands;
 
     data = ft_init_data(argc, env);
 
@@ -35,7 +34,6 @@ int main(int argc, char **argv, char **env)
         // Read user input
         input = readline("Minishell$ ");
         
-        printf("%s\n", input);
         // If no input (Ctrl+D), exit the shell
         if (!input)
         {
@@ -43,7 +41,7 @@ int main(int argc, char **argv, char **env)
             perror("NO input");
         }
         printf("Entrada: %s\n", input);
-        data->tokens = tokenize_command(input, &num_commands);
+        data->tokens = tokenize_command(input);
         ft_load_args(data);
         // Print the input for testing purposes
         //printf("data arguments[0] = %s\n",data->tokens[2].cmd);
@@ -54,6 +52,7 @@ int main(int argc, char **argv, char **env)
             add_history(input);
         }
 
+        ft_free_matrix(data->argv);
         // Free the input to avoid memory leaks
         free(input);
         //ft_free_matrix(data->argv);
@@ -65,13 +64,13 @@ int main(int argc, char **argv, char **env)
     return 0;
 }
 
-void free_tokens(t_token *tokens, int num_commands) {
-    for (int i = 0; i < num_commands; i++) {
-        free(tokens[i].cmd);
-        for (int j = 0; tokens[i].cargs[j] != NULL; j++) {
-            free(tokens[i].cargs[j]);
-        }
-        free(tokens[i].cargs);
+void free_tokens(t_token **tokens) {
+    int i = 0;
+    while (tokens[i]) {
+        free(tokens[i]->cmd);
+        ft_free_matrix(tokens[i]->cargs);
+        free(tokens[i]);
+        i++;
     }
     free(tokens);
 }

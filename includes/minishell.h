@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/24 12:57:50 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:09:26 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct	s_data
 {
     char		*input;
     char		**argv;
-    t_token		*tokens;
+    t_token		**tokens;
     int			lvl;
 	t_map		*env;
     t_map		*exp;
@@ -92,17 +92,18 @@ void	ft_update_map(t_map *map, char *value, char *key);
 void	ft_print_map(t_data *data, t_map *map);
 void	ft_mapcmp_update(t_map *map, char *values);
 void	ft_free_map(t_map *map);
+void	ft_free_keys(t_key** keys);
 
 // STRUCT UTILS
 t_data	*ft_init_data(int argc, char **env);
 void	ft_map_init(t_map *map);
-t_token get_next_token(t_token *token, int array_size);
+t_token *get_next_token(t_token **token, int array_size);
 void	ft_load_args(t_data *data);
 
 // TOKEN UTILS
 void	ft_freetok(t_token **token);
-int     ft_toklen(t_token *tokens);
-void    free_tokens(t_token *tokens, int num_commands);
+int     ft_toklen(t_token **tokens);
+void    free_tokens(t_token **tokens);
 int	    ft_matrix_size(char **matrix);
 
 // UTILS
@@ -129,7 +130,7 @@ int is_ddel(char *input, const char delimiter, int i);
 char *ft_strtok(char *line, const char *delimiter);
 int count_words(char *str);
 //char **tokenize_command(char *input, int pos);
-t_token *tokenize_command(char *input, int *num_commands);
+t_token **tokenize_command(char *input);
 
 //VALIDATIONS  
 int validate_pipe(char *line , int index);

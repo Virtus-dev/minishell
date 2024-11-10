@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
+#    By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/10/20 17:58:04 by arigonza         ###   ########.fr        #
+#    Updated: 2024/11/10 11:13:30 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,10 @@ CFLAGS := -Wall -Werror -Wextra
 RLINE := -lreadline
 
 SANITIZE := sanitize
+SANITIZE_MEM := sanitize_mem
 
 FSANITIZE := -fsanitize=thread -g3
+FSANITIZE_MEM := -fsanitize=address -g
 INCLUDES = -Iincludes/ -Ilibft/includes
 OBJDIR := obj
 
@@ -77,6 +79,9 @@ $(SANITIZE) : $(OBJ) $(LIBFT)
 	@echo "$(CYAN)Compiling minishell with fsanitize$(DEF_COLOR)"
 
 
+$(SANITIZE_MEM) : $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(FSANITIZE_MEM) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
+	@echo "$(CYAN)Compiling minishell with fsanitize ADDRESS$(DEF_COLOR)"
 # Colors
 
 DEF_COLOR = \033[0;39m

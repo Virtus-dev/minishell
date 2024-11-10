@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/27 19:11:01 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:02:22 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,31 @@ t_key	*ft_new_key(char *name, char *value)
 
 void	ft_add_key(t_map *map, t_key *key)
 {
+	int	i;
+
+	if (!map || !key)
+	{
+		perror("No map or key found");
+		return;
+	}
+	i = 0;
 	if (map->size == map->capacity)
 	{
 		map->capacity *= 2;
 		t_key	**new_keys;
-		new_keys = (t_key**)realloc(map->keys, sizeof(t_key *) * map->capacity);
+		new_keys = (t_key**)malloc(sizeof(t_key *) * map->capacity);
 		if (!new_keys)
+		{
+			perror("Realloc error\n");	
 			return ;
+		}
+		while (map->keys)
+		{
+			new_keys[i] = map->keys[i];
+			i++;
+		}
+		//ft_free_keys(map->keys);
+		//free(map->keys);
 		map->keys = new_keys;
 	}
 	map->keys[map->size] = key;

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/08 18:37:48 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:25:36 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int main(int argc, char **argv, char **env)
         {
             add_history(input);
         }
-
+	ft_free_matrix(data->argv);
         // Free the input to avoid memory leaks
         free(input);
         //ft_free_matrix(data->argv);

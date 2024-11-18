@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/10 16:09:56 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/17 12:59:24 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_free_keys(t_key** keys);
 t_data	*ft_init_data(int argc, char **env);
 void	ft_map_init(t_map *map);
 t_token *get_next_token(t_token **token, int array_size);
-void	ft_load_args(t_data *data);
+void	ft_load_args(t_data *data, t_token *token);
 
 // TOKEN UTILS
 void	ft_freetok(t_token **token);
@@ -117,6 +117,7 @@ int		ft_builtin_check(char *str);
 void	ft_execpath(t_data* data);
 void	ft_runexec(t_data *data);
 char	**ft_revert_env(t_map *map);
+void    ft_exec_built(t_data *data, char *input);
 
 // PARSING
 int check_quotes(char *line);

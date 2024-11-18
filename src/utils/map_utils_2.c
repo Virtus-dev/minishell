@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/10 14:30:52 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:01:59 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_print_map(t_data *data, t_map *map)
 {
 	size_t	i;
 
+	if (!map)
+		perror("No map to print\n");
 	i = 0;
 	while (map->keys[i])
 	{
@@ -88,6 +90,8 @@ void	ft_free_map(t_map *map)
 {
 	int	i;
 
+	if (!map || !map->keys)
+		perror("No map where free keys from");
 	i = 0;
 	while (map->keys[i])
 	{

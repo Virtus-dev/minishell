@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/10 16:09:54 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:06:11 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_key	*ft_new_key(char *name, char *value)
 
 void	ft_add_key(t_map *map, t_key *key)
 {
-	int	i;
+	size_t	i;
 
 	if (!map || !key)
 	{
@@ -41,23 +41,23 @@ void	ft_add_key(t_map *map, t_key *key)
 		return;
 	}
 	i = 0;
-	if (map->size == map->capacity)
+	if (map->size >= map->capacity)
 	{
 		map->capacity *= 2;
 		t_key	**new_keys;
-		new_keys = (t_key**)malloc(sizeof(t_key *) * map->capacity);
+		new_keys = (t_key**)ft_calloc(sizeof(t_key *), map->capacity);
 		if (!new_keys)
 		{
 			perror("Realloc error\n");	
 			return ;
 		}
-		while (map->keys)
+		while (map->keys[i])
 		{
 			new_keys[i] = map->keys[i];
 			i++;
 		}
-		//ft_free_keys(map->keys);
-		//free(map->keys);
+		ft_free_keys(map->keys);
+		free(map->keys);
 		map->keys = new_keys;
 	}
 	map->keys[map->size] = key;
@@ -100,7 +100,6 @@ t_map	*ft_fill_map(char **env)
 	int		j;
 
 	i = 0;
-	j = 0;
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (perror(MALLOC_ERR), NULL);

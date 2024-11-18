@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/10 16:08:00 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/17 13:24:56 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,18 @@ int main(int argc, char **argv, char **env)
         }
         printf("Entrada: %s\n", input);
         data->tokens = tokenize_command(input);
-        ft_load_args(data);
-        // Print the input for testing purposes
-        //printf("data arguments[0] = %s\n",data->tokens[2].cmd);
-        ft_exec(data);
+        ft_load_args(data, data->tokens[0]);
+        printf("data->argv[0] = %s\n", data->argv[0]);
+        if (ft_builtin_check(data->argv[0]))
+        {
+            printf("On exec_builtin\n");
+            ft_exec_built(data, data->argv[0]);
+        }
+        else
+        {
+            printf("On ft_exec\n");
+            ft_exec(data);
+        }
         // If we have input, add it to the history
         if (input && *input)
         {

@@ -41,22 +41,22 @@ void	ft_add_key(t_map *map, t_key *key)
 		return;
 	}
 	i = 0;
-	if (map->size >= map->capacity)
+	if (map->size == map->capacity)
 	{
 		map->capacity *= 2;
 		t_key	**new_keys;
 		new_keys = (t_key**)ft_calloc(sizeof(t_key *), map->capacity);
 		if (!new_keys)
 		{
-			perror("Realloc error\n");	
+			perror("Realloc error\n");
 			return ;
 		}
-		while (map->keys[i])
+		while (i < map->size)
 		{
 			new_keys[i] = map->keys[i];
 			i++;
 		}
-		ft_free_keys(map->keys);
+		//ft_free_keys(map->keys);
 		free(map->keys);
 		map->keys = new_keys;
 	}
@@ -67,7 +67,7 @@ void	ft_add_key(t_map *map, t_key *key)
 t_key	*ft_get_keymap(t_map *map, char *key)
 {
     size_t	i;
-	
+
 	i = 0;
 	while (i < map->size)
 	{
@@ -81,7 +81,7 @@ t_key	*ft_get_keymap(t_map *map, char *key)
 t_key	*ft_get_valmap(t_map *map, char *value)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (i < map->size)
 	{

@@ -31,7 +31,7 @@ int	ft_key_exist(t_map *map, char *key)
 void	ft_update_map(t_map *map, char *value, char *key)
 {
 	t_key	*nkey;
-	
+
 	if (ft_key_exist(map, key))
 	{
 		nkey = ft_get_keymap(map, key);
@@ -62,7 +62,7 @@ void	ft_print_map(t_data *data, t_map *map)
 /**
  * @brief Compares if a key exists on a map, if exists updates it's value,
  * if it's not, creates it.
- * 
+ *
  * @param map The "key-value" data structure to check from.
  * @param values the env variables.
  */
@@ -70,7 +70,7 @@ void	ft_mapcmp_update(t_map *map, char *values)
 {
 	char	**splited;
 	int		i;
-	
+
 	i = 0;
 	splited = ft_mini_split(values, '=');
 	while (splited[i])
@@ -107,7 +107,7 @@ void	ft_free_map(t_map *map)
 void	ft_free_keys(t_key** keys)
 {
 	int	i;
-	
+
 	if (!keys)
 	{
 		perror("No keys to free\n");

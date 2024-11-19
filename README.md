@@ -24,3 +24,11 @@ la idea seria hacer un bucle y cada vez que terminemos el proceso hijo, mandamos
 > esto sobreescribe
 >> esto es añadir a un archivo
 heredoc:es solo << y un delimitador, que despliega un dquote que te permite escribir hasta el del, en la linea solo puede estar el del
+
+
+
+parseo:
+
+1. si linea no es \n ni ""(vacio), se trimea y se anade al historial
+2.si la linea no existe(proteccion al malloc del trim).
+3.si la linea esta vacia despues de todo, vuelves a leer.

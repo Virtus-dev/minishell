@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/18 16:07:01 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:15:44 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_data	*ft_init_data(int argc, char **env)
 void	ft_map_init(t_map *map)
 {
 	map->size = 0;
-	map->capacity = 4;
+	map->capacity = 2;
 	map->keys = (t_key**)ft_calloc(sizeof(t_key *), map->capacity);
 	if (!map->keys)
 		perror(MALLOC_ERR);

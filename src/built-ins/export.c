@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:55:05 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/17 10:31:31 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/24 19:51:46 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	ft_export(t_data *data)
 			{
 				if (ft_strchr(data->argv[i], '='))
 				{
-					if (ft_key_exist(data->exp, splited[0]))
-						ft_mapcmp_update(data->exp, data->argv[i]);
+					ft_mapcmp_update(data->exp, data->argv[i]);
 					ft_mapcmp_update(data->env, data->argv[i]);
 				}
 				else

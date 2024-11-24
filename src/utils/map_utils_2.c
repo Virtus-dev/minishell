@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/18 16:01:59 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/24 19:52:51 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	ft_update_map(t_map *map, char *value, char *key)
 		free(nkey->value);
 		nkey->value = ft_strdup(value);
 	}
-	else
-		ft_add_key(map, ft_new_key(key, value));
 }
 
 void	ft_print_map(t_data *data, t_map *map)
@@ -53,7 +51,8 @@ void	ft_print_map(t_data *data, t_map *map)
 	{
 		ft_putstr_fd(map->keys[i]->key, data->fdout);
 		ft_putstr_fd("=", data->fdout);
-		ft_putstr_fd(map->keys[i]->value, data->fdout);
+		if (map->keys[i]->value)
+			ft_putstr_fd(map->keys[i]->value, data->fdout);
 		ft_putchar_fd('\n', data->fdout);
 		i++;
 	}
@@ -76,13 +75,10 @@ void	ft_mapcmp_update(t_map *map, char *values)
 	while (splited[i])
 	{
 		if (ft_key_exist(map, splited[i]))
-		{
 			ft_update_map(map, splited[i + 1], splited[i]);
-			i += 2;
-		}
 		else
 			ft_add_key(map, ft_new_key(splited[i], splited[i + 1]));
-		i++;
+		i += 2;
 	}
 }
 
@@ -123,3 +119,20 @@ void	ft_free_keys(t_key** keys)
 	}
 	free(keys);
 }
+
+ void	ft_remove_key(t_map *map, t_key *key)
+ {
+	int	i;
+
+	i = 0;
+	while (map->keys[i])
+	{
+		if (ft_strcmp(key->key, map->keys[i]->key))
+		{
+			free(map->keys[i]->key);
+			free(map->keys[i]->value);
+			free(map->keys[i]);
+		}
+		i++;
+	}
+ }

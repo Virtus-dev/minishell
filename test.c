@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/17 13:24:56 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/23 10:41:27 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int main(int argc, char **argv, char **env)
             printf("Exit\n");
             perror("NO input");
         }
-        printf("Entrada: %s\n", input);
+        //printf("Entrada: %s\n", input);
         data->tokens = tokenize_command(input);
         ft_load_args(data, data->tokens[0]);
-        printf("data->argv[0] = %s\n", data->argv[0]);
+        //printf("data->argv[0] = %s\n", data->argv[0]);
         if (ft_builtin_check(data->argv[0]))
         {
             printf("On exec_builtin\n");

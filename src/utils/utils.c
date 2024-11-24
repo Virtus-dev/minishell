@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/10 13:39:36 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/23 10:42:15 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,8 @@ int	ft_check_expformat(char *argv)
 	int		i;
 
 	i = 0;
-	write(1, &argv[0], 1);
 	if (argv[0] != '_' && ft_isdigit(argv[0]))
 		return (FALSE);
-	write(1, "hola", 4);
 	i++;
 	while (argv[i])
 	{

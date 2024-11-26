@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/24 19:52:51 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/24 21:46:08 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	ft_key_exist(t_map *map, char *key)
 	int	i;
 
 	i = 0;
-	if (map && map->keys)
-		return (0);
+	if (!map && !map->keys)
+		return (FALSE);
 	while (map && map->keys[i])
 	{
 		if (ft_strcmp(key, map->keys[i]->key) == 0)
@@ -120,19 +120,20 @@ void	ft_free_keys(t_key** keys)
 	free(keys);
 }
 
- void	ft_remove_key(t_map *map, t_key *key)
- {
+void	ft_remove_key(t_map *map, char *key)
+{
 	int	i;
 
 	i = 0;
 	while (map->keys[i])
 	{
-		if (ft_strcmp(key->key, map->keys[i]->key))
+		if (ft_strcmp(key, map->keys[i]->key) == 0)
 		{
+			printf("ON REMOVING KEY\n");
 			free(map->keys[i]->key);
 			free(map->keys[i]->value);
 			free(map->keys[i]);
 		}
 		i++;
 	}
- }
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:59:23 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/16 15:53:20 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:17:42 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,6 @@ int check_input(char *line)
 	else
 		return(TRUE);
 }
+
+
 	

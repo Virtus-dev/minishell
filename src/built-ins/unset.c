@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:35:25 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/26 16:31:08 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:52:03 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	ft_unset(t_data *data)
 	int	i;
 	int	j;
 
+	if (!data->argv[1])
+		return ;
 	i = 1;
 	j = 0;
 	new_map = malloc(sizeof(t_map));
@@ -40,7 +42,7 @@ void	ft_unset(t_data *data)
 		}
 		i++;		
 	}
-	ft_free_keys(data->env->keys);
+	//ft_free_keys(data->env->keys);
 	ft_free_map(data->env);
 	data->env = new_map;
 }

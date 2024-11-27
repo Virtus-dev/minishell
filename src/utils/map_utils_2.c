@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/24 21:46:08 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:49:18 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,9 @@ void	ft_mapcmp_update(t_map *map, char *values)
 
 void	ft_free_map(t_map *map)
 {
-	int	i;
-
 	if (!map || !map->keys)
 		perror("No map where free keys from");
-	i = 0;
-	while (map->keys[i])
-	{
-		free(map->keys[i]->key);
-		free(map->keys[i]->value);
-		free(map->keys[i]);
-		i++;
-	}
-	free(map->keys);
+	ft_free_keys(map->keys);
 	free(map);
 }
 
@@ -118,22 +108,4 @@ void	ft_free_keys(t_key** keys)
 		i++;
 	}
 	free(keys);
-}
-
-void	ft_remove_key(t_map *map, char *key)
-{
-	int	i;
-
-	i = 0;
-	while (map->keys[i])
-	{
-		if (ft_strcmp(key, map->keys[i]->key) == 0)
-		{
-			printf("ON REMOVING KEY\n");
-			free(map->keys[i]->key);
-			free(map->keys[i]->value);
-			free(map->keys[i]);
-		}
-		i++;
-	}
 }

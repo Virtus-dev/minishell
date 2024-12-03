@@ -12,43 +12,23 @@
 
 #include "minishell.h"
 
-int check_line2(char *line)
+char *loop_check(char *input)
 {
 	char *input;
 
-	if(input[0] != '\n' && input[0] != '\0')
-		{
-			input = ft_strtrim(input, "\n\t\f\r\v ")
-			if(!input)
-				return(NULL);
-			if(!check_input(input))
-				return(NULL);
-		}
-	return; //no se que deberia poner aqui
-}
 
-void loop_check(void)
-{
-	char *input;
-
-	while(1)
+	if(!input)
 	{
-		input = readline("Minishell: ")
-		if(input == NULL)
-		{
-			printf("Exit\n");
-			perror("NO input");
-		}
-		if(!check_line2(input))
-		{
-			printf("Exit\n")
-			perror("Bad input");
-		}
-		if(input == '\0')
-		{
-			printf('\n');
-			continue;
-		}
-		add_history(input);
+		printf("Exit\n");
+		perror("NO input");
+	}
+	if(!check_input(input))
+	{
+		printf("Exit\n");
+		perror("Bad input");
+	}
+	if(input[0] == '\n')
+	{
+		printf("\n");
 	}
 }

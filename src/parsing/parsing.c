@@ -61,6 +61,8 @@ int check_line(char *line)
 	len = (int)ft_strlen(line);
 	if(!check_quotes(line))
 		return(FALSE);
+	if(len == 1 && line[0] == '\n' && line[1] == '\0')
+		return(FALSE);
 	if(line[0] == '|' || line[0] == '>' || line[0] == '<' )
 		return (FALSE);
 	if(line[len - 1] == '|' || line[len - 1] == '>' || line[0] == '<')
@@ -76,11 +78,12 @@ int check_line(char *line)
 
 int check_input(char *line)
 {
-	if(!check_line(line) || !validate_metachar(line))
-		return(FALSE);
-	else
-		return(TRUE);
+	if(line)
+	{
+		if(!check_line(line) || !validate_metachar(line))
+			return(FALSE);
+		else
+			return(TRUE);
+	}
+	return(FALSE);
 }
-
-
-	

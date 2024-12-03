@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/03 16:18:11 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:28:17 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,13 +121,18 @@ int main(int argc, char **argv, char **env)
     {
         // Read user input
         input = readline("Minishell$ ");
+        if(!input)
+        {
+            printf("Closing minishell...\n");
+            break;
+        }
         if(ft_strlen(input) == 0)// hay que arreglar esta linea ctrl + D no funciona correctamente
         {
             free(input);
             continue;
         }
         // If no input (Ctrl+D), exit the shell
-        if(!check_input(input))
+        if(!check_input(input) || !input)
         {
             free(input);
             printf("Closing minishell...\n");

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 13:59:23 by fracurul          #+#    #+#             */
-/*   Updated: 2024/11/26 19:17:42 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:47:41 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int check_line(char *line)
 	int len;
 	int i;
 
+	i = 0;
 	len = (int)ft_strlen(line);
 	if(!check_quotes(line))
 		return(FALSE);

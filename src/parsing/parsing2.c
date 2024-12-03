@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2024/11/26 19:46:42 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:07:43 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,14 @@
 char *loop_check(char *input)
 {
 	char *input;
+	int len;
 
-
-	if(!input)
-	{
-		printf("Exit\n");
-		perror("NO input");
-	}
+	len = ft_strlen(input);
+	if(len == 0)
+		free(input);
 	if(!check_input(input))
 	{
-		printf("Exit\n");
-		perror("Bad input");
+		free(input);
 	}
-	if(input[0] == '\n')
-	{
-		printf("\n");
-	}
+	
 }

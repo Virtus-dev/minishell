@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/23 10:41:27 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:28:17 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <readline/history.h>
 
 
-int main(int argc, char **argv, char **env)
+/*int main(int argc, char **argv, char **env)
 {
     (void)argv;
     t_data  *data;
@@ -33,7 +33,7 @@ int main(int argc, char **argv, char **env)
     {
         // Read user input
         input = readline("Minishell$ ");
-        
+
         // If no input (Ctrl+D), exit the shell
         if (!input)
         {
@@ -80,7 +80,7 @@ void free_tokens(t_token **tokens) {
         i++;
     }
     free(tokens);
-}
+}*/
 
 /*
 int main() {
@@ -108,3 +108,75 @@ int main() {
     return 0;
 }
 */
+
+int main(int argc, char **argv, char **env)
+{
+    (void)argv;
+    t_data  *data;
+    char    *input;
+
+    data = ft_init_data(argc, env);
+
+    while (1)
+    {
+        // Read user input
+        input = readline("Minishell$ ");
+        if(!input)
+        {
+            printf("Closing minishell...\n");
+            break;
+        }
+        if(ft_strlen(input) == 0)// hay que arreglar esta linea ctrl + D no funciona correctamente
+        {
+            free(input);
+            continue;
+        }
+        // If no input (Ctrl+D), exit the shell
+        if(!check_input(input) || !input)
+        {
+            free(input);
+            printf("Closing minishell...\n");
+            break;
+        }
+        //printf("Entrada: %s\n", input);
+        data->tokens = tokenize_command(input);
+        ft_load_args(data, data->tokens[0]);
+        //printf("data->argv[0] = %s\n", data->argv[0]);
+        if (ft_builtin_check(data->argv[0]))
+        {
+            printf("On exec_builtin\n");
+            ft_exec_built(data, data->argv[0]);
+        }
+        else
+        {
+            printf("On ft_exec\n");
+            ft_exec(data);
+        }
+        // If we have input, add it to the history
+        if (input && *input)
+        {
+            add_history(input);
+        }
+
+        // Free the input to avoid memory leaks
+        free(input);
+        //ft_free_matrix(data->argv);
+    }
+
+    // Free allocated data before exiting
+    ft_free_resources(data);
+
+    return 0;
+}
+
+void free_tokens(t_token **tokens) {
+    int i = 0;
+    while (tokens[i]) {
+        free(tokens[i]->cmd);
+        ft_free_matrix(tokens[i]->cargs);
+        free(tokens[i]);
+        i++;
+    }
+    free(tokens);
+
+}

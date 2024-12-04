@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 17:35:25 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/27 15:52:03 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:57:01 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_unset(t_data *data)
 		}
 		i++;		
 	}
-	//ft_free_keys(data->env->keys);
 	ft_free_map(data->env);
 	data->env = new_map;
 }

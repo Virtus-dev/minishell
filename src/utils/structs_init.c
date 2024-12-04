@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/18 16:15:44 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:32:32 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	ft_load_args(t_data *data, t_token *token)
 	int	args_size;
 	
 	if (!data->tokens)
+	{
 		perror("No tokens found\n");
+		return ;
+	}
 	if (token->cargs)
 		args_size = ft_matrix_size(token->cargs);
 	else
@@ -73,7 +76,7 @@ void	ft_load_args(t_data *data, t_token *token)
 	data->argv[i] = token->cmd;
 	while (token->cargs[i])
 	{
-		data->argv[i + 1] = token->cargs[i];
+		data->argv[i + 1] = ft_strdup(token->cargs[i]);
 		i++;
 	}
 }

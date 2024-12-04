@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:07:58 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 17:52:40 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:03:37 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    ft_exit(t_data *data)
         ft_check_exit(data);
     if (data->lvl > 1)
     {
-        ft_putstr_fd("exiting..", data->fdout);
+        ft_putstr_fd("exiting..\n", data->fdout);
         data->lvl -= 1;
     }
     else

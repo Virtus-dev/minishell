@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/03 16:28:17 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:20:06 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ void free_tokens(t_token **tokens) {
     int i = 0;
     while (tokens[i]) {
         free(tokens[i]->cmd);
-        ft_free_matrix(tokens[i]->cargs);
+        if (tokens[i]->cargs != NULL)
+            ft_free_matrix(tokens[i]->cargs);
         free(tokens[i]);
         i++;
     }

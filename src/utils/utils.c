@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/23 10:42:15 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:35:26 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	ft_free_matrix(char **matrix)
 {
 	int	i;
 
+	if (!matrix)
+		return ;
 	i = 0;
 	while (matrix[i])
 		free(matrix[i++]);
@@ -75,12 +77,29 @@ void	ft_free_matrix(char **matrix)
  * 
  * @param data 
  */
+/*
+	El problema esta en que he asignado en los argumentos la misma direccion de memoria
+	que el de los tokens, igualando el valor del argumento al puntero del token.
+	
+	EJ: data->argv[i] = token->args[i];
+	
+	De manera que al hacer free_matrix liberaba los argumentos y justo despues hacia un
+	doble free al intentar liberar los argumentos de los tokens en ft_free_tokens.
+*/
 void	ft_free_resources(t_data *data)
 {
-	free(data->input);
-	if (data->argv)
-		ft_free_matrix(data->argv);
-	free_tokens(data->tokens);
+    if (!data)
+        return;
+    if (data->argv)
+    {
+        ft_free_matrix(data->argv);
+        data->argv = NULL;
+    }
+    if (data->tokens)
+    {
+        free_tokens(data->tokens);
+        data->tokens = NULL;
+    }
 	ft_free_map(data->env);
 	ft_free_map(data->exp);	
 }

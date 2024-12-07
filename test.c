@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/04 16:20:06 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:28:16 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,13 +171,22 @@ int main(int argc, char **argv, char **env)
 
 void free_tokens(t_token **tokens) {
     int i = 0;
+
+    if (!tokens)
+        return;
     while (tokens[i]) {
-        free(tokens[i]->cmd);
-        if (tokens[i]->cargs != NULL)
+        if (tokens[i]->cmd) {
+            free(tokens[i]->cmd);
+            tokens[i]->cmd = NULL;
+        }
+        if (tokens[i]->cargs) {
             ft_free_matrix(tokens[i]->cargs);
+            tokens[i]->cargs = NULL;
+        }
         free(tokens[i]);
+        tokens[i] = NULL;
         i++;
     }
     free(tokens);
-
+    tokens = NULL;
 }

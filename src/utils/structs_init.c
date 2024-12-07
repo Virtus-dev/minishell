@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/04 16:32:32 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/07 11:22:56 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_load_args(t_data *data, t_token *token)
         return;
     }
 	i = 0;
-	data->argv[i] = token->cmd;
+	data->argv[i] = ft_strdup(token->cmd);
 	while (token->cargs[i])
 	{
 		data->argv[i + 1] = ft_strdup(token->cargs[i]);

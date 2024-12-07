@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/05 19:28:16 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/07 13:51:21 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,18 +126,24 @@ int main(int argc, char **argv, char **env)
             printf("Closing minishell...\n");
             break;
         }
-        if(ft_strlen(input) == 0)// hay que arreglar esta linea ctrl + D no funciona correctamente
+        if(ft_strlen(input) == 0)
         {
             free(input);
             continue;
         }
         // If no input (Ctrl+D), exit the shell
-        if(!check_input(input) || !input)
+        if(validate_metachar(input))
         {
             free(input);
-            printf("Closing minishell...\n");
-            break;
+            printf("Bad input\n");
+            continue;;
         }
+        /*if(validate_metachar(input) || !check_input(input))
+        {
+            free(input);
+            printf("Bad input\n");
+            continue;;
+        }*/
         //printf("Entrada: %s\n", input);
         data->tokens = tokenize_command(input);
         ft_load_args(data, data->tokens[0]);

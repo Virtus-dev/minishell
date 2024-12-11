@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/11 16:23:44 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:53:23 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,18 +132,12 @@ int main(int argc, char **argv, char **env)
             continue;
         }
         // If no input (Ctrl+D), exit the shell
-        if(validate_metachar(input))
+        if(!validate_metachar(input) || !check_input(input))
         {
             free(input);
             printf("Bad input\n");
-            continue;;
+            continue;
         }
-        /*if(validate_metachar(input) || !check_input(input))
-        {
-            free(input);
-            printf("Bad input\n");
-            continue;;
-        }*/
         //printf("Entrada: %s\n", input);
         data->tokens = tokenize_command(input);
         ft_load_args(data, data->tokens[0]);

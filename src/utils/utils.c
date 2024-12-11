@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/23 10:42:15 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/07 13:50:10 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	ft_free_matrix(char **matrix)
 {
 	int	i;
 
+	if (!matrix)
+		return ;
 	i = 0;
 	while (matrix[i])
 		free(matrix[i++]);
@@ -75,12 +77,27 @@ void	ft_free_matrix(char **matrix)
  * 
  * @param data 
  */
+/*
+	He solventado el problema del double free del puntero de los tokens,
+	pero por alguna razon el problema persiste al intentar liberar las propiedades
+	de los tokens, abria que mirar si el problema reside en como el tokenizer almacena
+	la informacion de los tokens, por si no esta almacenando la memoria para las propiedades
+	correctamente o bien estas se liberan en alguna parte por accidente.
+*/
 void	ft_free_resources(t_data *data)
 {
-	free(data->input);
-	if (data->argv)
-		ft_free_matrix(data->argv);
-	free_tokens(data->tokens);
+    if (!data)
+        return;
+    if (data->argv)
+    {
+       ft_free_matrix(data->argv);
+       data->argv = NULL;
+    }
+    if (data->tokens)
+    {
+        free_tokens(data->tokens);
+        data->tokens = NULL;
+    }
 	ft_free_map(data->env);
 	ft_free_map(data->exp);	
 }

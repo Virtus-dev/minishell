@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/11 16:22:32 by fracurul         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:23:44 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,18 +126,24 @@ int main(int argc, char **argv, char **env)
             printf("Closing minishell...\n");
             break;
         }
-        if(ft_strlen(input) == 0)// hay que arreglar esta linea ctrl + D no funciona correctamente
+        if(ft_strlen(input) == 0)
         {
             free(input);
             continue;
         }
         // If no input (Ctrl+D), exit the shell
-        if(!check_input(input) || !input)
+        if(validate_metachar(input))
         {
             free(input);
-            printf("Closing minishell...\n");
-            break;
+            printf("Bad input\n");
+            continue;;
         }
+        /*if(validate_metachar(input) || !check_input(input))
+        {
+            free(input);
+            printf("Bad input\n");
+            continue;;
+        }*/
         //printf("Entrada: %s\n", input);
         data->tokens = tokenize_command(input);
         ft_load_args(data, data->tokens[0]);
@@ -171,12 +177,22 @@ int main(int argc, char **argv, char **env)
 
 void free_tokens(t_token **tokens) {
     int i = 0;
+
+    if (!tokens)
+        return;
     while (tokens[i]) {
-        free(tokens[i]->cmd);
-        ft_free_matrix(tokens[i]->cargs);
+        if (tokens[i]->cmd) {
+            free(tokens[i]->cmd);
+            tokens[i]->cmd = NULL;
+        }
+        if (tokens[i]->cargs) {
+            ft_free_matrix(tokens[i]->cargs);
+            tokens[i]->cargs = NULL;
+        }
         free(tokens[i]);
+        tokens[i] = NULL;
         i++;
     }
     free(tokens);
-
+    tokens = NULL;
 }

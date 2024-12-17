@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/07 11:22:56 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:50:37 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ t_data	*ft_init_data(int argc, char **env)
 	data->argc = argc;
 	data->fdin = STDIN_FILENO;
 	data->fdout = STDOUT_FILENO;
+	data->lvl = 0;
 	data->env = ft_fill_map(env);
 	data->exp = ft_fill_map(env);
+	data->tokens = NULL;
 	
 	return (data);
 }

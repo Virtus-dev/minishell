@@ -1,5 +1,7 @@
 #
 
+Por favor echame un ojo a como inicializas los tokens, es probable que le estes dando algun valor a los argumentos, porque siempre entra en la condicion "if(tokens[i]->cargs)" dentro de free_tokens, incluso cuando no se pasa nigun argumento.
+
 En tokenize_command, primer bucle while, dentro del if, hay que hacer una funcion que identifique el tipo de metacaracter.
 
 modificar estructura s_token, para añadir el tipo de metacaracter que sea.
@@ -32,3 +34,4 @@ parseo:
 1. si linea no es \n ni ""(vacio), se trimea y se anade al historial
 2.si la linea no existe(proteccion al malloc del trim).
 3.si la linea esta vacia despues de todo, vuelves a leer.
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2024/11/10 15:10:47 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:43:50 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,7 @@ t_token **tokenize_command(char *input) {
 			if (!cmd[pos])
 				perror("Error alocating cmd");
             cmd[pos]->cmd = strdup(token);  // Guardamos el comando principal
+			//printf("%s\n", cmd[pos]->cmd);
             cmd[pos]->cargs = ft_calloc(10, sizeof(char*));  // Reservamos espacio para los argumentos
         } else {
             cmd[pos]->cargs[parg - 1] = strdup(token);  // Guardamos el argumento

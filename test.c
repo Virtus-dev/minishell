@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/17 16:29:47 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:37:01 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,23 +173,33 @@ void free_tokens(t_token **tokens) {
     int i = 0;
 
     if (!tokens)
+    {
+        printf("Tokens NULL\n");
         return;
+    }
+    printf("Starting to free tokens\n");
     while (tokens[i])
     {
+        printf("Freeing Token[%d]\n", i);
         if (tokens[i]->cmd)
         {
+            printf("Token[%d]->%s\n", i, tokens[i]->cmd);
             free(tokens[i]->cmd);
             tokens[i]->cmd = NULL;
         }
-        if (tokens[i]->cargs)
+        if (tokens[i]->cargs[0] && tokens[i]->cargs)
         {
+            printf("ON CARGS!\n");
             ft_free_matrix(tokens[i]->cargs);
             tokens[i]->cargs = NULL;
-        } 
+        }
+        printf("Freeing Token[%d]\n", i);
        	free(tokens[i]);
         tokens[i] = NULL;
+        printf("Token[%d] FREED\n", i);
         i++;
     }
+    printf("ALL TOKENS FREED\n");
     free(tokens);
     tokens = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2024/12/17 15:43:50 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:37:31 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ char *ft_strtok(char *line, const char *delimiter) {
 }
 
 t_token **tokenize_command(char *input) {
-    t_token **cmd = malloc(10 * sizeof(t_token*));  // Máximo de 10 comandos (se puede ajustar)
+    t_token **cmd = ft_calloc(10, sizeof(t_token*));  // Máximo de 10 comandos (se puede ajustar)
     char *token;
     const char *del = " \t";  // Delimitadores
     int pos = 0;
@@ -206,7 +206,7 @@ t_token **tokenize_command(char *input) {
 
         // Guardamos el comando y sus argumentos
         if (parg == 0) {
-			cmd[pos] = malloc(sizeof(t_token));
+			cmd[pos] = ft_calloc(1, sizeof(t_token));
 			if (!cmd[pos])
 				perror("Error alocating cmd");
             cmd[pos]->cmd = strdup(token);  // Guardamos el comando principal

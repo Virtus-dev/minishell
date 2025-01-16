@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:47:00 by arigonza          #+#    #+#             */
-/*   Updated: 2025/01/16 11:34:25 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:50:47 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define SETINT_CHLD "Failed to set SIGINT handler for process\n"
 # define SETIGN_CHLD "Failed to set SIGQUIT handler for process\n"
 # define PIPE_ERR "Pipe error\n"
+# define FORK_ERR "Fork error\n"
 
 // Constants
 # define PATH_MAX 5

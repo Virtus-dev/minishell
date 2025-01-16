@@ -1,10 +1,5 @@
 #
 
-Por favor echame un ojo a como inicializas los tokens,
-es probable que le estes dando algun valor a los argumentos,
-porque siempre entra en la condicion "if(tokens[i]->cargs)" dentro de free_tokens,
-incluso cuando no se pasa nigun argumento.
-
 En tokenize_command, primer bucle while, dentro del if,
 hay que hacer una funcion que identifique el tipo de metacaracter.
 

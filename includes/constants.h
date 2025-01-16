@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:47:00 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/08 15:19:51 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:34:25 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@
 # define FALSE 0
 
 // Errors
-# define ARG_ERR "Error on the arguments"
-# define PARS_ERR "Parsing error"
-# define CD_ERR "Error on cd command"
-# define PWD_ERR "Error on pwd command"
-# define MALLOC_ERR "Malloc error"
-# define SIGA_ERR "Sigaction error"
-# define SIGEMPT_ERR "Sig empty set error"
-# define SIGIGN_ERR "Failed to ignore SIGQUIT"
-# define SETINT_ERR "Failed to set SIGINT handler"
-# define SETINT_CHLD "Failed to set SIGINT handler for process"
-# define SETIGN_CHLD "Failed to set SIGQUIT handler for process"
+# define ARG_ERR "Error on the arguments\n"
+# define PARS_ERR "Parsing error\n"
+# define CD_ERR "Error on cd command\n"
+# define PWD_ERR "Error on pwd command\n"
+# define MALLOC_ERR "Malloc error\n"
+# define SIGA_ERR "Sigaction error\n"
+# define SIGEMPT_ERR "Sig empty set error\n"
+# define SIGIGN_ERR "Failed to ignore SIGQUIT\n"
+# define SETINT_ERR "Failed to set SIGINT handler\n"
+# define SETINT_CHLD "Failed to set SIGINT handler for process\n"
+# define SETIGN_CHLD "Failed to set SIGQUIT handler for process\n"
+# define PIPE_ERR "Pipe error\n"
 
 // Constants
 # define PATH_MAX 5

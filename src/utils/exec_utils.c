@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/17 12:35:49 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:43:19 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_runexec(t_data *data)
 		ft_putstr_fd(data->argv[0], data->fdin);
 		ft_putstr_fd(": command not found\n", data->fdout);
 		ft_free_matrix(env);
+		exit(EXIT_FAILURE);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2024/12/17 15:50:37 by arigonza         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:18:26 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ void	ft_load_args(t_data *data, t_token *token)
 		return ;
 	}
 	if (token->cargs)
+	{
 		args_size = ft_matrix_size(token->cargs);
+		data->argc = args_size + 1;
+	}
 	else
 		args_size = 0;
     data->argv = ft_calloc(sizeof(char*), args_size + 2); // +1 for cmd and +1 for NULL terminator

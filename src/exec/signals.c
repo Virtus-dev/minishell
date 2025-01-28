@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:06:17 by arigonza          #+#    #+#             */
-/*   Updated: 2024/10/20 12:29:31 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:51:34 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,55 +45,32 @@ void	ft_child_handler(int sig)
 	rl_redisplay();
 }
 
-/* Helper function to set signal handler */
-static int	ft_set_signal(int sig, void (*handler)(int))
+static int	ft_set_signal((void))
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
-	if (sigemptyset(&sa.sa_mask) == -1)
-	{
-		perror(SIGEMPT_ERR);
-		return (-1);
-	}
-	sa.sa_handler = handler;
-	sa.sa_flags = 0;
-	if (sigaction(sig, &sa, NULL) == -1)
-	{
-		perror(SIGA_ERR);
-		return (-1);
-	}
-	return (0);
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = &ft_child_handler;
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sa, NULL);
 }
 
 static void	ft_ignore_signals(void)
 {
-	if (ft_set_signal(SIGQUIT, SIG_IGN) == -1)
-	{
-		perror(SIGIGN_ERR);
-	}
+	struct sigaction	sa;
+
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &sa, NULL);
 }
 
-// Set signal handlers for the main process
 void	ft_signal(void)
 {
+	struct sigaction	sa;
+	
 	ft_ignore_signals();
-
-	if (ft_set_signal(SIGINT, &ft_handler) == -1)
-	{
-		perror(SETINT_ERR);
-	}
+	ft_memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = &ft_handler;
+	sigaction(SIGINT, &sa, NULL);
 }
 
-// Set signal handlers for child processes
-void	ft_child_signal(void)
-{
-	if (ft_set_signal(SIGINT, &ft_child_handler) == -1)
-	{
-		perror(SETINT_CHLD);
-	}
-
-	if (ft_set_signal(SIGQUIT, &ft_child_handler) == -1)
-	{
-		perror(SETIGN_CHLD);
-	}
-}

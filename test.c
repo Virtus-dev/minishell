@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/01/28 22:33:40 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:58:31 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void    ft_minishell_init(t_data *data)
 				data->status = 1;
 			}
 			else if (!ft_is_all_space(data->input, data))
-				ft_check_type(data);
+				ft_check_redir(data);
 		}
 		free(data->input);
 	}

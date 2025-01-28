@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:01:25 by fracurul          #+#    #+#             */
-/*   Updated: 2024/10/08 15:28:55 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/01/28 23:12:00 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,11 @@ int validate_metachar(char *line)
 		i++;
 	}
 	return (TRUE);
+}
+
+static void	ft_check_redir(t_data *data)
+{
+	// quizas tenga que replantear como cargo los argumentos de lo tokens y como hago el retireve d elos mismos.
+	data->tokens = tokenize_command(data->input);
+	ft_load_args(data, data->tokens[0]);
 }

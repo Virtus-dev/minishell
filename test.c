@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/01/28 22:58:31 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:22:08 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,17 @@ void    ft_minishell_init(t_data *data)
 		}
 		free(data->input);
 	}
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	t_data	*data;
+	(void)argv;
+	
+	using_history();
+	data = ft_init_data(argc, env);
+	ft_minishell_init(data);
+	ft_free_resources(data);
+	free(data);
+	return (0);
 }

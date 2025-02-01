@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/24 20:02:26 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:24:25 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ t_token *get_next_token(t_token **token, int array_size);
 void	ft_load_args(t_data *data, t_token *token);
 
 // TOKEN UTILS
-void	ft_freetok(t_token **token);
 int     ft_toklen(t_token **tokens);
 void    free_tokens(t_token **tokens);
 int	    ft_matrix_size(char **matrix);
@@ -121,22 +120,26 @@ char	**ft_revert_env(t_map *map);
 void    ft_exec_built(t_data *data, char *input);
 
 // PARSING
-int check_quotes(char *line);
-int check_line(char *line);
-int is_in_quotes(char *line, int index);
-int check_input(char *line);
+int		check_quotes(char *line);
+int		check_line(char *line);
+int		is_in_quotes(char *line, int index);
+int		check_input(char *line);
 
-//TOKENS
-int is_del(char c, const char *delimiter);
-int is_ddel(char *input, const char delimiter, int i);
-char *ft_strtok(char *line, const char *delimiter);
-int count_words(char *str);
-//char **tokenize_command(char *input, int pos);
-t_token **tokenize_command(char *input);
+// TOKENS
+int		is_del(char c, const char *delimiter);
+int		is_ddel(char *input, const char delimiter, int i);
+char	*ft_strtok(char *line, const char *delimiter);
+int		count_words(char *str);
+t_token	**tokenize_command(char *input);
+
+// PIPES
+void    ft_pipe_processing(t_data *data, int pipe_num);
+void	ft_swapfd(t_data *data, int i, int pipe_num);
+void	ft_close_fds(t_data *data);
 
 //VALIDATIONS  
-int validate_pipe(char *line , int index);
-int validate_otredir(char *line , int index);
-int validate_itredir(char *line , int index);
-int validate_metachar(char *line);
+int		validate_pipe(char *line , int index);
+int		validate_otredir(char *line , int index);
+int		validate_itredir(char *line , int index);
+int		validate_metachar(char *line);
 #endif

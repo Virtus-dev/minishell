@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:01:25 by fracurul          #+#    #+#             */
-/*   Updated: 2025/01/28 23:12:00 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:14:14 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,18 @@ int validate_metachar(char *line)
 
 static void	ft_check_redir(t_data *data)
 {
-	// quizas tenga que replantear como cargo los argumentos de lo tokens y como hago el retireve d elos mismos.
+	/*
+	 En este punto parseamos los datos para poder trabajar con los mismos,
+	 y realizando el control de errores. ft_parse() ¿?
+	*/
+
+	// tokenizo el input.
 	data->tokens = tokenize_command(data->input);
-	ft_load_args(data, data->tokens[0]);
+
+	/*
+		Necesito una funcion que se dedique a contar el
+		numero de pipes para saber cuantas veces he de ir cambiando los fd
+		en la funcion ft_pipe_processing().
+	*/
+	ft_pipe_processing(data, ft_count_pipes?);
 }

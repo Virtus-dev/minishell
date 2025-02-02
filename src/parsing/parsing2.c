@@ -6,24 +6,22 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/01/28 22:26:30 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/02 12:40:11 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *loop_check(char *input)
+void	ft_check_redir(t_data *data)
 {
-	char *input;
-	int len;
+	/*
+	 En este punto parseamos los datos para poder trabajar con los mismos,
+	 y realizando el control de errores. ft_parse() ¿?
+	*/
 
-	len = ft_strlen(input);
-	if(len == 0)
-		free(input);
-	if(!check_input(input))
-	{
-		free(input);
-	}
+	// tokenizo el input.
+	data->tokens = tokenize_command(data->input);
+	ft_pipe_processing(data, ft_count_pipes(data));
 }
 
 int	ft_is_all_space(char *input, t_data *data)

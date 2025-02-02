@@ -6,13 +6,9 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/01 12:22:08 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/02 12:19:51 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "minishell.h"
-
-
 
 #include "minishell.h"
 #include <stdio.h>

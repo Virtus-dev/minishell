@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/02/02 12:40:11 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/02 12:51:27 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,20 @@ int	ft_is_all_space(char *input, t_data *data)
 	}
 	data->status = 127;
 	return (TRUE);
+}
+
+int	ft_countpipes(t_data *data)
+{
+	char *input;
+	int i;
+	int pipes;
+	i = 0;
+	input = ft_strdup(t_data->input);
+	while(input[i])
+	{
+		if(input[i] == "|")
+			pipes++;
+		i++;
+	}
+	return(pipes);
 }

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/01 12:24:25 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/02 13:06:46 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	ft_exec(t_data *data);
 void	ft_handler(int sig);
 void	ft_child_handler(int sig);
 void	ft_signal(void);
-void	ft_child_signal(void);
+int     ft_set_signal(void);
+void	ft_ignore_signals(void);
 
 // MAP UTILS
 void	ft_map_init(t_map *map);
@@ -124,6 +125,9 @@ int		check_quotes(char *line);
 int		check_line(char *line);
 int		is_in_quotes(char *line, int index);
 int		check_input(char *line);
+int 	ft_is_all_space(char *input, t_data *data);
+void	ft_check_redir(t_data *data);
+int 	ft_count_pipes(t_data *data);
 
 // TOKENS
 int		is_del(char c, const char *delimiter);

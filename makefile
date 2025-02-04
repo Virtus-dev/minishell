@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arigonza <arigonza@student.42.fr>          +#+  +:+       +#+         #
+#    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2024/11/10 11:13:30 by arigonza         ###   ########.fr        #
+#    Updated: 2025/02/02 14:00:41 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,10 @@ SRC = src/built-ins/echo.c src/built-ins/pwd.c src/built-ins/cd.c src/built-ins/
 		src/built-ins/export.c src/built-ins/exit.c\
 		src/exec/exec.c\
       src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
-		src/utils/utils.c test.c \
-	  src/parsing/parsing.c src/tokens/tokens.c  src/validations/validations.c \
+		src/utils/utils.c main.c \
+	  src/parsing/parsing.c src/parsing/parsing2.c src/tokens/tokens.c  src/validations/validations.c \
 	  src/exec/signals.c src/utils/exec_utils.c src/utils/token_utils.c \
-	  src/utils/builtins_utils.c  src/built-ins/unset.c\
+	  src/utils/builtins_utils.c  src/built-ins/unset.c src/exec/pipes.c \
 
 all : $(NAME)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/02/02 12:51:27 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/02/02 13:07:55 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_check_redir(t_data *data)
 	 En este punto parseamos los datos para poder trabajar con los mismos,
 	 y realizando el control de errores. ft_parse() ¿?
 	*/
+	check_input(data->input);
 
 	// tokenizo el input.
 	data->tokens = tokenize_command(data->input);
@@ -39,16 +40,15 @@ int	ft_is_all_space(char *input, t_data *data)
 	return (TRUE);
 }
 
-int	ft_countpipes(t_data *data)
+int	ft_count_pipes(t_data *data)
 {
-	char *input;
 	int i;
 	int pipes;
+	
 	i = 0;
-	input = ft_strdup(t_data->input);
-	while(input[i])
+	while(data->input[i])
 	{
-		if(input[i] == "|")
+		if(data->input[i] == '|')
 			pipes++;
 		i++;
 	}

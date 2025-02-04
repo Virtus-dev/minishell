@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:06:17 by arigonza          #+#    #+#             */
-/*   Updated: 2025/01/28 16:51:34 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/02 13:00:14 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_child_handler(int sig)
 	rl_redisplay();
 }
 
-static int	ft_set_signal((void))
+int	ft_set_signal(void)
 {
 	struct sigaction	sa;
 
@@ -53,9 +53,10 @@ static int	ft_set_signal((void))
 	sa.sa_handler = &ft_child_handler;
 	sigaction(SIGINT, &sa, NULL);
 	sigaction(SIGQUIT, &sa, NULL);
+	return (EXIT_SUCCESS);
 }
 
-static void	ft_ignore_signals(void)
+void	ft_ignore_signals(void)
 {
 	struct sigaction	sa;
 

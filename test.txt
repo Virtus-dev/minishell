@@ -1,2 +1,0 @@
-test_minishell.sh
-test.txt

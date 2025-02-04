@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/02/04 13:36:30 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:09:44 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	ft_count_pipes(t_data *data)
 	pipes = 0;
 	while(data->input[i])
 	{
-		printf("input[%d] = %c\n", i, data->input[i]);
 		if(data->input[i] == '|')
 			pipes++;
 		i++;

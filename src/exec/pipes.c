@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/04 14:22:31 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:00:07 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 	printf("TOKLEN = %d\n", toklen);
 	while (i <= pipe_num)
 	{
-		if (pipe_num == 0)
-			curr_token = get_next_token(data->tokens, toklen, TRUE);
-		else
-			curr_token = data->tokens[i];
+		curr_token = data->tokens[i];
 		printf("currnt_token = %s\n", curr_token->cmd);
 		if (!curr_token || !curr_token->cmd)
 		{

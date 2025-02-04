@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/04 13:43:56 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:44:19 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,13 @@ void	ft_execpath(t_data* data);
 void	ft_runexec(t_data *data);
 char	**ft_revert_env(t_map *map);
 void    ft_exec_built(t_data *data, char *input);
+int 	ft_redir(char **argv);
+int     ft_redin_type(char * str);
+int	    ft_rediout_type(char * str);
+int	    ft_is_din(char *str);
+int	    ft_is_sin(char *str);
+int	    ft_is_dout(char *str);
+int 	ft_is_sout(char *str);
 
 // PARSING
 int		check_quotes(char *line);

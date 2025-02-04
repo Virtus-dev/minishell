@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:47:00 by arigonza          #+#    #+#             */
-/*   Updated: 2025/01/28 22:15:45 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:20:36 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@
 # define ENV 6
 # define EXIT 7
 # define DEF 8
+# define S_OUT 10
+# define D_OUT 11
+# define S_IN 12
+# define D_IN 13
 
 // Colors Start
 # define FRED "\033[0;31m"

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/02 14:00:13 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:45:54 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 	toklen = ft_toklen(data->tokens);
 	while (i <= pipe_num)
 	{
-		curr_token = get_next_token(data->tokens, toklen);
+		if (pipe_num == 0)
+			curr_token = get_next_token(data->tokens, toklen, TRUE);
+		else
+			curr_token = get_next_token(data->tokens, toklen, FALSE);
 		if (!curr_token || !curr_token->cmd)
 		{
 			perror("Command token not found\n");

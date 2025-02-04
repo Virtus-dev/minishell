@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2025/01/16 11:43:19 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:04:34 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	ft_runexec(t_data *data)
 	dup2(data->fdout, STDOUT_FILENO);
 	if (execve(data->argv[0], data->argv, env) == -1)
 	{
-		ft_putstr_fd("bash: ", data->fdin);
-		ft_putstr_fd(data->argv[0], data->fdin);
+		ft_putstr_fd("bash: ", data->fdout);
+		ft_putstr_fd(data->argv[0], data->fdout);
 		ft_putstr_fd(": command not found\n", data->fdout);
 		ft_free_matrix(env);
 		exit(EXIT_FAILURE);

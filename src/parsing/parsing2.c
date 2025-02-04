@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/02/02 13:07:55 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:36:30 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_check_redir(t_data *data)
 {
+	int	pipe_num;
 	/*
 	 En este punto parseamos los datos para poder trabajar con los mismos,
 	 y realizando el control de errores. ft_parse() ¿?
@@ -21,8 +22,9 @@ void	ft_check_redir(t_data *data)
 	check_input(data->input);
 
 	// tokenizo el input.
+	pipe_num = ft_count_pipes(data);
 	data->tokens = tokenize_command(data->input);
-	ft_pipe_processing(data, ft_count_pipes(data));
+	ft_pipe_processing(data, pipe_num);
 }
 
 int	ft_is_all_space(char *input, t_data *data)
@@ -46,8 +48,10 @@ int	ft_count_pipes(t_data *data)
 	int pipes;
 	
 	i = 0;
+	pipes = 0;
 	while(data->input[i])
 	{
+		printf("input[%d] = %c\n", i, data->input[i]);
 		if(data->input[i] == '|')
 			pipes++;
 		i++;

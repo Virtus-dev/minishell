@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/04 12:40:30 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:42:55 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ void	ft_map_init(t_map *map)
 		perror(MALLOC_ERR);
 }
 
-t_token *get_next_token(t_token **token, int array_size)
+t_token *get_next_token(t_token **token, int array_size, int reset)
 {
     static int position = 0;
 
+	if (reset == TRUE)
+		position = 0;
     if (position >= array_size)
     {
 		position = 0;

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/04 17:44:19 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:20:32 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void    ft_exec_built(t_data *data, char *input);
 int 	ft_redir(char **argv);
 int     ft_redin_type(char * str);
 int	    ft_rediout_type(char * str);
+void	ft_redirout(t_data *data, char *redir, int redir_type);
 int	    ft_is_din(char *str);
 int	    ft_is_sin(char *str);
 int	    ft_is_dout(char *str);

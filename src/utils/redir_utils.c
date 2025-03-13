@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:03:48 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/09 14:32:33 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/02/09 14:50:36 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ft_rediout_type(char * str)
 	}
 }
 
-int	ft_redin_type(char * str)
+int	ft_redin_type(char *str)
 {
 	int	i;
 
@@ -98,7 +98,7 @@ int	ft_redin_type(char * str)
 	}
 }
 
-int	ft_redir(char **argv)
+int	ft_redir_pos(char **argv)
 {
 	int	i;
 

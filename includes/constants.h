@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:47:00 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/04 16:20:36 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:00:35 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define PIPE_ERR "Pipe error\n"
 # define FORK_ERR "Fork error\n"
 # define BAD_INPUT "Bad input or NULL\n"
+# define FILE_ERR "Error opening file\n"
 
 // Constants
 # define PATH_MAX 5

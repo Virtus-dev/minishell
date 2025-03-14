@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:53:36 by arigonza          #+#    #+#             */
-/*   Updated: 2025/03/13 12:35:29 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:53:53 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_here_doc(t_data *data)
 	char	*dl;
 	int		nw_fd;
 
-	split = ft_split(data->argv, ' ');
+	split = ft_split(data->input, ' ');
 	if (!split[1])
 	{
 		ft_free_matrix(split);

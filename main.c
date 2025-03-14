@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/04 13:03:14 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:07:19 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void    ft_minishell_init(t_data *data)
 {
     while (1)
 	{
-		//ft_signal();
+		ft_signal();
 		data->input = readline("HI MINISHELL\n");
-		//ft_set_signal();
+		ft_set_signal();
 		if (data->input == NULL)
 		{
 			ft_putstr_fd(BAD_INPUT, data->fdout);

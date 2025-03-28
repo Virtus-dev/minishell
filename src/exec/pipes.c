@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/03/14 12:52:49 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:18:38 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void	ft_close_fds(t_data *data)
 void	ft_pipe_processing(t_data *data, int pipe_num)
 {
 	int		i;
-	int		toklen;
+	//int		toklen;
 	t_token	*curr_token;
 
 	i = 0;
-	toklen = ft_toklen(data->tokens);
+	//toklen = ft_toklen(data->tokens);
 	//printf("TOKLEN = %d\n", toklen);
 	while (i <= pipe_num)
 	{

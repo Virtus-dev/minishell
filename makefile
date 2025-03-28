@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2025/03/14 12:11:38 by arigonza         ###   ########.fr        #
+#    Updated: 2025/03/28 12:20:22 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC = src/built-ins/echo.c src/built-ins/pwd.c src/built-ins/cd.c src/built-ins/
 	  src/parsing/parsing.c src/parsing/parsing2.c src/tokens/tokens.c  src/validations/validations.c \
 	  src/exec/signals.c src/utils/exec_utils.c src/utils/token_utils.c \
 	  src/utils/builtins_utils.c  src/built-ins/unset.c src/exec/pipes.c \
+	  src/exec/redir.c \
 
 all : $(NAME)
 

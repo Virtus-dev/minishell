@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/03/14 12:09:44 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/03/28 12:23:57 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ int	    ft_rediout_type(char *str);
  * @param redir_type 
  */
 void	ft_redirout(t_data *data, char *redir, int redir_type);
+void	ft_redirin(t_data *data, char *redir, int redir_type);
 void    ft_start_redi(t_data *data);
 int	    ft_is_din(char *str);
 int	    ft_is_sin(char *str);

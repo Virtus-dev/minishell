@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:53:36 by arigonza          #+#    #+#             */
-/*   Updated: 2025/03/14 12:53:53 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:53:51 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,22 @@ void	ft_write_hd(t_data *data, char *dl)
 
 void	ft_here_doc(t_data *data)
 {
-	char	**split;
+	//char	**split;
 	char	*dl;
 	int		nw_fd;
 
-	split = ft_split(data->input, ' ');
-	if (!split[1])
+	//split = ft_split(data->argv, ' ');
+	if (!data->argv[1])
 	{
-		ft_free_matrix(split);
+		//ft_free_matrix(split);
 		ft_putstr_fd("bash: syntax error, unexpected token\n", data->fdout);
 		data->status = 1;
 		return ;
 	}
-	dl = ft_strjoin(split[1], "\n");
+	dl = ft_strjoin(data->argv[1], "\n");
 	ft_write_hd(data, dl);
 	free(dl);
-	ft_free_matrix(split);
+	//ft_free_matrix(split);
 	nw_fd = open(".tmp", O_RDONLY);
 	data->fdin = nw_fd;
 }

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/03/28 12:23:57 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:47:21 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ft_remove_key(t_map *map, char *key);
 // STRUCT UTILS
 t_data	*ft_init_data(int argc, char **env);
 void	ft_map_init(t_map *map);
-t_token *get_next_token(t_token **token, int array_size, int reset);
+t_token *get_next_token(t_token **token, int reset);
 void	ft_load_args(t_data *data, t_token *token);
 
 // TOKEN UTILS

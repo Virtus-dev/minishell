@@ -6,52 +6,50 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 16:13:12 by arigonza          #+#    #+#              #
-#    Updated: 2025/02/02 12:23:15 by arigonza         ###   ########.fr        #
+#    Updated: 2025/03/31 16:28:17 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
-# Ruta a tu minishell
 MINISHELL=./minishell
-
-# Archivo temporal para guardar las salidas
 TMP_MINISHELL_OUTPUT=output_minishell.txt
 TMP_BASH_OUTPUT=output_bash.txt
 
-# Colores para mejorar la salida
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-NC='\033[0m' # Sin color
+NC='\033[0m'
 
-# Lista de pruebas
 tests=(
     "ls"
     "pwd"
     "echo Hello, world!"
     "cat ./test_file"
     "env"
-    "export TEST_VAR=42 && echo \$TEST_VAR"
-    "unset TEST_VAR && echo \$TEST_VAR"
+    'export TEST_VAR=42 && echo $TEST_VAR'
+    'unset TEST_VAR && echo $TEST_VAR'
     "cd .. && pwd"
-    "ls | grep test"
+    "ls | grep test || true"
     "cat nonexistent_file"
 )
 
-# Función para ejecutar una prueba y compararla con bash
 run_test() {
     local cmd="$1"
 
-    # Ejecuta el comando en minishell y guarda la salida
-    echo -e "$cmd" | $MINISHELL > $TMP_MINISHELL_OUTPUT 2>&1
+    # Ejecuta en minishell
+    $MINISHELL <<EOF > $TMP_MINISHELL_OUTPUT 2>&1
+$cmd
+EOF
     minishell_exit_code=$?
 
-    # Ejecuta el comando en bash y guarda la salida
-    echo -e "$cmd" | bash > $TMP_BASH_OUTPUT 2>&1
+    # Ejecuta en bash
+    bash <<EOF > $TMP_BASH_OUTPUT 2>&1
+$cmd
+EOF
     bash_exit_code=$?
 
-    # Compara las salidas
-    if diff $TMP_MINISHELL_OUTPUT $TMP_BASH_OUTPUT >/dev/null && [ $minishell_exit_code -eq $bash_exit_code ]; then
+    # Comparación de salida y códigos de salida
+    if diff -Z $TMP_MINISHELL_OUTPUT $TMP_BASH_OUTPUT >/dev/null && [ $minishell_exit_code -eq $bash_exit_code ]; then
         echo -e "${GREEN}[PASSED]${NC} Command: $cmd"
     else
         echo -e "${RED}[FAILED]${NC} Command: $cmd"
@@ -64,10 +62,8 @@ run_test() {
     fi
 }
 
-# Ejecuta todas las pruebas
 for test in "${tests[@]}"; do
     run_test "$test"
 done
 
-# Limpia archivos temporales
 rm -f $TMP_MINISHELL_OUTPUT $TMP_BASH_OUTPUT

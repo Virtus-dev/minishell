@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2025/03/28 12:20:22 by arigonza         ###   ########.fr        #
+#    Updated: 2025/04/05 18:55:41 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,12 @@ LIBFT = libft/libft.a
 SRC = src/built-ins/echo.c src/built-ins/pwd.c src/built-ins/cd.c src/built-ins/env.c\
 		src/built-ins/export.c src/built-ins/exit.c\
 		src/exec/exec.c\
-      src/utils/map_utils.c src/utils/map_utils_2.c src/utils/structs_init.c \
+      src/utils/map_utils.c src/utils/map_utils_2.c src/utils/map_utils_3.c \
 		src/utils/utils.c src/utils/redir_utils.c src/utils/here_doc_utils.c main.c \
 	  src/parsing/parsing.c src/parsing/parsing2.c src/tokens/tokens.c  src/validations/validations.c \
 	  src/exec/signals.c src/utils/exec_utils.c src/utils/token_utils.c \
 	  src/utils/builtins_utils.c  src/built-ins/unset.c src/exec/pipes.c \
-	  src/exec/redir.c \
+	  src/exec/redir.c src/utils/structs_init.c src/parsing/varcheck.c\
 
 all : $(NAME)
 

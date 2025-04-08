@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/05 20:36:10 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/08 23:17:37 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	ft_free_matrix(char **str);
 void	ft_free_resources(t_data *data);
 int		ft_builtin_check(char *str);
 void	ft_execpath(t_data* data);
+char *ft_find_in_path(char *cmd, t_map *env);
 
 /**
  * @brief Executes from path, looking on our ENV.

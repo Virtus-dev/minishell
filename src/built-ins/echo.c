@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/06 23:15:35 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:39:01 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void ft_echo(t_data *data)
 		{
 			argv_dup = ft_strdup(data->argv[1]);
 			expandable_var = ft_chrignore(argv_dup, '$');
-			printf("expandable var = %s\n", expandable_var);
 			var = ft_getvar(data->exp, expandable_var);
 			if (!var)
 				return ;

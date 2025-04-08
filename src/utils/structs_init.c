@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2025/03/31 16:46:48 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/08 23:34:25 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_token *get_next_token(t_token **token, int reset)
 	int	array_size;
 	
 	array_size = ft_toklen(token);
-	printf("POSITION = %d\n", position);
+	//printf("POSITION = %d\n", position);
 	if (reset == TRUE)
 		position = 0;
     if (position >= array_size)
@@ -52,7 +52,7 @@ t_token *get_next_token(t_token **token, int reset)
         // Set up an "invalid token" with NULL fields to avoid uninitialized access
         t_token *invalid_token = malloc(sizeof(t_token));
         if (!invalid_token) 
-			return NULL; // Check for malloc failure
+			return NULL;
         invalid_token->cmd = NULL;
         invalid_token->cargs = NULL;
         return invalid_token;

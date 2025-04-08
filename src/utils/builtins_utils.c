@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/17 13:26:18 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:53:20 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_builtin_check(char *str)
 		return (ECHO);
 	if (!ft_strcmp(str, "cd") || !ft_strcmp(str, "CD"))
 		return (CD);
+	if (!ft_strcmp(str, "pwd") || !ft_strcmp(str, "PWD"))
+		return (PWD);
 	if (!ft_strcmp(str, "export") || !ft_strcmp(str, "EXPORT"))
 		return (EXP);
 	if (!ft_strcmp(str, "unset") || !ft_strcmp(str, "UNSET"))

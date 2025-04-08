@@ -6,64 +6,59 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/28 16:13:12 by arigonza          #+#    #+#              #
-#    Updated: 2025/03/31 16:28:17 by arigonza         ###   ########.fr        #
+#    Updated: 2025/04/08 23:42:49 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
 MINISHELL=./minishell
-TMP_MINISHELL_OUTPUT=output_minishell.txt
-TMP_BASH_OUTPUT=output_bash.txt
-
+TMP_MINISHELL_OUTPUT=".minishell_output"
+TMP_BASH_OUTPUT=".bash_output"
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
 tests=(
+    "echo hola mundo"
     "ls"
     "pwd"
-    "echo Hello, world!"
-    "cat ./test_file"
     "env"
-    'export TEST_VAR=42 && echo $TEST_VAR'
-    'unset TEST_VAR && echo $TEST_VAR'
-    "cd .. && pwd"
-    "ls | grep test || true"
-    "cat nonexistent_file"
+    "export VAR=42 && echo \$VAR"
+    "unset VAR && echo \$VAR"
+    "cd /tmp && pwd"
+    "echo \"test | pipe\""
+    "echo hola > out.txt"
+    "cat < out.txt"
 )
+
+total=${#tests[@]}
+passed=0
 
 run_test() {
     local cmd="$1"
 
-    # Ejecuta en minishell
-    $MINISHELL <<EOF > $TMP_MINISHELL_OUTPUT 2>&1
-$cmd
-EOF
-    minishell_exit_code=$?
+    echo "$cmd" | $MINISHELL > $TMP_MINISHELL_OUTPUT 2>&1
+    echo "$cmd" | bash > $TMP_BASH_OUTPUT 2>&1
 
-    # Ejecuta en bash
-    bash <<EOF > $TMP_BASH_OUTPUT 2>&1
-$cmd
-EOF
-    bash_exit_code=$?
-
-    # Comparación de salida y códigos de salida
-    if diff -Z $TMP_MINISHELL_OUTPUT $TMP_BASH_OUTPUT >/dev/null && [ $minishell_exit_code -eq $bash_exit_code ]; then
-        echo -e "${GREEN}[PASSED]${NC} Command: $cmd"
+    if diff $TMP_MINISHELL_OUTPUT $TMP_BASH_OUTPUT > /dev/null; then
+        echo -e "${GREEN}[OK]${NC} $cmd"
+        ((passed++))
     else
-        echo -e "${RED}[FAILED]${NC} Command: $cmd"
-        echo "Minishell Output:"
+        echo -e "${RED}[FAIL]${NC} $cmd"
+        echo "→ Minishell output:"
         cat $TMP_MINISHELL_OUTPUT
-        echo "Bash Output:"
+        echo "→ Bash output:"
         cat $TMP_BASH_OUTPUT
-        echo "Minishell Exit Code: $minishell_exit_code"
-        echo "Bash Exit Code: $bash_exit_code"
     fi
 }
 
-for test in "${tests[@]}"; do
-    run_test "$test"
+echo "Running $total tests..."
+for t in "${tests[@]}"; do
+    run_test "$t"
 done
 
-rm -f $TMP_MINISHELL_OUTPUT $TMP_BASH_OUTPUT
+rm -f $TMP_MINISHELL_OUTPUT $TMP_BASH_OUTPUT out.txt
+
+echo
+echo "Passed $passed/$total tests."

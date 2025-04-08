@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/04 13:04:34 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/08 23:33:24 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,18 @@ void	ft_runexec(t_data *data)
 char	**ft_revert_env(t_map *map)
 {
 	char	*tmp;
-	char	*tmp2;
 	char	**joined;
 	int		i;
 
 	i = 0;
-	joined = (char**)ft_calloc(map->size, sizeof(char*));
+	joined = (char**)ft_calloc(map->size + 1, sizeof(char*));
 	if (!joined)
 		return (NULL);
 	while (map->keys[i])
 	{
 		tmp = ft_strjoin(map->keys[i]->key, "=");
-		tmp2 = ft_strjoin(tmp, map->keys[i]->value);
-		joined[i] = ft_strdup(tmp2);
+		joined[i] = ft_strjoin(tmp, map->keys[i]->value);
 		free(tmp);
-		free(tmp2);
 		i++;
 	}
 	return (joined);

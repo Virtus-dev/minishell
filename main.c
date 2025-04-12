@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/12 23:41:19 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/13 01:48:13 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@
 	free(data);
 	return (0);
 }*/
-
-void	free_token_result(t_token **cmds)
+//test de tokenize
+/*void	free_token_result(t_token **cmds)
 {
 	int	i;
 	int	j;
@@ -212,5 +212,154 @@ int	main(void)
 
 	run_cmd_test("echo \"\"", cmds7, arg_sets7);
 
+	return 0;
+}*/
+
+//test cd
+
+t_map	*create_test_env(const char *home_path)
+{
+	t_map	*map;
+	char	*cwd;
+
+	map = malloc(sizeof(t_map));
+	if (!map)
+		return (NULL);
+
+	map->keys = ft_calloc(3, sizeof(t_key *));
+	if (!map->keys)
+	{
+		free(map);
+		return (NULL);
+	}
+
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
+	{
+		free(map->keys);
+		free(map);
+		return (NULL);
+	}
+
+	map->keys[0] = ft_new_key("HOME", ft_strdup(home_path));
+	map->keys[1] = ft_new_key("PWD", ft_strdup(cwd));
+	map->keys[2] = NULL;
+	map->size = 2;
+	map->capacity = 3;
+
+	free(cwd);
+	return (map);
+}
+
+void	free_test_env(t_map *map)
+{
+	ft_free_keys(map->keys);
+	free(map);
+}
+
+void	check_env_vars(t_data *data, char *owd, int cd_succeeded)
+{
+	t_key *pwd = ft_get_keymap(data->env, "PWD");
+	t_key *oldpwd = ft_get_keymap(data->env, "OLDPWD");
+
+	if (pwd && pwd->value)
+	{
+		char *actual = getcwd(NULL, 0);
+		if (actual && strcmp(pwd->value, actual) == 0)
+			printf("✅ PWD actualizado correctamente: %s\n", pwd->value);
+		else if (actual)
+			printf("❌ PWD incorrecto: %s (esperado: %s)\n", pwd->value, actual);
+		else
+			printf("❌ getcwd falló al verificar PWD\n");
+		free(actual);
+	}
+	else
+		printf("❌ PWD no actualizado\n");
+
+	if (cd_succeeded)
+	{
+		if (oldpwd && oldpwd->value)
+		{
+			if (strcmp(oldpwd->value, owd) == 0)
+				printf("✅ OLDPWD actualizado correctamente: %s\n", oldpwd->value);
+			else
+				printf("❌ OLDPWD incorrecto: %s (esperado: %s)\n", oldpwd->value, owd);
+		}
+		else
+			printf("❌ OLDPWD no actualizado\n");
+	}
+	else
+		printf("🟡 OLDPWD no modificado (cd falló, correcto)\n");
+}
+
+void	run_cd_test(char *arg, t_map *env)
+{
+	t_data	data;
+	char	*before = NULL;
+	char	*after = NULL;
+	int		cd_succeeded = 0;
+
+	before = getcwd(NULL, 0);
+	if (!before)
+	{
+		perror("getcwd failed (before)");
+		return;
+	}
+
+	data.argv = ft_calloc(3, sizeof(char *));
+	data.argv[0] = ft_strdup("cd");
+	data.argv[1] = arg ? ft_strdup(arg) : NULL;
+	data.argv[2] = NULL;
+	data.env = env;
+	data.argc = arg ? 2 : 1;
+	data.fdout = 1;
+
+	printf("🟡 Test: cd %s\n", arg ? arg : "(no arg)");
+
+	if (data.argc == 2)
+		cd_succeeded = (chdir(data.argv[1]) == 0);
+	else if (ft_key_exist(data.env, "HOME"))
+	{
+		t_key *home = ft_get_keymap(data.env, "HOME");
+		if (home && home->value)
+			cd_succeeded = (chdir(home->value) == 0);
+	}
+	chdir(before);
+
+	ft_cd(&data, before);
+
+	after = getcwd(NULL, 0);
+	if (after && strcmp(before, after) != 0)
+		printf("✅ CD OK: %s → %s\n", before, after);
+	else if (!after || access(after, F_OK) != 0)
+		printf("❌ CD ERROR: %s → %s\n", before, arg ? arg : "(null)");
+	else
+		printf("🟡 CD NO CAMBIO: sigue en %s\n", before);
+
+	check_env_vars(&data, before, cd_succeeded);
+
+	if (before)
+		free(before);
+	if (after)
+		free(after);
+	if (data.argv)
+	{
+		if (data.argv[0]) free(data.argv[0]);
+		if (data.argv[1]) free(data.argv[1]);
+		free(data.argv);
+	}
+}
+
+int	main(void)
+{
+	t_map *env = create_test_env(getenv("HOME"));
+
+	run_cd_test(".", env);
+	run_cd_test("..", env);
+	run_cd_test("/", env);
+	run_cd_test(NULL, env);               // cd → $HOME
+	run_cd_test("no_such_path", env);     // error esperado
+
+	free_test_env(env);
 	return 0;
 }

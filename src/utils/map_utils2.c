@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils_2.c                                      :+:      :+:    :+:   */
+/*   map_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2024/11/27 15:49:18 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 01:36:17 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_key_exist(t_map *map, char *key)
 	return (FALSE);
 }
 
-void	ft_update_map(t_map *map, char *value, char *key)
+/*void	ft_update_map(t_map *map, char *value, char *key)
 {
 	t_key	*nkey;
 
@@ -38,6 +38,21 @@ void	ft_update_map(t_map *map, char *value, char *key)
 		free(nkey->value);
 		nkey->value = ft_strdup(value);
 	}
+}*/
+
+void	ft_update_map(t_map *map, char *value, char *key)
+{
+	t_key	*target;
+	
+	if (!map || !value || !key)
+		return ;
+	if (!ft_key_exist(map, key))
+		return ;
+	target = ft_get_keymap(map, key);
+	if (!target)
+		return ;
+	free(target->value);
+	target->value = ft_strdup(value);
 }
 
 void	ft_print_map(t_data *data, t_map *map)

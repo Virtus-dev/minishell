@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/05 20:44:48 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 01:38:47 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_key	*ft_new_key(char *name, char *value)
+/*t_key	*ft_new_key(char *name, char *value)
 {
 	t_key	*new_key;
 
@@ -29,16 +29,35 @@ t_key	*ft_new_key(char *name, char *value)
 		return (NULL);
 	}
 	return (new_key);
+}*/
+t_key	*ft_new_key(char *name, char *value)
+{
+	t_key	*new_key;
+
+	if (!name || !value)
+		return (NULL);
+	new_key = ft_calloc(1, sizeof(t_key));
+	if(!new_key)
+		return (NULL);
+	new_key->key = ft_strdup(name);
+	new_key->value = ft_strdup(value);
+	if(!new_key->key || !new_key->value)
+	{
+		free(new_key->key);
+		free(new_key->value);
+		free(new_key);
+	}
+	return (new_key);
 }
 
-void	ft_add_key(t_map *map, t_key *key)
+/*void	ft_add_key(t_map *map, t_key *key)
 {
 	size_t	i;
 
 	if (!map || !key)
 	{
 		perror("No map or key found");
-		return;
+		return ;
 	}
 	i = 0;
 	if (map->size == map->capacity)
@@ -62,11 +81,48 @@ void	ft_add_key(t_map *map, t_key *key)
 	}
 	map->keys[map->size] = key;
 	map->size++;
+}*/
+
+static int	expand_key(t_map *map)
+{
+	t_key	**new_keys;
+	size_t	i;
+
+	new_keys= ft_calloc(map->capacity * 2, sizeof(t_key *));
+	if(!new_keys)
+	{
+		perror("Realloc error");
+		return (0);
+	}
+	i = 0;
+	while(i < map->size)
+	{
+		new_keys[i] = map->keys[i];
+		i++;
+	}
+	free(map->keys);
+	map->keys = new_keys;
+	map->capacity *= 2;
+	return (1);
+}
+
+void	ft_add_key(t_map *map, t_key *key)
+{
+	if (!map || !key)
+	{
+		perror("Map or key not found");
+		return ;
+	}
+	if (map->size == map->capacity && !expand_key(map))
+		return ;
+	map->keys[map->size] = key;
+	map->size++;
+	map->keys[map->size] = NULL;
 }
 
 t_key	*ft_get_keymap(t_map *map, char *key)
 {
-    size_t	i;
+	size_t	i;
 
 	i = 0;
 	while (i < map->size)

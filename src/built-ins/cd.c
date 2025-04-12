@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:26:51 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/04 12:48:25 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/12 23:46:00 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_cd(t_data *data, char *owd)
 	free (owd);
 }
 
+
 void	ft_oldpwd(t_data *data, char *owd, char *nwd)
 {
 	t_key	*nkey;
@@ -48,12 +49,12 @@ void	ft_oldpwd(t_data *data, char *owd, char *nwd)
 			nkey = ft_new_key("OLDPWD", owd);
 			ft_add_key(data->env, nkey);
 		}
-    }
+	}
 }
 
 void	ft_update_dir(t_data *data, char *owd)
 {
-    char	*nwd;
+	char	*nwd;
 
 	nwd = getcwd(NULL, 0);
 	if (ft_key_exist(data->env, "PWD"))

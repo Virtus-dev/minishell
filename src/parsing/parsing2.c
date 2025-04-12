@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/02/04 14:09:44 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/12 23:21:11 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_check_redir(t_data *data)
 
 	// tokenizo el input.
 	pipe_num = ft_count_pipes(data);
-	data->tokens = tokenize_command(data->input);
+	data->tokens = tokenize_command(tokenizer(data->input));
 	ft_pipe_processing(data, pipe_num);
 }
 

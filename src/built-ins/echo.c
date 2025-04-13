@@ -3,80 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 13:23:10 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:20:43 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-void ft_echo(t_data *data)
+static int	skip_flag(char **av, int *nl)
 {
 	int	i;
-	int	nl;
+	int	j;
 	
+	*nl = 0;
 	i = 1;
-	nl = 1;
-	if (data->argv[i] && !ft_flag_exist(data->argv[i]))
+	while (av[i])
 	{
-		nl = 0;
+		if (av[i][0] != '-' || av[i][1] != 'n')
+			break ;
+		j = 2;
+		while (av[i][j] == 'n')
+			j++;
+		if (av[i][j] != '\0')
+			break ;
 		i++;
 	}
-	int x = 0;
-	while (data->argv[x])
+	if (i > 1 && av[i] && av[i][0] == '-' && av[i][1] != 'n')
+		*nl = 0;
+	else if (i > 1)
+		*nl = 1;
+	return (i);
+}
+
+void	ft_echo(t_data *data)
+{
+	int	i;
+	int	flag;
+	
+	i = 1;
+	if (!data->argv[i])
 	{
-		printf("ARG[%d]: %s\n", x, data->argv[x]);
-		x++;
+		ft_putchar_fd('\n', data->fdout);
+		return ;
 	}
+	i = skip_flag(data->argv, &flag);
 	while (data->argv[i])
 	{
 		ft_putstr_fd(data->argv[i], data->fdout);
 		if (data->argv[i + 1])
-		{
-			ft_putstr_fd(" ", data->fdout);
-			i++;
-		}
-		if(nl)
-			ft_putchar_fd('\n', data->fdout);
+			ft_putchar_fd(' ', data->fdout);
+		i++;
 	}
-}
-*/
-
-void ft_echo(t_data *data)
-{
-    char    *argv_dup;
-    char    *expandable_var;
-    char    *var;
-
-    if (!data->argv[1])
-    {
-        ft_putchar_fd('\n', data->fdout);
-        return ;
-    }
-    if (!ft_flag_exist(data->argv[1]))
-    {
-        if (ft_is_expandable(data->argv[1]))
-        {
-            argv_dup = ft_strdup(data->argv[1]);
-            expandable_var = ft_chrignore(argv_dup, '$');
-            var = ft_getvar(data->exp, expandable_var);
-            if (!var)
-                return ;
-            ft_putstr_fd(var, data->fdout);
-            free(expandable_var);
-        }
-        else
-            ft_putstr_fd(data->argv[1], data->fdout);
-        ft_putchar_fd('\n', data->fdout);
-    }
-    else
-    {
-        argv_dup = ft_strdup(data->argv[2]);
-        argv_dup = ft_chrignore(argv_dup, '\n');
-        ft_putstr_fd(argv_dup, data->fdout);
-        free(argv_dup);
-    }
+	if (!flag)
+		ft_putchar_fd('\n', data->fdout);
 }

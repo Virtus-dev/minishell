@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/04/12 22:37:57 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/13 14:45:53 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,8 @@ char	**tokenizer(const char *input)
 	j = 0;
 	while(input[i])
 	{
-		while(input[i] && (input[i] == ' ' || input[i] == '\t'))
+		while(input[i] == ' ' || input[i] == '\t')
 			i++;
-		if(!input)
-			break;
 		if(input[i] == '\'' || input[i] == '\"')
 			j = quotes_handler(tokens, input, &i, j);
 		else if(is_op(input[i]))

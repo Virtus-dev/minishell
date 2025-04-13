@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:13:55 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 13:01:43 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:05:52 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    ft_start_redi(t_data *data)
 
     split = ft_split(data->input, ' ');
     redir_pos = ft_redir_pos(split);
-	ft_printdbstring(split);
+	//ft_printdbstring(split);
 	if (ft_is_sout(split[redir_pos]) || ft_is_dout(split[redir_pos]))
 	{
 		redir_out = ft_rediout_type(split[redir_pos]);

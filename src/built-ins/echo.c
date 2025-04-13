@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 12:59:46 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 13:35:42 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
-void ft_echo(t_data *data)
+void	ft_echo(t_data *data)
 {
 	int	i;
 	int	nl;
@@ -80,3 +80,5 @@ void ft_echo(t_data *data)
         free(argv_dup);
     }
 }
+
+

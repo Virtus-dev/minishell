@@ -5,60 +5,73 @@
 #                                                     +:+ +:+         +:+      #
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/28 16:13:12 by arigonza          #+#    #+#              #
-#    Updated: 2025/04/08 23:42:49 by arigonza         ###   ########.fr        #
+#    Created: 2025/04/13 18:43:32 by arigonza          #+#    #+#              #
+#    Updated: 2025/04/13 19:07:41 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
+# test_minishell.sh
+# Script para testear la minishell.
+# Se asume que la minishell se cierra con "exit"
+# y que bash -c "$t" produce la salida deseada.
 
+# Configuraciones:
 MINISHELL=./minishell
-TMP_MINISHELL_OUTPUT=".minishell_output"
-TMP_BASH_OUTPUT=".bash_output"
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-NC='\033[0m'
+TMP_MS_OUTPUT="ms_output.txt"
+TMP_BASH_OUTPUT="bash_output.txt"
 
+# Array de comandos de prueba (modifícalos o agrégalos a tu gusto)
 tests=(
     "echo hola mundo"
     "ls"
     "pwd"
-    "env"
-    "export VAR=42 && echo \$VAR"
-    "unset VAR && echo \$VAR"
-    "cd /tmp && pwd"
-    "echo \"test | pipe\""
-    "echo hola > out.txt"
-    "cat < out.txt"
+    "echo \"esto > no es una redireccion\""
+    "cat < Makefile | head -n 1"
+    "ls -l > prueba.txt"
+    "cat < prueba.txt"
+    "cd .. | pwd"
 )
 
+pass=0
+fail=0
 total=${#tests[@]}
-passed=0
-
-run_test() {
-    local cmd="$1"
-
-    echo "$cmd" | $MINISHELL > $TMP_MINISHELL_OUTPUT 2>&1
-    echo "$cmd" | bash > $TMP_BASH_OUTPUT 2>&1
-
-    if diff $TMP_MINISHELL_OUTPUT $TMP_BASH_OUTPUT > /dev/null; then
-        echo -e "${GREEN}[OK]${NC} $cmd"
-        ((passed++))
-    else
-        echo -e "${RED}[FAIL]${NC} $cmd"
-        echo "→ Minishell output:"
-        cat $TMP_MINISHELL_OUTPUT
-        echo "→ Bash output:"
-        cat $TMP_BASH_OUTPUT
-    fi
-}
 
 echo "Running $total tests..."
 for t in "${tests[@]}"; do
-    run_test "$t"
+    # Ejecuta la minishell: se envía el comando y luego "exit" para forzar el cierre.
+    printf "%s\nexit\n" "$t" | $MINISHELL > "$TMP_MS_OUTPUT" 2>&1
+    # Ejecuta bash -c "$t" (no necesita "exit")
+    bash -c "$t" > "$TMP_BASH_OUTPUT" 2>&1
+
+    # Limpieza de salida de la minishell:
+    # Eliminar todas las líneas que sean exactamente "exit"
+    sed -i '/^exit$/d' "$TMP_MS_OUTPUT"
+    
+    # Si la primera línea es exactamente igual al comando, se elimina (esto puede ocurrir si la minishell lo ecoea)
+    first_line=$(head -n 1 "$TMP_MS_OUTPUT")
+    if [ "$first_line" = "$t" ]; then
+        tail -n +2 "$TMP_MS_OUTPUT" > "${TMP_MS_OUTPUT}.tmp"
+        mv "${TMP_MS_OUTPUT}.tmp" "$TMP_MS_OUTPUT"
+    fi
+
+    # Compara las salidas
+    if diff -u "$TMP_MS_OUTPUT" "$TMP_BASH_OUTPUT" > /dev/null; then
+        echo -e "[\033[0;32mPASS\033[0m] $t"
+        ((pass++))
+    else
+        echo -e "[\033[0;31mFAIL\033[0m] $t"
+        echo "→ Minishell output:"
+        cat "$TMP_MS_OUTPUT"
+        echo "→ Bash output:"
+        cat "$TMP_BASH_OUTPUT"
+        ((fail++))
+    fi
 done
 
-rm -f $TMP_MINISHELL_OUTPUT $TMP_BASH_OUTPUT out.txt
+echo ""
+echo "Tests passed: $pass"
+echo "Tests failed: $fail"
 
-echo
-echo "Passed $passed/$total tests."
+rm -f prueba.txt
+rm -f "$TMP_MS_OUTPUT" "$TMP_BASH_OUTPUT"

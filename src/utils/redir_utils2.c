@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 15:43:09 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 15:58:46 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:32:06 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,31 @@ void	ft_clean_and_replace_args(t_data *data)
     cleaned = ft_clean_redirections(data->argv);
 	ft_free_matrix(data->argv);
 	data->argv = cleaned;
+}
+
+int	ft_redi_ok(const char *input)
+{
+	int	i;
+	int	dquote;
+	int	squote;
+
+	i = 0;
+	dquote = 0;
+	squote = 0;
+	while (input[i])
+	{
+		if (input[i] == '"' && !squote)
+			dquote = !dquote;
+		else if (input[i] == '\'' && !dquote)
+			squote = !squote;
+		else if (!dquote && !squote && (input[i] == '>' || input[i] == '<'))
+		{
+			if ((input[i] == '>' && input[i + 1] == '>') ||
+			(input[i] == '<' && input[i + 1] == '<'))
+				return (2);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:13:55 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 15:51:47 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:08:56 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void    ft_start_redi(t_data *data)
 	{
 		redir_in = ft_redin_type(split[redir_pos]);
 		if (split[redir_pos + 1] != NULL)
-			ft_redirin(data, split[redir_pos], redir_in);
+			ft_redirin(data, split[redir_pos + 1], redir_in);
 		else
 			fprintf(stderr, "Error: Arguments needed for input redirection.\n");
 	}

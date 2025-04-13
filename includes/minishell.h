@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 15:58:33 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:09:26 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ void	ft_here_doc(t_data *data);
 
 //PARSING
 int		check_quotes(char *line);
+int	    ft_redi_ok(const char *input);
 int		check_line(char *line);
 int		is_in_quotes(char *line, int index);
 int		check_input(char *line);

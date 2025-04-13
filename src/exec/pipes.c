@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 16:01:30 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 17:57:48 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ void	ft_swapfd(t_data *data, int i, int pipe_num)
 	if (pipe_num == i)
 	{
 		data->fdout = STDOUT_FILENO;
-		ft_start_redi(data);
+		if (ft_redi_ok(data->input))
+			ft_start_redi(data);
 		close(fd[0]);
 	}
 	else
 	{
 		data->fdout = fd[1];
-		ft_start_redi(data);
+		if (ft_redi_ok(data->input))
+			ft_start_redi(data);
 	}
 	close(fd[1]);
 	data->fdin = fd[0];

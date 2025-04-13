@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 19:20:43 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/13 20:48:55 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,25 @@ static int	skip_flag(char **av, int *nl)
 	return (i);
 }
 
+static void	print_expanded(char *arg, t_map *env, int fd)
+{
+	t_key	*key;
+	char	*var;
+
+	if	(!ft_is_expandable(arg))
+	{
+		ft_putstr_fd(arg, fd);
+		return ;
+	}
+	else if (arg[0] == '$')
+	{
+		var = arg + 1;
+		key = ft_get_keymap(env, var);
+		if (key && key->value)
+			ft_putstr_fd(key->value, fd);
+	}
+}
+
 void	ft_echo(t_data *data)
 {
 	int	i;
@@ -51,7 +70,7 @@ void	ft_echo(t_data *data)
 	i = skip_flag(data->argv, &flag);
 	while (data->argv[i])
 	{
-		ft_putstr_fd(data->argv[i], data->fdout);
+		print_expanded(data->argv[i], data->env, data->fdout);
 		if (data->argv[i + 1])
 			ft_putchar_fd(' ', data->fdout);
 		i++;

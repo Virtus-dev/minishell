@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:26:51 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 03:34:49 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/13 12:47:03 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_oldpwd(t_data *data, char *owd)
 void	ft_update_dir(t_data *data, char *owd)
 {
 	char	*nwd;
-	
+
 	nwd = getcwd(NULL, 0);
 	if (!nwd)
 		return ;

@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/12 19:09:42 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/13 12:59:46 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
 void ft_echo(t_data *data)
 {
-	/*int	i;
+	int	i;
 	int	nl;
 	
 	i = 1;
@@ -23,14 +24,14 @@ void ft_echo(t_data *data)
 	{
 		nl = 0;
 		i++;
-	}*/
+	}
 	int x = 0;
 	while (data->argv[x])
 	{
 		printf("ARG[%d]: %s\n", x, data->argv[x]);
 		x++;
 	}
-	/*while (data->argv[i])
+	while (data->argv[i])
 	{
 		ft_putstr_fd(data->argv[i], data->fdout);
 		if (data->argv[i + 1])
@@ -40,5 +41,42 @@ void ft_echo(t_data *data)
 		}
 		if(nl)
 			ft_putchar_fd('\n', data->fdout);
-	}*/
+	}
+}
+*/
+
+void ft_echo(t_data *data)
+{
+    char    *argv_dup;
+    char    *expandable_var;
+    char    *var;
+
+    if (!data->argv[1])
+    {
+        ft_putchar_fd('\n', data->fdout);
+        return ;
+    }
+    if (!ft_flag_exist(data->argv[1]))
+    {
+        if (ft_is_expandable(data->argv[1]))
+        {
+            argv_dup = ft_strdup(data->argv[1]);
+            expandable_var = ft_chrignore(argv_dup, '$');
+            var = ft_getvar(data->exp, expandable_var);
+            if (!var)
+                return ;
+            ft_putstr_fd(var, data->fdout);
+            free(expandable_var);
+        }
+        else
+            ft_putstr_fd(data->argv[1], data->fdout);
+        ft_putchar_fd('\n', data->fdout);
+    }
+    else
+    {
+        argv_dup = ft_strdup(data->argv[1]);
+        argv_dup = ft_chrignore(argv_dup, '\n');
+        ft_putstr_fd(argv_dup, data->fdout);
+        free(argv_dup);
+    }
 }

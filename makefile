@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+         #
+#    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2025/04/12 22:49:53 by fracurul         ###   ########.fr        #
+#    Updated: 2025/04/13 12:52:57 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,17 @@ RLINE := -lreadline
 SANITIZE := sanitize
 SANITIZE_MEM := sanitize_mem
 
-FSANITIZE := -fsanitize=thread -g3
+FSANITIZE:= -fsanitize=thread -g3
 FSANITIZE_MEM := -fsanitize=address -g
+
 INCLUDES = -Iincludes/ -Ilibft/includes
 OBJDIR := obj
 
 LIBFT = libft/libft.a
 
-SRC = src/built-ins/cd.c src/built-ins/echo.c src/built-ins/env.c src/built-ins/exit.c \
+MAIN ?= main.c
+
+COMMON_SRC = src/built-ins/cd.c src/built-ins/echo.c src/built-ins/env.c src/built-ins/exit.c \
 		src/built-ins/export.c src/built-ins/pwd.c src/built-ins/unset.c \
 		src/exec/exec.c src/exec/pipes.c src/exec/redir.c src/exec/signals.c \
 		src/parsing/parsing.c src/parsing/parsing2.c src/parsing/varcheck.c \
@@ -38,7 +41,8 @@ SRC = src/built-ins/cd.c src/built-ins/echo.c src/built-ins/env.c src/built-ins/
 		src/utils/redir_utils.c src/utils/structs_init.c src/utils/token_utils.c \
 		src/utils/utils.c \
 		src/validations/validations.c \
-		main.c \
+
+SRC = $(COMMON_SRC) $(MAIN)
 
 all : $(NAME)
 
@@ -54,7 +58,7 @@ $(OBJDIR)/%.o : src/%.c
 
 $(NAME) : $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) -o $(NAME) $(RLINE)
-	@echo "$(GREEN)MINISHELL COMPILED$(DEF_COLOR)"
+	@echo "$(GREEN)MINISHELL COMPILED with MAIN=$(MAIN)$(DEF_COLOR)"
 
 clean :
 	@echo "$(YELLOW)Deleting all object files....$(DEF_COLOR)"

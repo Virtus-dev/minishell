@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 11:19:41 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:58:33 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ void	ft_free_resources(t_data *data);
 int		ft_builtin_check(char *str);
 void	ft_execpath(t_data* data);
 char	*ft_find_in_path(char *cmd, t_map *env);
+char    **ft_clean_redirections(char **tokens);
+void    ft_clean_and_replace_args(t_data *data);
 
 /**
  * @brief Executes from path, looking on our ENV.

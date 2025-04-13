@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 11:17:58 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 13:10:53 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ t_key	*ft_new_key(char *name, const char *value)
 		return (NULL);
 	new_key->key = ft_strdup(name);
 	new_key->value = ft_strdup(value);
-	if(!new_key->key || !new_key->value)
+	if(!new_key->key)
 	{
 		free(new_key->key);
-		free(new_key->value);
+		//free(new_key->value);
 		free(new_key);
 	}
 	return (new_key);

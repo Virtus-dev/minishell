@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:26:51 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 12:47:03 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 16:59:32 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_cd(t_data *data, char *owd)
 		if (ft_key_exist(data->env, "HOME"))
 		{
 			home = ft_get_keymap(data->env, "HOME");
-			printf("cd: trying to chdir to [%s]\n", home->value);
 			if(chdir(home->value) == 0)
 				ft_update_dir(data, owd);
 			else

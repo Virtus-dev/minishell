@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 12:59:46 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/13 13:23:10 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void ft_echo(t_data *data)
     }
     else
     {
-        argv_dup = ft_strdup(data->argv[1]);
+        argv_dup = ft_strdup(data->argv[2]);
         argv_dup = ft_chrignore(argv_dup, '\n');
         ft_putstr_fd(argv_dup, data->fdout);
         free(argv_dup);

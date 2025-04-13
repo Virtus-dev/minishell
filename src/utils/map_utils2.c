@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 01:36:17 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/13 03:22:46 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,24 @@ int	ft_key_exist(t_map *map, char *key)
 void	ft_update_map(t_map *map, char *value, char *key)
 {
 	t_key	*target;
+	t_key	*new_key;
 	
 	if (!map || !value || !key)
 		return ;
-	if (!ft_key_exist(map, key))
-		return ;
-	target = ft_get_keymap(map, key);
-	if (!target)
-		return ;
-	free(target->value);
-	target->value = ft_strdup(value);
+	if (ft_key_exist(map, key))
+	{
+		target = ft_get_keymap(map, key);
+		if (!target)
+			return ;
+		free(target->value);
+		target->value = ft_strdup(value);
+	}
+	else
+	{
+		new_key = ft_new_key(key, value);
+		if (new_key)
+			ft_add_key(map, new_key);
+	}
 }
 
 void	ft_print_map(t_data *data, t_map *map)
@@ -89,19 +97,24 @@ void	ft_mapcmp_update(t_map *map, char *values)
 	splited = ft_mini_split(values, '=');
 	while (splited[i])
 	{
-		if (ft_key_exist(map, splited[i]))
-			ft_update_map(map, splited[i + 1], splited[i]);
-		else
-			ft_add_key(map, ft_new_key(splited[i], splited[i + 1]));
+		if (splited[i + 1])
+		{
+			if (ft_key_exist(map, splited[i]))
+				ft_update_map(map, splited[i + 1], splited[i]);
+			else
+				ft_add_key(map, ft_new_key(splited[i], splited[i + 1]));
+		}
 		i += 2;
 	}
+	ft_free_matrix(splited);
 }
 
 void	ft_free_map(t_map *map)
 {
-	if (!map || !map->keys)
-		perror("No map where free keys from");
-	ft_free_keys(map->keys);
+	if (!map)
+		return ;
+	if(map->keys)
+		ft_free_keys(map->keys);
 	free(map);
 }
 

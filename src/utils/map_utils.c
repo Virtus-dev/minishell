@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 01:38:47 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/13 03:03:40 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 	}
 	return (new_key);
 }*/
-t_key	*ft_new_key(char *name, char *value)
+t_key	*ft_new_key(char *name, const char *value)
 {
 	t_key	*new_key;
 

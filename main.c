@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 01:48:13 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/13 03:40:24 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,58 @@ int	main(void)
 }*/
 
 //test cd
+/*
+//  Imprime el entorno actual para debugging
+void	debug_print_keys(t_map *map)
+{
+	size_t	i;
 
+	if (!map || !map->keys)
+	{
+		printf("🔍 [DEBUG] Mapa vacío o sin claves.\n");
+		return;
+	}
+
+	printf("\n🧠 [DEBUG] Claves actuales en el entorno:\n");
+	i = 0;
+	while (map->keys[i])
+	{
+		printf("  - [%zu] %s = %s\n",
+			i,
+			map->keys[i]->key ? map->keys[i]->key : "NULL",
+			map->keys[i]->value ? map->keys[i]->value : "NULL");
+		i++;
+	}
+}
+
+// Guarda historial de cambios (PWD y OLDPWD)
+void	log_env_change(t_map *env)
+{
+	t_key *pwd = ft_get_keymap(env, "PWD");
+	t_key *oldpwd = ft_get_keymap(env, "OLDPWD");
+	char	*entry;
+	char	*tmp;
+
+	if (pwd && pwd->value)
+	{
+		tmp = ft_strjoin("PWD = ", pwd->value);
+		entry = ft_strjoin("[HIST] ", tmp);
+		add_history(entry);
+		free(tmp);
+		free(entry);
+	}
+
+	if (oldpwd && oldpwd->value)
+	{
+		tmp = ft_strjoin("OLDPWD = ", oldpwd->value);
+		entry = ft_strjoin("[HIST] ", tmp);
+		add_history(entry);
+		free(tmp);
+		free(entry);
+	}
+}
+
+//  Crea entorno de prueba con HOME y PWD
 t_map	*create_test_env(const char *home_path)
 {
 	t_map	*map;
@@ -226,7 +277,9 @@ t_map	*create_test_env(const char *home_path)
 	if (!map)
 		return (NULL);
 
-	map->keys = ft_calloc(3, sizeof(t_key *));
+	map->capacity = 4;
+	map->size = 0;
+	map->keys = ft_calloc(map->capacity, sizeof(t_key *));
 	if (!map->keys)
 	{
 		free(map);
@@ -241,63 +294,20 @@ t_map	*create_test_env(const char *home_path)
 		return (NULL);
 	}
 
-	map->keys[0] = ft_new_key("HOME", ft_strdup(home_path));
-	map->keys[1] = ft_new_key("PWD", ft_strdup(cwd));
-	map->keys[2] = NULL;
-	map->size = 2;
-	map->capacity = 3;
+	map->keys[map->size++] = ft_new_key("HOME", home_path);
+	map->keys[map->size++] = ft_new_key("PWD", cwd);
+	map->keys[map->size] = NULL;
 
 	free(cwd);
 	return (map);
 }
 
-void	free_test_env(t_map *map)
-{
-	ft_free_keys(map->keys);
-	free(map);
-}
-
-void	check_env_vars(t_data *data, char *owd, int cd_succeeded)
-{
-	t_key *pwd = ft_get_keymap(data->env, "PWD");
-	t_key *oldpwd = ft_get_keymap(data->env, "OLDPWD");
-
-	if (pwd && pwd->value)
-	{
-		char *actual = getcwd(NULL, 0);
-		if (actual && strcmp(pwd->value, actual) == 0)
-			printf("✅ PWD actualizado correctamente: %s\n", pwd->value);
-		else if (actual)
-			printf("❌ PWD incorrecto: %s (esperado: %s)\n", pwd->value, actual);
-		else
-			printf("❌ getcwd falló al verificar PWD\n");
-		free(actual);
-	}
-	else
-		printf("❌ PWD no actualizado\n");
-
-	if (cd_succeeded)
-	{
-		if (oldpwd && oldpwd->value)
-		{
-			if (strcmp(oldpwd->value, owd) == 0)
-				printf("✅ OLDPWD actualizado correctamente: %s\n", oldpwd->value);
-			else
-				printf("❌ OLDPWD incorrecto: %s (esperado: %s)\n", oldpwd->value, owd);
-		}
-		else
-			printf("❌ OLDPWD no actualizado\n");
-	}
-	else
-		printf("🟡 OLDPWD no modificado (cd falló, correcto)\n");
-}
-
+//  Testea comportamiento del comando cd
 void	run_cd_test(char *arg, t_map *env)
 {
 	t_data	data;
 	char	*before = NULL;
 	char	*after = NULL;
-	int		cd_succeeded = 0;
 
 	before = getcwd(NULL, 0);
 	if (!before)
@@ -314,17 +324,7 @@ void	run_cd_test(char *arg, t_map *env)
 	data.argc = arg ? 2 : 1;
 	data.fdout = 1;
 
-	printf("🟡 Test: cd %s\n", arg ? arg : "(no arg)");
-
-	if (data.argc == 2)
-		cd_succeeded = (chdir(data.argv[1]) == 0);
-	else if (ft_key_exist(data.env, "HOME"))
-	{
-		t_key *home = ft_get_keymap(data.env, "HOME");
-		if (home && home->value)
-			cd_succeeded = (chdir(home->value) == 0);
-	}
-	chdir(before);
+	printf("\n🟡 Test: cd %s\n", arg ? arg : "(no arg)");
 
 	ft_cd(&data, before);
 
@@ -336,12 +336,8 @@ void	run_cd_test(char *arg, t_map *env)
 	else
 		printf("🟡 CD NO CAMBIO: sigue en %s\n", before);
 
-	check_env_vars(&data, before, cd_succeeded);
-
-	if (before)
-		free(before);
-	if (after)
-		free(after);
+	free(before);
+	free(after);
 	if (data.argv)
 	{
 		if (data.argv[0]) free(data.argv[0]);
@@ -357,9 +353,12 @@ int	main(void)
 	run_cd_test(".", env);
 	run_cd_test("..", env);
 	run_cd_test("/", env);
-	run_cd_test(NULL, env);               // cd → $HOME
-	run_cd_test("no_such_path", env);     // error esperado
+	run_cd_test(NULL, env);
+	run_cd_test("no_such_path", env);
 
-	free_test_env(env);
-	return 0;
-}
+	log_env_change(env);     // ✅ Historial readline
+	debug_print_keys(env);   // ✅ Dump visual por consola
+	ft_free_map(env);        // ✅ Limpieza total
+
+	return (0);
+}*/

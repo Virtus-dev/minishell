@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 15:26:51 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 00:45:14 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/13 03:34:49 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void	ft_oldpwd(t_data *data, char *owd)
 	if (!data || !owd)
 		return ;
 	if(ft_key_exist(data->env, "OLDPWD"))
-		ft_update_map(data->env, ft_strdup(owd), "OLDPWD");
+		ft_update_map(data->env, owd, "OLDPWD");
 	else
-		ft_add_key(data->env, ft_new_key("OLDPWD", ft_strdup(owd)));
+		ft_add_key(data->env, ft_new_key("OLDPWD", owd));
 }
 
 /*void	ft_update_dir(t_data *data, char *owd)
@@ -111,9 +111,9 @@ void	ft_update_dir(t_data *data, char *owd)
 	if (!nwd)
 		return ;
 	if(ft_key_exist(data->env, "PWD"))
-		ft_update_map(data->env, ft_strdup(nwd), "PWD");
+		ft_update_map(data->env, nwd, "PWD");
 	else
-		ft_add_key(data->env, ft_new_key("PWD", ft_strdup(nwd)));
+		ft_add_key(data->env, ft_new_key("PWD", nwd));
 	ft_oldpwd(data, owd);
 	free (nwd);
 }

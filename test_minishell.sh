@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/13 18:43:32 by arigonza          #+#    #+#              #
-#    Updated: 2025/04/13 19:07:41 by arigonza         ###   ########.fr        #
+#    Updated: 2025/04/16 23:50:55 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ tests=(
     "ls -l > prueba.txt"
     "cat < prueba.txt"
     "cd .. | pwd"
+    "ls | grep "minishell" >> pruebta.txt"
 )
 
 pass=0

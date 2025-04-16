@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/07 15:53:20 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/17 00:01:57 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * 
  * @param data Struct with all the main information. 
  * @param str The supossed built-in we are going to check.
- * @return int Executes and Returns the kind of built-in.
+ * @return Returns the kind of built-in.
  */
 int	ft_builtin_check(char *str)
 {
@@ -35,8 +35,6 @@ int	ft_builtin_check(char *str)
 		return (ENV);
 	if (!ft_strcmp(str, "exit") || !ft_strcmp(str, "EXIT"))
 		return (EXIT);
-	if (!ft_strcmp(str, "./minishell"))
-		return (DEF);
 	return (FALSE);
 }
 

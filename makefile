@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
+#    By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2025/04/13 16:02:26 by arigonza         ###   ########.fr        #
+#    Updated: 2025/04/17 16:26:40 by fracurul         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,8 @@ COMMON_SRC = src/built-ins/cd.c src/built-ins/echo.c src/built-ins/env.c src/bui
 		src/tokens/tokens.c src/tokens/tokens2.c \
 		src/utils/builtins_utils.c src/utils/exec_utils.c src/utils/here_doc_utils.c \
 		src/utils/map_utils.c src/utils/map_utils2.c src/utils/map_utils3.c \
-		src/utils/redir_utils.c src/utils/redir_utils2.c src/utils/structs_init.c src/utils/token_utils.c \
-		src/utils/utils.c \
+		src/utils/redir_utils.c src/utils/redir_utils2.c src/utils/redir_utils3.c \
+		src/utils/structs_init.c src/utils/token_utils.c src/utils/utils.c \
 		src/validations/validations.c \
 
 SRC = $(COMMON_SRC) $(MAIN)

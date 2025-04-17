@@ -3,38 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 00:00:05 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:50:10 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-void ft_swapfd(t_data *data, int i, int pipe_num)
+void	ft_swapfd(t_data *data, int i, int pipe_num)
 {
-    int fd[2];
+	int	fd[2];
 
-    if (pipe(fd) == -1)
+	if (pipe(fd) == -1)
 	{
 		perror(PIPE_ERR);
-		return;
+		return ;
 	}
-    if (i == pipe_num)
+	if (i == pipe_num)
 		data->fdout = STDOUT_FILENO;
 	else
 		data->fdout = fd[1];
-    if (i == 0 && (ft_is_sin(data->input) || ft_is_din(data->input)))
-        ft_start_redi(data);
-    if (i == pipe_num && (ft_is_sout(data->input) || ft_is_dout(data->input)))
-        ft_start_redi(data);
-    close(fd[1]);
-    if (i == 0 && (ft_is_sin(data->input) || ft_is_din(data->input)))
-        close(fd[0]);
-    else
-        data->fdin = fd[0];
+	if (i == 0 && (ft_is_sin(data->input) || ft_is_din(data->input)))
+		ft_start_redi(data);
+	if (i == pipe_num && (ft_is_sout(data->input) || ft_is_dout(data->input)))
+		ft_start_redi(data);
+	close(fd[1]);
+	if (i == 0 && (ft_is_sin(data->input) || ft_is_din(data->input)))
+		close(fd[0]);
+	else
+		data->fdin = fd[0];
 }
 
 void	ft_close_fds(t_data *data)
@@ -59,7 +58,7 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 		if (!curr_token || !curr_token->cmd)
 		{
 			perror("Command token not found\n");
-			break;
+			break ;
 		}
 		ft_load_args(data, curr_token);
 		ft_clean_and_replace_args(data);

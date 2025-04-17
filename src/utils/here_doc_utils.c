@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:53:36 by arigonza          #+#    #+#             */
-/*   Updated: 2025/03/31 16:53:51 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:04:18 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 //comprobacion de señales y no abre correctamente
 void	ft_write_hd(t_data *data, char *dl)
 {
-	int 	hd;
+	int		hd;
 	char	*str;
-	
+
 	hd = open(".tmp", O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (hd == -1)
 	{
@@ -42,14 +42,11 @@ void	ft_write_hd(t_data *data, char *dl)
 
 void	ft_here_doc(t_data *data)
 {
-	//char	**split;
 	char	*dl;
 	int		nw_fd;
 
-	//split = ft_split(data->argv, ' ');
 	if (!data->argv[1])
 	{
-		//ft_free_matrix(split);
 		ft_putstr_fd("bash: syntax error, unexpected token\n", data->fdout);
 		data->status = 1;
 		return ;
@@ -57,7 +54,6 @@ void	ft_here_doc(t_data *data)
 	dl = ft_strjoin(data->argv[1], "\n");
 	ft_write_hd(data, dl);
 	free(dl); //Este free ha dado un seg fault
-	//ft_free_matrix(split);
 	nw_fd = open(".tmp", O_RDONLY);
 	data->fdin = nw_fd;
 }

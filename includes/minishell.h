@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 00:01:09 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:42:51 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,16 +124,16 @@ void    ft_clean_and_replace_args(t_data *data);
 
 /**
  * @brief Executes from path, looking on our ENV.
- * 
- * @param data 
+ *
+ * @param data
  */
 void	ft_runexec(t_data *data);
 /**
  * @brief Takes from our map format and reconverts it into a format
- * we can use to execute it. 
- * 
- * @param map 
- * @return char** 
+ * we can use to execute it.
+ *
+ * @param map
+ * @return char**
  */
 char	**ft_revert_env(t_map *map);
 
@@ -141,7 +141,7 @@ void	ft_exec_built(t_data *data, char *input);
 
 /**
  * @brief Returns the exact position of a rediretion on a string.
- * 
+ *
  * @param argv The string to search from.
  * @return (int)Redirection position.
  */
@@ -150,18 +150,18 @@ int 	ft_redir_pos(char **argv);
 /**
  * @brief Returns what type of IN redirection is,
  * simple or double.('<' or '<<')
- * 
- * @param str 
- * @return int 
+ *
+ * @param str
+ * @return int
  */
 int		ft_redin_type(char *str);
 
 /**
  * @brief Returns what type of OUT redirection is,
  * simple or double.('<' or '<<')
- * 
- * @param str 
- * @return int 
+ *
+ * @param str
+ * @return int
  */
 int		ft_rediout_type(char *str);
 
@@ -169,10 +169,10 @@ int		ft_rediout_type(char *str);
  * @brief Implements OUTPUT redirections such as '>' and '>>'.access
  * redirects the output to a file descriptor, creating or opening
  *  the especified file. While '>' overwrite, '>>' appends.
- * 
- * @param data 
- * @param redir 
- * @param redir_type 
+ *
+ * @param data
+ * @param redir
+ * @param redir_type
  */
 void	ft_redirout(t_data *data, char *redir, int redir_type);
 void	ft_redirin(t_data *data, char *redir, int redir_type);
@@ -205,9 +205,9 @@ void	ft_pipe_processing(t_data *data, int pipe_num);
 void	ft_swapfd(t_data *data, int i, int pipe_num);
 void	ft_close_fds(t_data *data);
 
-//VALIDATIONS  
+//VALIDATIONS
 int		validate_pipe(char *line , int index);
 int		validate_otredir(char *line , int index);
 int		validate_itredir(char *line , int index);
-int		validate_metachar(char *line);
+int		validate_metachar(char *line, int i);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:06:17 by arigonza          #+#    #+#             */
-/*   Updated: 2025/02/02 13:00:14 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:52:42 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
  * @brief When the user presses CTRL+C
  * (which sends the SIGINT signal),
  * this function is called.
- * It clears the current input line, prints a newline, and 
+ * It clears the current input line, prints a newline, and
  * refreshes the prompt so the user can enter a new command.
- * 
- * @param sig 
+ *
+ * @param sig
  */
 void	ft_handler(int sig)
 {
@@ -36,8 +36,8 @@ void	ft_handler(int sig)
  * when a signal (like SIGINT) is received
  * in a child process. It’s a minimal handler
  * that ensures the input state remains consistent.
- * 
- * @param sig 
+ *
+ * @param sig
  */
 void	ft_child_handler(int sig)
 {
@@ -68,10 +68,9 @@ void	ft_ignore_signals(void)
 void	ft_signal(void)
 {
 	struct sigaction	sa;
-	
+
 	ft_ignore_signals();
 	ft_memset(&sa, 0, sizeof(sa));
 	sa.sa_handler = &ft_handler;
 	sigaction(SIGINT, &sa, NULL);
 }
-

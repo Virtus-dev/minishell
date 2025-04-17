@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/04/12 22:37:57 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:59:19 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static int	word_handler(char **tokens, const char *input, int *i, int j)
 	int	start;
 
 	start = *i;
-	while(input[*i] && input[*i] != ' ' && input[*i] != '\t' && !is_op(input[*i]))
+	while (input[*i] && input[*i] != ' '
+		&& input[*i] != '\t' && !is_op(input[*i]))
 		(*i)++;
 	tokens[j] = ft_substr(input, start, *i - start);
 	return (j + 1);
@@ -59,15 +60,15 @@ char	**tokenizer(const char *input)
 	tokens = (char **)ft_calloc(256, sizeof(char *));
 	i = 0;
 	j = 0;
-	while(input[i])
+	while (input[i])
 	{
-		while(input[i] && (input[i] == ' ' || input[i] == '\t'))
+		while (input[i] && (input[i] == ' ' || input[i] == '\t'))
 			i++;
-		if(!input)
-			break;
-		if(input[i] == '\'' || input[i] == '\"')
+		if (!input)
+			break ;
+		if (input[i] == '\'' || input[i] == '\"')
 			j = quotes_handler(tokens, input, &i, j);
-		else if(is_op(input[i]))
+		else if (is_op(input[i]))
 			j = op_handler(tokens, input, &i, j);
 		else
 			j = word_handler(tokens, input, &i, j);

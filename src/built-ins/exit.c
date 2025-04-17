@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:07:58 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/12 23:26:10 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:43:42 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Error control, checks if the argument passed by, its a number.
- * 
+ *
  * @param t_data Structure wich holds all the information.
  */
 void	ft_check_exit(t_data *data)
@@ -23,10 +23,10 @@ void	ft_check_exit(t_data *data)
 	//    return (1);
 	if (!ft_atoi(data->argv[1]))
 	{
-	ft_putstr_fd(data->argv[0], data->fdout);
-	ft_putchar_fd('\n', data->fdout);
-	ft_free_resources(data);
-	exit(EXIT_FAILURE);
+		ft_putstr_fd(data->argv[0], data->fdout);
+		ft_putchar_fd('\n', data->fdout);
+		ft_free_resources(data);
+		exit(EXIT_FAILURE);
 	}
 	if (ft_isnumeric(data->argv[1]))
 	{

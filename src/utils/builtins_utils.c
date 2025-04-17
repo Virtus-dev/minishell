@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 00:01:57 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:00:50 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /**
  * @brief Checks if the parameter passed by is or is not a built-in.
- * 
- * @param data Struct with all the main information. 
+ *
+ * @param data Struct with all the main information.
  * @param str The supossed built-in we are going to check.
  * @return Returns the kind of built-in.
  */
@@ -40,11 +40,11 @@ int	ft_builtin_check(char *str)
 	return (FALSE);
 }
 
-void    ft_exec_built(t_data *data, char *input)
+void	ft_exec_built(t_data *data, char *input)
 {
-    int builtin;
+	int	builtin;
 
-    builtin = ft_builtin_check(input);
+	builtin = ft_builtin_check(input);
 	if (builtin == CD)
 		ft_cd(data, NULL);
 	else if (builtin == ECHO)

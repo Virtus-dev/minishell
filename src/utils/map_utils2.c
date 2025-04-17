@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:47:48 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 03:22:46 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:10:40 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,11 @@ int	ft_key_exist(t_map *map, char *key)
 	return (FALSE);
 }
 
-/*void	ft_update_map(t_map *map, char *value, char *key)
-{
-	t_key	*nkey;
-
-	if (ft_key_exist(map, key))
-	{
-		nkey = ft_get_keymap(map, key);
-		free(nkey->value);
-		nkey->value = ft_strdup(value);
-	}
-}*/
-
 void	ft_update_map(t_map *map, char *value, char *key)
 {
 	t_key	*target;
 	t_key	*new_key;
-	
+
 	if (!map || !value || !key)
 		return ;
 	if (ft_key_exist(map, key))
@@ -109,23 +97,14 @@ void	ft_mapcmp_update(t_map *map, char *values)
 	ft_free_matrix(splited);
 }
 
-void	ft_free_map(t_map *map)
-{
-	if (!map)
-		return ;
-	if(map->keys)
-		ft_free_keys(map->keys);
-	free(map);
-}
-
-void	ft_free_keys(t_key** keys)
+void	ft_free_keys(t_key **keys)
 {
 	int	i;
 
 	if (!keys)
 	{
 		perror("No keys to free\n");
-		return;
+		return ;
 	}
 	i = 0;
 	while (keys[i])

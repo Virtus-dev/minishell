@@ -26,7 +26,8 @@ void    ft_minishell_init(t_data *data)
 		ft_set_signal();
 		if (data->input == NULL)
 		{
-			ft_putstr_fd(BAD_INPUT, data->fdout);
+			ft_exit(data);
+			//escribir exit\n
 			break ;
 		}
 		if (data->input[0] != '\0')

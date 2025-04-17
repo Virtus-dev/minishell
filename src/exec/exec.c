@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+//Comprobar el manejo de señales aqui con bloqueantes
+//Manejo de $?
 void	ft_exec(t_data *data)
 {
 	int	stat;
@@ -19,14 +21,13 @@ void	ft_exec(t_data *data)
 	data->child = fork();
 	if (data->child == -1)
 	{
-		perror("FORK FAILURE");
+		perror(FORK_ERR);
 		exit(EXIT_FAILURE);
 	}
-	if (ft_builtin_check(data->argv[0]))
-		data->lvl += 1;
 	if (data->child == 0)
 	{
 		ft_execpath(data);
+		//Implementar ruta absoluta sin path
 		ft_runexec(data);
 	}
 	else if (data->child > 0)

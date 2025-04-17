@@ -53,8 +53,6 @@ void	ft_exit(t_data *data)
 	}
 	else
 	{
-		ft_putstr_fd("exit", data->fdout);
-		ft_putchar_fd('\n', data->fdout);
 		ft_free_resources(data);
 		exit(EXIT_SUCCESS);
 	}

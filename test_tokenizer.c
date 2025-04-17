@@ -88,8 +88,10 @@ int    main(void)
     run_tokenizer_test("echo 'esto > no es redir'");
     run_tokenizer_test("cat < entrada.txt >> salida.txt");
     run_tokenizer_test("echo '' | grep hola > file.txt");
-    run_tokenizer_test("grep \"|\" archivo.txt");
+    run_tokenizer_test("grep | \"archivo.txt\"");
     run_tokenizer_test("ls | cat -e | tr -d '\n'");
+    run_tokenizer_test("cd -\n");
+    run_tokenizer_test("cat");
 
     return (0);
 }

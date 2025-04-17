@@ -35,6 +35,8 @@ int	ft_builtin_check(char *str)
 		return (ENV);
 	if (!ft_strcmp(str, "exit") || !ft_strcmp(str, "EXIT"))
 		return (EXIT);
+	if (!ft_strcmp(str, "./minishell"))
+		return (DEF);
 	return (FALSE);
 }
 

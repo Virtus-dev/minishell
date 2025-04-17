@@ -68,6 +68,7 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 			ft_exec_built(data, curr_token->cmd);
 		else
 			ft_exec(data);
+		printf("%d\n", i);
 		i++;
 	}
 	ft_close_fds(data);

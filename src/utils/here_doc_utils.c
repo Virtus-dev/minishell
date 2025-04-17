@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+//comprobacion de señales y no abre correctamente
 void	ft_write_hd(t_data *data, char *dl)
 {
 	int 	hd;
@@ -55,7 +56,7 @@ void	ft_here_doc(t_data *data)
 	}
 	dl = ft_strjoin(data->argv[1], "\n");
 	ft_write_hd(data, dl);
-	free(dl);
+	free(dl); //Este free ha dado un seg fault
 	//ft_free_matrix(split);
 	nw_fd = open(".tmp", O_RDONLY);
 	data->fdin = nw_fd;

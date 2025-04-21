@@ -1,36 +1,129 @@
-#
+# Minishell
 
-En tokenize_command, primer bucle while, dentro del if,
-hay que hacer una funcion que identifique el tipo de metacaracter.
+Una shell mínima escrita en C, que replica muchas de las características de Bash:  
+- **Built‑ins**: `cd`, `echo`, `env`, `exit`, `export`, `pwd`, `unset`  
+- **Pipelines** (`|`)  
+- **Redirecciones** (`>`, `>>`, `<`, `<<` (heredoc))  
+- **Gestión de señales** (`Ctrl‑C`, `Ctrl‑\`)  
+- **Manejo de entorno** con estructuras de tipo _map_ para `env` y `export`  
+- **Lectura interactiva** con GNU Readline
 
-modificar estructura s_token, para añadir el tipo de metacaracter que sea.
+---
 
+## 📋 Características
 
+- **Prompt interactivo** sin terminarse al pulsar `Ctrl‑C`.  
+- **Fork + Exec** para comandos externos y pipelines, con restauración de señales en hijos.  
+- **Built‑ins** que modifican el entorno en el proceso padre (p.ej. `cd`, `unset`, `export`).  
+- **Soporte heredoc**: `<< DELIM … DELIM`.  
+- **Tests unitarios** en C para tokenización y `cd` (`test_tokenizer.c`, `test_cd.c`).  
+- **Script de integración** para ejecutar comparativas con Bash (`test_minishell.sh`).  
+- **Makefile** con objetivos:  
+  - `all` / `minishell`  
+  - `clean` / `fclean` / `re`  
+  - `sanitize` / `sanitize_mem`
 
-heredoc
+---
 
+## 🛠️ Requisitos
 
-cd | pwd| wc hola.txt >> output.txt
-ls > out.txt | wc
+- GCC (o clang) compatible con C99  
+- Make  
+- GNU Readline  
+- Linux / macOS (POSIX compliant)  
 
+---
 
-el padre solo ejecuta built-ins
+## 🚀 Compilación
 
-ejemplo : ls | cat | wc
-el padre aqui no puede ejecutar nada,
-hijo ejecuta ls en stdin
+```bash
+# Compila libft y la minishell
+make
 
-la idea seria hacer un bucle y cada vez que terminemos el proceso hijo, mandamos a stdin padre, y luego el siguiente hijo lee del stin del padre para extrar la info del comando ejecutado anteriormente
+# Compila con sanitizers (thread)
+make sanitize
 
-> esto sobreescribe
->> esto es añadir a un archivo
-heredoc:es solo << y un delimitador, que despliega un dquote que te permite escribir hasta el del, en la linea solo puede estar el del
+# Compila con AddressSanitizer
+make sanitize_mem
 
+# Limpia objetos
+make clean
 
+# Elimina ejecutables y libft
+make fclean
 
-parseo:
+# Reconstruye todo
+make re
 
-1. si linea no es \n ni ""(vacio), se trimea y se anade al historial
-2.si la linea no existe(proteccion al malloc del trim).
-3.si la linea esta vacia despues de todo, vuelves a leer.
+🎮 Uso
+$ ./minishell
+minishell$ echo "Hola, mundo"
+Hola, mundo
+minishell$ pwd
+/home/usuario/proyecto/minishell
+minishell$ ls | grep src > archivos.txt
+minishell$ cat <<EOF
+> línea 1
+> línea 2
+> EOF
+línea 1
+línea 2
+minishell$ exit
 
+Pipelines: cada segmento se ejecuta en un proceso hijo.
+
+Redirecciones:
+
+> sobreescribe
+
+>> añade
+
+< lee de archivo
+
+<< DELIM heredoc
+
+⚙️ Señales
+Shell principal:
+
+SIGINT (Ctrl‑C) → limpia la línea con Readline, no cierra la shell
+
+SIGQUIT (Ctrl‑\) → ignorada
+
+Procesos hijos:
+
+Restablecen SIGINT y SIGQUIT a DEFAULT antes de execve, para que se puedan interrumpir normalmente.
+
+🧪 Pruebas
+Tokenización:
+
+make MAIN=test_tokenizer.c
+
+Built-in cd:
+
+make MAIN=test_cd.c
+
+Batería de integración frente a Bash:
+
+chmod +x test_minishell.sh
+./test_minishell.sh
+
+📂 Estructura de directorios
+bash
+Copiar
+.
+├── includes/              # Cabeceras (.h)
+├── libft/                 # Submódulo libft
+├── obj/                   # Objetos compilados
+├── src/
+│   ├── built-ins/         # cd, echo, env, exit, export, pwd, unset
+│   ├── exec/              # fork/exec, señales
+│   ├── parsing/           # split, tokens, metacaracteres
+│   ├── tokens/            # tokenizer y agrupación
+│   ├── utils/             # mapas, listas, redirecciones, heredoc
+│   ├── validations/       # comprobaciones de sintaxis
+│   └── main.c
+├── test_tokenizer.c       # Test de tokenización
+├── test_cd.c              # Test de cd
+├── test_minishell.sh      # Script de integración
+├── Makefile
+└── README.md

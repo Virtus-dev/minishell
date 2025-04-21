@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 17:42:51 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:23:16 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,8 @@ void	ft_exit(t_data *data);
 void	ft_exec(t_data *data);
 
 //SIGNALS
-void	ft_handler(int sig);
-void	ft_child_handler(int sig);
-void	ft_signal(void);
-int		ft_set_signal(void);
-void	ft_ignore_signals(void);
+void	ft_setup_parent_signals(void);
+void	ft_restore_default_signals(void);
 
 //MAP UTILS
 void	ft_map_init(t_map *map);

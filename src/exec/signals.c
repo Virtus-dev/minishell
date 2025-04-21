@@ -3,74 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:06:17 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 15:52:42 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:23:41 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include "minishell.h"
+#include <signal.h>
 
-/**
- * @brief When the user presses CTRL+C
- * (which sends the SIGINT signal),
- * this function is called.
- * It clears the current input line, prints a newline, and
- * refreshes the prompt so the user can enter a new command.
- *
- * @param sig
- */
-void	ft_handler(int sig)
+// parent_signals.c
+static void	sigint_parent(int sig)
 {
-	(void)sig;
-	ft_putstr_fd("\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+    (void)sig;
+    write(1, "\n", 1);
+    rl_on_new_line();
+    rl_replace_line("", 0);
+    rl_redisplay();
 }
 
-/**
- * @brief Refresh the prompt and input line
- * when a signal (like SIGINT) is received
- * in a child process. It’s a minimal handler
- * that ensures the input state remains consistent.
- *
- * @param sig
- */
-void	ft_child_handler(int sig)
+void	ft_setup_parent_signals(void)
 {
-	(void)sig;
-	rl_redisplay();
+    struct sigaction sa;
+
+    /* Ignorar SIGQUIT */
+    sigaction(SIGQUIT, &(struct sigaction){ .sa_handler = SIG_IGN }, NULL);
+
+    /* Capturar SIGINT */
+    sa.sa_handler = sigint_parent;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags   = SA_RESTART;
+    sigaction(SIGINT, &sa, NULL);
 }
 
-int	ft_set_signal(void)
+// child_signals.c
+void	ft_restore_default_signals(void)
 {
-	struct sigaction	sa;
-
-	ft_memset(&sa, 0, sizeof(sa));
-	sa.sa_handler = &ft_child_handler;
-	sigaction(SIGINT, &sa, NULL);
-	sigaction(SIGQUIT, &sa, NULL);
-	return (EXIT_SUCCESS);
-}
-
-void	ft_ignore_signals(void)
-{
-	struct sigaction	sa;
-
-	ft_memset(&sa, 0, sizeof(sa));
-	sa.sa_handler = SIG_IGN;
-	sigaction(SIGQUIT, &sa, NULL);
-}
-
-void	ft_signal(void)
-{
-	struct sigaction	sa;
-
-	ft_ignore_signals();
-	ft_memset(&sa, 0, sizeof(sa));
-	sa.sa_handler = &ft_handler;
-	sigaction(SIGINT, &sa, NULL);
+    signal(SIGINT,  SIG_DFL);
+    signal(SIGQUIT, SIG_DFL);
 }

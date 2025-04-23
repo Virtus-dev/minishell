@@ -110,6 +110,7 @@ chmod +x test_minishell.sh
 
 📂 Estructura de directorios
 
+````
 .
 ├── includes/              # Cabeceras (.h)
 ├── libft/                 # Submódulo libft
@@ -127,3 +128,4 @@ chmod +x test_minishell.sh
 ├── test_minishell.sh      # Script de integración
 ├── Makefile
 └── README.md
+````

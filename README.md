@@ -36,7 +36,6 @@ Una shell mínima escrita en C, que replica muchas de las características de Ba
 
 ## 🚀 Compilación
 
-```bash
 # Compila libft y la minishell
 make
 
@@ -56,6 +55,7 @@ make fclean
 make re
 
 🎮 Uso
+````bash
 $ ./minishell
 minishell$ echo "Hola, mundo"
 Hola, mundo
@@ -69,6 +69,7 @@ minishell$ cat <<EOF
 línea 1
 línea 2
 minishell$ exit
+````
 
 Pipelines: cada segmento se ejecuta en un proceso hijo.
 
@@ -108,8 +109,7 @@ chmod +x test_minishell.sh
 ./test_minishell.sh
 
 📂 Estructura de directorios
-bash
-Copiar
+
 .
 ├── includes/              # Cabeceras (.h)
 ├── libft/                 # Submódulo libft

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:06:17 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/21 13:23:41 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:32:15 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ void	ft_setup_parent_signals(void)
 {
     struct sigaction sa;
 
-    /* Ignorar SIGQUIT */
     sigaction(SIGQUIT, &(struct sigaction){ .sa_handler = SIG_IGN }, NULL);
 
-    /* Capturar SIGINT */
     sa.sa_handler = sigint_parent;
     sigemptyset(&sa.sa_mask);
     sa.sa_flags   = SA_RESTART;

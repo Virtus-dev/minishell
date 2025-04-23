@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:06:17 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/21 14:32:15 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/23 16:38:04 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "minishell.h"
 #include <signal.h>
 
-// parent_signals.c
 static void	sigint_parent(int sig)
 {
     (void)sig;
@@ -36,7 +35,6 @@ void	ft_setup_parent_signals(void)
     sigaction(SIGINT, &sa, NULL);
 }
 
-// child_signals.c
 void	ft_restore_default_signals(void)
 {
     signal(SIGINT,  SIG_DFL);

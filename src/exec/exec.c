@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:52:21 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/21 13:26:06 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/23 17:17:03 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_exec(t_data *data)
 	if (data->child == 0)
 	{
 		ft_restore_default_signals();
-		ft_execpath(data);
+		if (data->env)
+			ft_execpath(data);
 		//Implementar ruta absoluta sin path
 		ft_runexec(data);
 	}

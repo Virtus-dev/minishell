@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/23 17:27:31 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/25 10:29:41 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,21 @@ void	ft_exec_built(t_data *data, char *input)
 		ft_exit(data);
 	else if (builtin == PWD)
 		ft_pwd(data);
+	else if (builtin == UNST)
+		ft_unset(data);
+}
+
+void	ft_is_env_builtin(t_data * data, char *input)
+{
+	int	builtin;
+
+	builtin = ft_builtin_check(input);
+	if (builtin == CD)
+		ft_cd(data, NULL);
+	else if (builtin == EXP)
+		ft_export(data);
+	else if (builtin == EXIT)
+		ft_exit(data);
 	else if (builtin == UNST)
 		ft_unset(data);
 }

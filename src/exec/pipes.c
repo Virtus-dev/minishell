@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/23 17:17:24 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/25 10:34:03 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 			ft_exec_built(data, curr_token->cmd);
 		else
 			ft_exec(data);
-		printf("%d\n", i);
 		i++;
 	}
 	ft_close_fds(data);

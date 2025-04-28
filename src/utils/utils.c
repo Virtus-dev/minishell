@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/28 10:49:52 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/28 11:41:51 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_check_expformat(char *argv)
 	int	i;
 
 	i = 0;
-	if(!argv || argv[0])
+	if(!argv || !argv[0])
 		return (FALSE);
 	if (argv[0] != '_' && ft_isdigit(argv[0]))
 		return (FALSE);

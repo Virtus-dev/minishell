@@ -6,13 +6,12 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:52:21 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/25 09:33:39 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/01 11:30:29 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//Comprobar el manejo de señales aqui con bloqueantes
 //Manejo de $?
 void	ft_exec(t_data *data)
 {

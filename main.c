@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/21 17:23:14 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/01 09:54:04 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,14 @@ void    ft_minishell_init(t_data *data)
 		{
 			add_history(data->input);
 			if (!ft_is_all_space(data->input, data))
+			{
 				ft_check_redir(data);
-			//printf("%s\n", data->argv[i]);
+				free_tokens(data->tokens);
+				data->tokens = NULL;
+				ft_free_matrix(data->argv);
+				data->argv = NULL;
+				
+			}
 		}
 		free(data->input);
 	}

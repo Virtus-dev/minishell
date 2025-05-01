@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/25 10:34:03 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/01 09:29:48 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 {
 	int		i;
 	t_token	*curr_token;
+	t_token	*next_token;
 
 	i = 0;
 	while (i <= pipe_num)
 	{
 		curr_token = data->tokens[i];
+		next_token = data->tokens[i + 1];
 		if (!curr_token || !curr_token->cmd)
 		{
 			perror("Command token not found\n");
@@ -63,7 +65,7 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 		ft_load_args(data, curr_token);
 		ft_clean_and_replace_args(data);
 		ft_swapfd(data, i, pipe_num);
-		if (ft_builtin_check(curr_token->cmd))
+		if (ft_nonenv_builtin(curr_token->cmd) || (ft_is_env_builtin(curr_token->cmd) && !next_token))
 			ft_exec_built(data, curr_token->cmd);
 		else
 			ft_exec(data);

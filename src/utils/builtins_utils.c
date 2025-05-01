@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/25 10:29:41 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/01 09:23:07 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,36 @@ void	ft_exec_built(t_data *data, char *input)
 		ft_pwd(data);
 	else if (builtin == UNST)
 		ft_unset(data);
+	else if (builtin == DEF)
+		data->lvl++;
 }
 
-void	ft_is_env_builtin(t_data * data, char *input)
+int	ft_is_env_builtin(char *input)
 {
 	int	builtin;
 
 	builtin = ft_builtin_check(input);
 	if (builtin == CD)
-		ft_cd(data, NULL);
+		return (TRUE);
 	else if (builtin == EXP)
-		ft_export(data);
+		return (TRUE);
 	else if (builtin == EXIT)
-		ft_exit(data);
+		return (TRUE);
 	else if (builtin == UNST)
-		ft_unset(data);
+		return (TRUE);
+	return (FALSE);
+}
+int	ft_nonenv_builtin(char *str)
+{
+	if (!ft_strcmp(str, "echo") || !ft_strcmp(str, "ECHO"))
+	return (ECHO);
+	if (!ft_strcmp(str, "pwd") || !ft_strcmp(str, "PWD"))
+		return (PWD);
+	if (!ft_strcmp(str, "env") || !ft_strcmp(str, "ENV"))
+		return (ENV);
+	if (!ft_strcmp(str, "exit") || !ft_strcmp(str, "EXIT"))
+		return (EXIT);
+	if (!ft_strcmp(str, "./minishell"))
+		return (DEF);
+return (FALSE);
 }

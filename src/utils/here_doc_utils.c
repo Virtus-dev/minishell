@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:53:36 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 16:04:18 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/01 12:29:31 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,34 @@ void	ft_write_hd(t_data *data, char *dl)
 		data->status = 1;
 		return ;
 	}
-	ft_putstr_fd("> ", 1);
-	str = get_next_line(0);
-	while (ft_strcmp(str, dl))
+	while (1)
 	{
-		if (!ft_strcmp(str, dl))
+		write(1, "> ", 2);
+		str = get_next_line(0);
+		if (!str || ft_strncmp(str, dl, ft_strlen(dl)))
+		{
+			free(str);
 			break ;
-		ft_putstr_fd("> ", 1);
+		}
 		ft_putstr_fd(str, hd);
 		free(str);
-		str = get_next_line(0);
 	}
 	close (hd);
-	free(str);
 }
 
-void	ft_here_doc(t_data *data)
+void	ft_here_doc(t_data *data, char *dl)
 {
-	char	*dl;
 	int		nw_fd;
 
-	if (!data->argv[1])
+	printf("En heredoc\n");
+	if (!dl)
 	{
 		ft_putstr_fd("bash: syntax error, unexpected token\n", data->fdout);
 		data->status = 1;
 		return ;
 	}
-	dl = ft_strjoin(data->argv[1], "\n");
 	ft_write_hd(data, dl);
-	free(dl); //Este free ha dado un seg fault
 	nw_fd = open(".tmp", O_RDONLY);
 	data->fdin = nw_fd;
+	unlink(".tmp");
 }

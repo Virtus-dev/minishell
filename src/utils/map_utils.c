@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 16:09:43 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:26:54 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_key	*ft_new_key(char *name, const char *value)
 {
 	t_key	*new_key;
 
-	if (!name || !value)
+	if (!name)
 		return (NULL);
 	new_key = ft_calloc(1, sizeof(t_key));
 	if (!new_key)

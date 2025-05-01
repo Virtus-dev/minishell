@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:42:44 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 16:10:48 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:24:46 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_map	*ft_fill_map(char **env)
 	t_map	*map;
 	char	**splited;
 	int		i;
-	int		j;
 
 	i = 0;
 	map = malloc(sizeof(t_map));
@@ -59,13 +58,11 @@ t_map	*ft_fill_map(char **env)
 	ft_map_init(map);
 	while (env[i])
 	{
-		j = 0;
 		splited = ft_mini_split(env[i], '=');
-		while (splited[j] && splited[j + 1])
-		{
-			ft_add_key(map, ft_new_key(splited[j], splited[j + 1]));
-			j++;
-		}
+		if (!splited)
+			return(perror(MALLOC_ERR), NULL);
+		if (splited && splited[0] && splited[1])
+			ft_add_key(map, ft_new_key(splited[0], splited[1]));
 		ft_free_matrix(splited);
 		i++;
 	}

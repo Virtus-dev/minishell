@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:03:48 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 16:23:56 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/01 12:43:52 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_is_sin(char *str)
 		if (str[i] == '<' && str[i + 1] != '<')
 			return (TRUE);
 		i++;
+		printf("str[%d] = %c\n", i, str[i]);
 	}
 	return (FALSE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/04/17 15:59:19 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/01 09:37:36 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	**tokenizer(const char *input)
 	int		i;
 	int		j;
 
+	// Tenemos leaks e memoria en esta parte
 	tokens = (char **)ft_calloc(256, sizeof(char *));
 	i = 0;
 	j = 0;

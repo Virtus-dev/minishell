@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/23 17:16:42 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/01 12:13:55 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ char	*ft_getvar(t_map *map, char *key);
 //STRUCT UTILS
 t_data	*ft_init_data(int argc, char **env);
 void	ft_map_init(t_map *map);
-t_token	*get_next_token(t_token **token, int reset);
 void	ft_load_args(t_data *data, t_token *token);
 
 //TOKEN UTILS
+t_token	*get_next_token(t_token **token, int reset);
 int		ft_toklen(t_token **tokens);
 void	free_tokens(t_token **tokens);
 int		ft_matrix_size(char **matrix);
@@ -114,6 +114,9 @@ int		ft_check_expformat(char *argv);
 void	ft_free_matrix(char **str);
 void	ft_free_resources(t_data *data);
 int		ft_builtin_check(char *str);
+int		ft_is_env_builtin(char *input);
+void	ft_exec_env_builtin(t_data *data, char *input);
+int		ft_nonenv_builtin(char *str);
 void	ft_execpath(t_data* data);
 char	*ft_find_in_path(char *cmd, t_map *env);
 char    **ft_clean_redirections(char **tokens);
@@ -179,7 +182,7 @@ int		ft_is_sin(char *str);
 int		ft_is_dout(char *str);
 int		ft_is_sout(char *str);
 void	ft_write_hd(t_data *data, char *dl);
-void	ft_here_doc(t_data *data);
+void	ft_here_doc(t_data *data, char *dl);
 
 //PARSING
 int		check_quotes(char *line);

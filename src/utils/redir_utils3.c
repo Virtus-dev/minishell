@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 16:23:37 by fracurul          #+#    #+#             */
-/*   Updated: 2025/04/17 16:24:13 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/01 12:10:02 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_redirin(t_data *data, char *redir, int redir_type)
 	if (redir_type == S_IN)
 		new_fd = open(redir, O_RDONLY);
 	else if (redir_type == D_IN)
-		ft_here_doc(data);
+		ft_here_doc(data, redir);
 	if (new_fd == -1)
 	{
 		ft_putstr_fd(FILE_ERR, data->fdout);

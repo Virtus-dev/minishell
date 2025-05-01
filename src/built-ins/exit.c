@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:07:58 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/25 08:57:09 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/25 11:26:05 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_check_exit(t_data *data)
 		ft_free_resources(data);
 		exit(EXIT_FAILURE);
 	}
-	if (!ft_isnumeric(data->argv[1]))
+	if (ft_isnumeric(data->argv[1]))
 	{
 		ft_putstr_fd(data->argv[0], data->fdout);
 		ft_putchar_fd('\n', data->fdout);

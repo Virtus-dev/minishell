@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/01 09:50:05 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 20:02:30 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void	ft_free_resources(t_data *data)
 	}
 	if (data->tokens)
 		free_tokens(data->tokens);
-	ft_free_map(data->env);
-	ft_free_map(data->exp);
+	if (data->env)
+		ft_free_map(data->env);
+	if (data->exp)
+		ft_free_map(data->exp);
+	if (data)
+		free(data);
 }

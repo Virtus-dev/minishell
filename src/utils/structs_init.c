@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/29 15:23:58 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 21:28:30 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,22 @@ t_data	*ft_init_data(int argc, char **env)
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
-	data->argc = argc;
-	data->fdin = STDIN_FILENO;
-	data->fdout = STDOUT_FILENO;
+	data->input = NULL;
+	data->argv = NULL;
+	data->tokens = NULL;
 	data->lvl = 0;
 	data->env = ft_fill_map(env);
 	data->exp = ft_fill_map(env);
-	data->tokens = NULL;
+	data->argc = argc;
+	data->fdin = STDIN_FILENO;
+	data->fdout = STDOUT_FILENO;
 	return (data);
 }
 
 void	ft_map_init(t_map *map)
 {
+	if (!map)
+		return ;
 	map->size = 0;
 	map->capacity = 20;
 	map->keys = (t_key **)ft_calloc(sizeof(t_key *), map->capacity);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:07:58 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/25 11:26:05 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 20:31:14 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	ft_check_exit(t_data *data)
 
 void	ft_exit(t_data *data)
 {
-	if (data->argv[1])
+	if (!data->argv || !data->argv[1])
+		return ;
+	if (data->argv && data->argv[1])
 		ft_check_exit(data);
 	if (data->lvl > 1)
 	{

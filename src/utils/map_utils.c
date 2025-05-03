@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 18:34:13 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/29 15:26:54 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 21:56:15 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	ft_add_key(t_map *map, t_key *key)
 		return ;
 	map->keys[map->size] = key;
 	map->size++;
-	map->keys[map->size] = NULL;
 }
 
 t_key	*ft_get_keymap(t_map *map, char *key)

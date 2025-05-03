@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/04/12 22:37:57 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/03 14:47:59 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,28 @@ static int	quotes_handler(char **tokens, const char *input, int *i, int j)
 {
 	char	quote;
 	int		start;
+	char	*str;
+	char	*tmp;
 
 	quote = input[(*i)++];
 	start = *i;
 	while (input[*i] && input[*i] != quote)
 		(*i)++;
-	tokens[j] = ft_substr(input, start, *i - start);
-	if (input[*i])
-		(*i)++;
+	if (!input[*i])
+	{
+		ft_putendl_fd("You must close quotes", 2);
+		return (j);
+	}
+	str = ft_substr(input, start, *i - start);
+	if (quote == '\'')
+	{
+		tmp = ft_strjoin("'", str);
+		free(str);
+		str = ft_strjoin(tmp, "'");
+		free(tmp);
+	}
+	tokens[j] = str;
+	(*i)++;
 	return (j + 1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:53:36 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/01 12:29:31 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 13:18:48 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void	ft_write_hd(t_data *data, char *dl)
 	{
 		write(1, "> ", 2);
 		str = get_next_line(0);
-		if (!str || ft_strncmp(str, dl, ft_strlen(dl)))
+		if (!str)
+			break ;
+		if(ft_strncmp(str, dl, ft_strlen(dl)))
 		{
 			free(str);
 			break ;
@@ -44,7 +46,6 @@ void	ft_here_doc(t_data *data, char *dl)
 {
 	int		nw_fd;
 
-	printf("En heredoc\n");
 	if (!dl)
 	{
 		ft_putstr_fd("bash: syntax error, unexpected token\n", data->fdout);

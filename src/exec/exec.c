@@ -6,13 +6,12 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:52:21 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/01 11:30:29 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 13:22:34 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//Manejo de $?
 void	ft_exec(t_data *data)
 {
 	int	stat;

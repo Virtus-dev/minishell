@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:10:26 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/16 23:56:38 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:45:20 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int    main(void)
 {
     // 🔁 Esto reemplaza el bucle infinito mientras probás con Valgrind
     run_tokenizer_test("echo \"hola mundo\" | wc -l");
-    run_tokenizer_test("cat << EOF | grep error > salida.txt");
+    run_tokenizer_test("cat <<EOF | grep error > salida.txt");
     run_tokenizer_test("ls -la | grep main.c | wc -l");
     run_tokenizer_test("ls -la | \"grep main.c\"");
     run_tokenizer_test("echo 'esto > no es redir'");

@@ -5,77 +5,72 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 16:03:48 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/01 12:43:52 by arigonza         ###   ########.fr       */
+/*   Created: 2025/04/13 15:43:09 by arigonza          #+#    #+#             */
+/*   Updated: 2025/05/03 13:17:23 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_is_sout(char *str)
+char	**ft_clean_redirections(char **tokens)
 {
-	int	i;
+	char	**cleaned;
+	int		i;
+	int		j;
+	int		type;
 
 	i = 0;
-	while (str[i])
+	j = 0;
+	cleaned = malloc(sizeof(char *) * (ft_matrix_size(tokens) + 1));
+	if (!cleaned)
+		return (NULL);
+	while (tokens[i])
 	{
-		if (str[i] == '>' && str[i + 1] != '>')
-			return (TRUE);
-		i++;
+		type = ft_redir_type(tokens[i]);
+		if ((type == S_OUT || type == D_OUT || type == S_IN || type == D_IN)
+			&& tokens[i + 1])
+		{
+			i += 2;
+			continue ;
+		}
+		cleaned[j++] = ft_strdup(tokens[i++]);
 	}
-	return (FALSE);
+	cleaned[j] = NULL;
+	return (cleaned);
 }
 
-int	ft_is_dout(char *str)
+void	ft_clean_and_replace_args(t_data *data)
+{
+	char	**cleaned;
+
+	cleaned = ft_clean_redirections(data->argv);
+	ft_free_matrix(data->argv);
+	data->argv = cleaned;
+}
+
+int	ft_redi_ok(const char *input)
 {
 	int	i;
+	int	dquote;
+	int	squote;
 
 	i = 0;
-	while (str[i])
+	dquote = 0;
+	squote = 0;
+	while (input[i])
 	{
-		if (str[i] == '>' && str[i + 1] == '>')
-			return (TRUE);
+		if (input[i] == '"' && !squote)
+			dquote = !dquote;
+		else if (input[i] == '\'' && !dquote)
+			squote = !squote;
+		else if (!dquote && !squote && (input[i] == '>' || input[i] == '<'))
+		{
+			if ((input[i] == '>' && input[i + 1] == '>')
+				|| (input[i] == '<' && input[i + 1] == '<'))
+				return (2);
+			return (1);
+		}
 		i++;
 	}
-	return (FALSE);
-}
-
-int	ft_is_sin(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '<' && str[i + 1] != '<')
-			return (TRUE);
-		i++;
-		printf("str[%d] = %c\n", i, str[i]);
-	}
-	return (FALSE);
-}
-
-int	ft_is_din(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '<' && str[i + 1] == '<')
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
-}
-
-int	ft_rediout_type(char *str)
-{
-	if (ft_is_sout(str))
-		return (S_OUT);
-	else if (ft_is_dout(str))
-		return (D_OUT);
 	return (0);
 }
-
-//apartir de aqui

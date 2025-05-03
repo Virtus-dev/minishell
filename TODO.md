@@ -1,8 +1,12 @@
 # TODO
 
+## FALLO CRiTCO
+
+Por alguna razon a apareido un problema que antes no existia, que consiste en que cuando realizas un comando bloqueante, como por ejemplo `cat` y realizas CNTRL+C te saca a una subshell (porque?, ni idea) y si despues realizas CNTRL+D te lanza un error core dumped. Estoy trabajando en ello actualmente para averiguar porque, y asi poder arreglarlo. (Gracias por estos momentos minishell).
+
 ## HEREDOC
 
-Heredoc no esta funcionando correctamente, parece ser que las funciones que comprueban si es una doble redireccion "<<" o una simple "<" o estan funcionando correctamente.
+Ya entra en HEREDOC, si usas `cat <<EOF` ,pero en cuanto haces un enter sale directamente del cat.
 
 `cat <<EOF`
 
@@ -15,6 +19,12 @@ Aún falta replicar el comportamiento exacto de este comando.
 ## Expansion de $?
 
 Debe devolver el codigo de estatus del comando anterior.
+
+## Parser
+
+Al realizar comandos como `rm test.txt` si detecta un espacio al final de test.txt lo interpreta como otro argumento y ejecuta rm sobre una cadena vacia lo que devuelve `/usr/bin/rm: cannot remove '': No such file or directory`.
+
+Habria que revisar que hace el parser, podria ser que no esta haciendo bien el split por espacios.
 
 ## Comandos bloqueantes **[SOLUCIONADO]**
 

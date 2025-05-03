@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/01 12:13:55 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:31:55 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,47 +140,51 @@ char	**ft_revert_env(t_map *map);
 void	ft_exec_built(t_data *data, char *input);
 
 /**
- * @brief Returns the exact position of a rediretion on a string.
- *
- * @param argv The string to search from.
- * @return (int)Redirection position.
+ * @brief Aplica redirecciones de entrada/salida a partir de los argumentos del token.
+ * 
+ * Recorre los argumentos de un comando (`t_token`) y aplica redirecciones según detecte
+ * los operadores `>`, `>>`, `<` o `<<`, usando los argumentos siguientes como nombre de archivo o delimitador.
+ * 
+ * @param data Estructura de datos principal con fds y entorno.
+ * @param token Token que contiene los argumentos del comando actual.
  */
-int 	ft_redir_pos(char **argv);
+void	ft_start_redi(t_data *data, t_token *token);
 
 /**
- * @brief Returns what type of IN redirection is,
- * simple or double.('<' or '<<')
- *
- * @param str
- * @return int
+ * @brief Devuelve el tipo de redirección detectado en una cadena.
+ * 
+ * Detecta si una cadena corresponde a un operador de redirección y devuelve un valor constante:
+ * S_OUT (`>`), D_OUT (`>>`), S_IN (`<`), D_IN (`<<`), o -1 si no es una redirección.
+ * 
+ * @param arg Cadena a evaluar.
+ * @return int Código de tipo de redirección o -1.
  */
-int		ft_redin_type(char *str);
+int		ft_redir_type(const char *arg);
 
 /**
- * @brief Returns what type of OUT redirection is,
- * simple or double.('<' or '<<')
- *
- * @param str
- * @return int
+ * @brief Aplica redirección de salida estándar (overwrite o append).
+ * 
+ * Abre el archivo correspondiente en modo escritura, y actualiza `data->fdout`.
+ * Cierra el fd anterior si era distinto de STDOUT.
+ * 
+ * @param data Estructura principal de shell con fdout.
+ * @param file Nombre del archivo destino.
+ * @param type Tipo de redirección: S_OUT (`>`) o D_OUT (`>>`).
  */
-int		ft_rediout_type(char *str);
+void	ft_redirout(t_data *data, char *file, int type);
 
 /**
- * @brief Implements OUTPUT redirections such as '>' and '>>'.access
- * redirects the output to a file descriptor, creating or opening
- *  the especified file. While '>' overwrite, '>>' appends.
- *
- * @param data
- * @param redir
- * @param redir_type
+ * @brief Aplica redirección de entrada estándar o heredoc.
+ * 
+ * Abre el archivo para lectura o inicia un heredoc, y actualiza `data->fdin`.
+ * Cierra el fd anterior si era distinto de STDIN.
+ * 
+ * @param data Estructura principal de shell con fdin.
+ * @param file Nombre del archivo fuente o delimitador.
+ * @param type Tipo de redirección: S_IN (`<`) o D_IN (`<<`).
  */
-void	ft_redirout(t_data *data, char *redir, int redir_type);
-void	ft_redirin(t_data *data, char *redir, int redir_type);
-void	ft_start_redi(t_data *data);
-int		ft_is_din(char *str);
-int		ft_is_sin(char *str);
-int		ft_is_dout(char *str);
-int		ft_is_sout(char *str);
+void	ft_redirin(t_data *data, char *file, int type);
+
 void	ft_write_hd(t_data *data, char *dl);
 void	ft_here_doc(t_data *data, char *dl);
 

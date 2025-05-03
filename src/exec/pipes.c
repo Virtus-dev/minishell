@@ -6,31 +6,45 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/01 09:29:48 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 13:09:34 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static int	has_redirection(t_token *token)
+{
+	int	j;
+
+	j = 0;
+	while (token->cargs && token->cargs[j])
+	{
+		if (ft_redir_type(token->cargs[j]) != -1)
+			return (1);
+		j++;
+	}
+	return (0);
+}
+
 void	ft_swapfd(t_data *data, int i, int pipe_num)
 {
-	int	fd[2];
+	int		fd[2];
+	t_token	*token;
 
 	if (pipe(fd) == -1)
 	{
 		perror(PIPE_ERR);
 		return ;
 	}
+	token = data->tokens[i];
 	if (i == pipe_num)
 		data->fdout = STDOUT_FILENO;
 	else
 		data->fdout = fd[1];
-	if (i == 0 && (ft_is_sin(data->input) || ft_is_din(data->input)))
-		ft_start_redi(data);
-	if (i == pipe_num && (ft_is_sout(data->input) || ft_is_dout(data->input)))
-		ft_start_redi(data);
+	if (token && has_redirection(token))
+		ft_start_redi(data, token);
 	close(fd[1]);
-	if (i == 0 && (ft_is_sin(data->input) || ft_is_din(data->input)))
+	if (i == 0)
 		close(fd[0]);
 	else
 		data->fdin = fd[0];

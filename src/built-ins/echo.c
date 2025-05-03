@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/29 17:10:11 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/03 15:21:36 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,15 @@ static void	print_expanded(char *arg, t_data *data, int fd)
 	i = 0;
 	while (arg[i])
 	{
-		if (arg[i] == '$')
+		if (arg[i] == '\'' && arg[i + 1])
+		{
+			i++;
+			while (arg[i] && arg[i] != '\'')
+				ft_putchar_fd(arg[i++], fd);
+			if (arg[i] == '\'')
+				i++;
+		}
+		else if (arg[i] == '$')
 			i = ft_var_handler(data, arg, i + 1, fd);
 		else
 			ft_putchar_fd(arg[i++], fd);

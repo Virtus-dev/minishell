@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 15:21:36 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/03 18:35:25 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,24 +80,37 @@ static int	ft_var_handler(t_data *data, const char *arg, int i, int fd)
 	}
 }
 
+static void	ft_quoted_handler(t_data *data, char *arg, int *i, int fd)
+{
+	char	quote;
+
+	quote = arg[(*i)++];
+	while (arg[*i])
+	{
+		if (arg[*i] == quote)
+		{
+			(*i)++;
+			break ;
+		}
+		if (quote == '"' && arg[*i] == '$')
+			*i = ft_var_handler(data, arg, *i, fd);
+		else
+			ft_putchar_fd(arg[(*i)++], fd);
+	}
+}
+
 static void	print_expanded(char *arg, t_data *data, int fd)
 {
-	int	i;
+	int		i;
 
 	if (!arg)
 		return ;
 	i = 0;
 	while (arg[i])
 	{
-		if (arg[i] == '\'' && arg[i + 1])
-		{
-			i++;
-			while (arg[i] && arg[i] != '\'')
-				ft_putchar_fd(arg[i++], fd);
-			if (arg[i] == '\'')
-				i++;
-		}
-		else if (arg[i] == '$')
+		if ((arg[i] == '\'' || arg[i] == '"') && arg[i + 1])
+			ft_quoted_handler(data, arg, &i, fd);
+		if (arg[i] == '$')
 			i = ft_var_handler(data, arg, i + 1, fd);
 		else
 			ft_putchar_fd(arg[i++], fd);

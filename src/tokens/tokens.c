@@ -6,11 +6,27 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/03 18:37:33 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/03 19:12:51 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static char	*ft_wrap_quotes(char *str, char quote)
+{
+	char	*tmp;
+	char	*res;
+	char	*start;
+
+	if (quote == '\'')
+		start = "'";
+	else
+		start = "\"";
+	tmp = ft_strjoin(start, str);
+	res = ft_strjoin(tmp, start);
+	free(tmp);
+	return (res);
+}
 
 static int	quotes_handler(char **tokens, const char *input, int *i, int j)
 {
@@ -29,12 +45,11 @@ static int	quotes_handler(char **tokens, const char *input, int *i, int j)
 		return (j);
 	}
 	str = ft_substr(input, start, *i - start);
-	if (quote == '\'')
+	if (quote == '\'' || quote == '\"')
 	{
-		tmp = ft_strjoin("'", str);
+		tmp = ft_wrap_quotes(str, quote);
 		free(str);
-		str = ft_strjoin(tmp, "'");
-		free(tmp);
+		str = tmp;
 	}
 	tokens[j] = str;
 	(*i)++;

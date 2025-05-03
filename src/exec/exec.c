@@ -3,19 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:52:21 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 13:22:34 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 23:40:33 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	ft_father_exit(t_data *data)
+{
+	if (!data || data->argv || !data->argv[0])
+		return (0);
+	if (ft_strcmp(data->argv[0], "exit") == 0)
+	{
+		ft_exit(data);
+		return (1);
+	}
+	return (0);
+}
+
 void	ft_exec(t_data *data)
 {
 	int	stat;
 
+	if (ft_father_exit(data))
+		return ;
 	data->child = fork();
 	if (data->child == -1)
 	{

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 22:45:49 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/03 23:02:57 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*ft_full_path(char *dir, char *cmd)
 	return (full_path);
 }
 
-static int	ft_path_replace(t_data *data, char **argv, char **paths)
+static int	ft_path_replace(char **argv, char **paths)
 {
 	int		i;
 	char	*replacement;
@@ -33,7 +33,7 @@ static int	ft_path_replace(t_data *data, char **argv, char **paths)
 	{
 		replacement = ft_full_path(paths[i], argv[0]);
 		if (access(replacement, F_OK) == 0
-			&& !ft_strnstr(data->argv[0], "./", 3))
+			&& !ft_strnstr(argv[0], "./", 3))
 		{
 			free(argv[0]);
 			argv[0] = ft_strdup(replacement);
@@ -58,7 +58,7 @@ void	ft_execpath(t_data *data)
 	path_aux = ft_strdup(path_key->value);
 	path_dirs = ft_split(path_aux, ':');
 	free(path_aux);
-	ft_path_replace(data, data->argv, path_dirs);
+	ft_path_replace(data->argv, path_dirs);
 	ft_free_matrix(path_dirs);
 }
 

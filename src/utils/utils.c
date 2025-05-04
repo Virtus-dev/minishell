@@ -40,15 +40,17 @@ int	ft_flag_exist(char *str)
  */
 int	ft_check_expformat(char *argv)
 {
-	int		i;
+	int	i;
 
 	i = 0;
+	if(!argv || !argv[0])
+		return (FALSE);
 	if (argv[0] != '_' && ft_isdigit(argv[0]))
 		return (FALSE);
 	i++;
 	while (argv[i])
 	{
-		if (!ft_isalnum(argv[i]))
+		if (!ft_isalnum(argv[i]) && argv[i] != '_')
 			return (FALSE);
 		i++;
 	}

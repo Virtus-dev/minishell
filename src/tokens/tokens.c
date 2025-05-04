@@ -6,24 +6,53 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/01 09:37:36 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 19:12:51 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static char	*ft_wrap_quotes(char *str, char quote)
+{
+	char	*tmp;
+	char	*res;
+	char	*start;
+
+	if (quote == '\'')
+		start = "'";
+	else
+		start = "\"";
+	tmp = ft_strjoin(start, str);
+	res = ft_strjoin(tmp, start);
+	free(tmp);
+	return (res);
+}
+
 static int	quotes_handler(char **tokens, const char *input, int *i, int j)
 {
 	char	quote;
 	int		start;
+	char	*str;
+	char	*tmp;
 
 	quote = input[(*i)++];
 	start = *i;
 	while (input[*i] && input[*i] != quote)
 		(*i)++;
-	tokens[j] = ft_substr(input, start, *i - start);
-	if (input[*i])
-		(*i)++;
+	if (!input[*i])
+	{
+		ft_putstr_fd("You must close quotes", 2);
+		return (j);
+	}
+	str = ft_substr(input, start, *i - start);
+	if (quote == '\'' || quote == '\"')
+	{
+		tmp = ft_wrap_quotes(str, quote);
+		free(str);
+		str = tmp;
+	}
+	tokens[j] = str;
+	(*i)++;
 	return (j + 1);
 }
 

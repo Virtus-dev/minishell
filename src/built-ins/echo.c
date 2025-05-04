@@ -3,80 +3,139 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 13:23:10 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 19:31:33 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-void ft_echo(t_data *data)
+static int	skip_flag(char **av, int *nl)
 {
 	int	i;
-	int	nl;
-	
+	int	j;
+
+	*nl = 0;
 	i = 1;
-	nl = 1;
-	if (data->argv[i] && !ft_flag_exist(data->argv[i]))
+	while (av[i])
 	{
-		nl = 0;
+		if (av[i][0] != '-' || av[i][1] != 'n')
+			break ;
+		j = 2;
+		while (av[i][j] == 'n')
+			j++;
+		if (av[i][j] != '\0')
+			break ;
 		i++;
 	}
-	int x = 0;
-	while (data->argv[x])
+	if (i > 1 && av[i] && av[i][0] == '-' && av[i][1] != 'n')
+		*nl = 0;
+	else if (i > 1)
+		*nl = 1;
+	return (i);
+}
+
+static void	ft_print_var(t_data *data, char *var, int fd)
+{
+	t_key	*key;
+
+	if (ft_strcmp(var, "?") == 0)
+		ft_putnbr_fd(data->status, fd);
+	else
 	{
-		printf("ARG[%d]: %s\n", x, data->argv[x]);
-		x++;
-	}
-	while (data->argv[i])
-	{
-		ft_putstr_fd(data->argv[i], data->fdout);
-		if (data->argv[i + 1])
-		{
-			ft_putstr_fd(" ", data->fdout);
-			i++;
-		}
-		if(nl)
-			ft_putchar_fd('\n', data->fdout);
+		key = ft_get_keymap(data->env, var);
+		if (key && key->value)
+			ft_putstr_fd(key->value, fd);
 	}
 }
-*/
 
-void ft_echo(t_data *data)
+static int	ft_var_handler(t_data *data, const char *arg, int i, int fd)
 {
-    char    *argv_dup;
-    char    *expandable_var;
-    char    *var;
+	int		start;
+	char	*var;
 
-    if (!data->argv[1])
-    {
-        ft_putchar_fd('\n', data->fdout);
-        return ;
-    }
-    if (!ft_flag_exist(data->argv[1]))
-    {
-        if (ft_is_expandable(data->argv[1]))
-        {
-            argv_dup = ft_strdup(data->argv[1]);
-            expandable_var = ft_chrignore(argv_dup, '$');
-            var = ft_getvar(data->exp, expandable_var);
-            if (!var)
-                return ;
-            ft_putstr_fd(var, data->fdout);
-            free(expandable_var);
-        }
-        else
-            ft_putstr_fd(data->argv[1], data->fdout);
-        ft_putchar_fd('\n', data->fdout);
-    }
-    else
-    {
-        argv_dup = ft_strdup(data->argv[2]);
-        argv_dup = ft_chrignore(argv_dup, '\n');
-        ft_putstr_fd(argv_dup, data->fdout);
-        free(argv_dup);
-    }
+	if (!arg[i])
+		return (i);
+	if (arg[i] == '?')
+	{
+		ft_print_var(data, "?", fd);
+		return (i + 1);
+	}
+	else if (ft_isalpha(arg[i]) || arg[i] == '_')
+	{
+		start = i;
+		while (ft_isalnum(arg[i]) || arg[i] == '_')
+			i++;
+		var = ft_substr(arg, start, i - start);
+		ft_print_var(data, var, fd);
+		free(var);
+		return (i);
+	}
+	else
+	{
+		ft_putchar_fd('$', fd);
+		return (i);
+	}
+}
+
+static void	ft_quoted_handler(t_data *data, char *arg, int *i, int fd)
+{
+	char	quote;
+
+	quote = arg[(*i)++];
+	while (arg[*i])
+	{
+		if (arg[*i] == quote)
+		{
+			(*i)++;
+			break ;
+		}
+		if (quote == '"' && arg[*i] == '$')
+			*i = ft_var_handler(data, arg, *i + 1, fd);
+		else
+			ft_putchar_fd(arg[(*i)++], fd);
+	}
+}
+
+static void	print_expanded(char *arg, t_data *data, int fd)
+{
+	int		i;
+
+	if (!arg)
+		return ;
+	i = 0;
+	while (arg[i])
+	{
+		if ((arg[i] == '\'' || arg[i] == '"'))
+			ft_quoted_handler(data, arg, &i, fd);
+		if (arg[i] == '$')
+			i = ft_var_handler(data, arg, i + 1, fd);
+		else
+			ft_putchar_fd(arg[i++], fd);
+	}
+}
+
+void	ft_echo(t_data *data)
+{
+	int	i;
+	int	flag;
+
+	i = 1;
+	if (!data->argv[i])
+	{
+		ft_putchar_fd('\n', data->fdout);
+		return ;
+	}
+	i = skip_flag(data->argv, &flag);
+	while (data->argv[i])
+	{
+		print_expanded(data->argv[i], data, data->fdout);
+		if (data->argv[i + 1])
+			ft_putchar_fd(' ', data->fdout);
+		i++;
+	}
+	if (!flag)
+		ft_putchar_fd('\n', data->fdout);
 }

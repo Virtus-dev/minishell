@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:47:00 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/12 20:46:24 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/04 13:59:58 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@
 
 // Constants
 /*# define PATH_MAX 5*/
-#ifndef PATH_MAX
 # define PATH_MAX 5
-#endif
-
 # define ECHO 1
 # define CD 2
 # define PWD 3

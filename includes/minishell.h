@@ -3,51 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 12:31:55 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/04 14:05:17 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "constants.h"
-#include "../libft/includes/libft.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <sys/types.h>
-#include <sys/errno.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
-#include <signal.h>
-#include <string.h>
+# include "constants.h"
+# include "../libft/includes/libft.h"
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/types.h>
+# include <sys/errno.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
+# include <signal.h>
+# include <string.h>
 
 //Structs
-typedef struct	s_token
+typedef struct s_token
 {
 	char		*cmd;
 	char		**cargs;
 }	t_token;
 
-typedef struct	s_key
+typedef struct s_key
 {
 	char		*key;
 	char		*value;
 }	t_key;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	t_key		**keys;
 	size_t		size;
 	size_t		capacity;
 }				t_map;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	char		*input;
 	char		**argv;
@@ -90,8 +90,8 @@ void	ft_update_map(t_map *map, char *value, char *key);
 void	ft_print_map(t_data *data, t_map *map);
 void	ft_mapcmp_update(t_map *map, char *values);
 void	ft_free_map(t_map *map);
-void	ft_free_keys(t_key** keys);
 void	ft_remove_key(t_map *map, char *key);
+void	ft_free_keys(t_key **keys);
 char	*ft_getvar(t_map *map, char *key);
 
 //STRUCT UTILS
@@ -117,10 +117,10 @@ int		ft_builtin_check(char *str);
 int		ft_is_env_builtin(char *input);
 void	ft_exec_env_builtin(t_data *data, char *input);
 int		ft_nonenv_builtin(char *str);
-void	ft_execpath(t_data* data);
+void	ft_execpath(t_data *data);
 char	*ft_find_in_path(char *cmd, t_map *env);
-char    **ft_clean_redirections(char **tokens);
-void    ft_clean_and_replace_args(t_data *data);
+char	**ft_clean_redirections(char **tokens);
+void	ft_clean_and_replace_args(t_data *data);
 
 /**
  * @brief Executes from path, looking on our ENV.
@@ -140,11 +140,14 @@ char	**ft_revert_env(t_map *map);
 void	ft_exec_built(t_data *data, char *input);
 
 /**
- * @brief Aplica redirecciones de entrada/salida a partir de los argumentos del token.
- * 
- * Recorre los argumentos de un comando (`t_token`) y aplica redirecciones según detecte
- * los operadores `>`, `>>`, `<` o `<<`, usando los argumentos siguientes como nombre de archivo o delimitador.
- * 
+ * @brief Aplica redirecciones de entrada/salida
+ * a partir de los argumentos del token.
+ *
+ * Recorre los argumentos de un comando (`t_token`) y
+ * aplica redirecciones según detecte
+ * los operadores `>`, `>>`, `<` o `<<`,
+ * usando los argumentos siguientes como nombre de archivo o delimitador.
+ *
  * @param data Estructura de datos principal con fds y entorno.
  * @param token Token que contiene los argumentos del comando actual.
  */
@@ -152,10 +155,12 @@ void	ft_start_redi(t_data *data, t_token *token);
 
 /**
  * @brief Devuelve el tipo de redirección detectado en una cadena.
- * 
- * Detecta si una cadena corresponde a un operador de redirección y devuelve un valor constante:
- * S_OUT (`>`), D_OUT (`>>`), S_IN (`<`), D_IN (`<<`), o -1 si no es una redirección.
- * 
+ *
+ * Detecta si una cadena corresponde a un operador de redirección y
+ * devuelve un valor constante:
+ * S_OUT (`>`), D_OUT (`>>`), S_IN (`<`), D_IN (`<<`), o -1
+ * si no es una redirección.
+ *
  * @param arg Cadena a evaluar.
  * @return int Código de tipo de redirección o -1.
  */
@@ -163,10 +168,10 @@ int		ft_redir_type(const char *arg);
 
 /**
  * @brief Aplica redirección de salida estándar (overwrite o append).
- * 
+ *
  * Abre el archivo correspondiente en modo escritura, y actualiza `data->fdout`.
  * Cierra el fd anterior si era distinto de STDOUT.
- * 
+ *
  * @param data Estructura principal de shell con fdout.
  * @param file Nombre del archivo destino.
  * @param type Tipo de redirección: S_OUT (`>`) o D_OUT (`>>`).
@@ -175,10 +180,10 @@ void	ft_redirout(t_data *data, char *file, int type);
 
 /**
  * @brief Aplica redirección de entrada estándar o heredoc.
- * 
+ *
  * Abre el archivo para lectura o inicia un heredoc, y actualiza `data->fdin`.
  * Cierra el fd anterior si era distinto de STDIN.
- * 
+ *
  * @param data Estructura principal de shell con fdin.
  * @param file Nombre del archivo fuente o delimitador.
  * @param type Tipo de redirección: S_IN (`<`) o D_IN (`<<`).
@@ -190,7 +195,7 @@ void	ft_here_doc(t_data *data, char *dl);
 
 //PARSING
 int		check_quotes(char *line);
-int	    ft_redi_ok(const char *input);
+int		ft_redi_ok(const char *input);
 int		check_line(char *line);
 int		is_in_quotes(char *line, int index);
 int		check_input(char *line);
@@ -210,8 +215,8 @@ void	ft_swapfd(t_data *data, int i, int pipe_num);
 void	ft_close_fds(t_data *data);
 
 //VALIDATIONS
-int		validate_pipe(char *line , int index);
-int		validate_otredir(char *line , int index);
-int		validate_itredir(char *line , int index);
+int		validate_pipe(char *line, int index);
+int		validate_otredir(char *line, int index);
+int		validate_itredir(char *line, int index);
 int		validate_metachar(char *line, int i);
 #endif

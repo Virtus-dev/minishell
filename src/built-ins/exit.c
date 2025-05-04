@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:07:58 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 20:31:14 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/04 14:36:56 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
  */
 void	ft_check_exit(t_data *data)
 {
-	//if (data->argv[2])
-	//    return (1);
 	if (!ft_atoi(data->argv[1]))
 	{
 		ft_putstr_fd(data->argv[0], data->fdout);
@@ -44,9 +42,7 @@ void	ft_check_exit(t_data *data)
 
 void	ft_exit(t_data *data)
 {
-	if (!data->argv || !data->argv[1])
-		return ;
-	if (data->argv && data->argv[1])
+	if (data->argv[1])
 		ft_check_exit(data);
 	if (data->lvl > 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/28 11:41:51 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/03 20:02:30 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,19 @@ void	ft_free_matrix(char **matrix)
  */
 void	ft_free_resources(t_data *data)
 {
-    if (!data)
-        return;
-    if (data->argv)
-    {
-       ft_free_matrix(data->argv);
-       data->argv = NULL;
-    }
-    if (data->tokens)
+	if (!data)
+		return ;
+	if (data->argv)
 	{
-    	free_tokens(data->tokens);
+		ft_free_matrix(data->argv);
+		data->argv = NULL;
 	}
-	ft_free_map(data->env);
-	ft_free_map(data->exp);
+	if (data->tokens)
+		free_tokens(data->tokens);
+	if (data->env)
+		ft_free_map(data->env);
+	if (data->exp)
+		ft_free_map(data->exp);
+	if (data)
+		free(data);
 }

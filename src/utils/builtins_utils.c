@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/07 15:53:20 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/01 09:23:07 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 /**
  * @brief Checks if the parameter passed by is or is not a built-in.
- * 
- * @param data Struct with all the main information. 
+ *
+ * @param data Struct with all the main information.
  * @param str The supossed built-in we are going to check.
- * @return int Executes and Returns the kind of built-in.
+ * @return Returns the kind of built-in.
  */
 int	ft_builtin_check(char *str)
 {
@@ -40,11 +40,11 @@ int	ft_builtin_check(char *str)
 	return (FALSE);
 }
 
-void    ft_exec_built(t_data *data, char *input)
+void	ft_exec_built(t_data *data, char *input)
 {
-    int builtin;
+	int	builtin;
 
-    builtin = ft_builtin_check(input);
+	builtin = ft_builtin_check(input);
 	if (builtin == CD)
 		ft_cd(data, NULL);
 	else if (builtin == ECHO)
@@ -59,4 +59,36 @@ void    ft_exec_built(t_data *data, char *input)
 		ft_pwd(data);
 	else if (builtin == UNST)
 		ft_unset(data);
+	else if (builtin == DEF)
+		data->lvl++;
+}
+
+int	ft_is_env_builtin(char *input)
+{
+	int	builtin;
+
+	builtin = ft_builtin_check(input);
+	if (builtin == CD)
+		return (TRUE);
+	else if (builtin == EXP)
+		return (TRUE);
+	else if (builtin == EXIT)
+		return (TRUE);
+	else if (builtin == UNST)
+		return (TRUE);
+	return (FALSE);
+}
+int	ft_nonenv_builtin(char *str)
+{
+	if (!ft_strcmp(str, "echo") || !ft_strcmp(str, "ECHO"))
+	return (ECHO);
+	if (!ft_strcmp(str, "pwd") || !ft_strcmp(str, "PWD"))
+		return (PWD);
+	if (!ft_strcmp(str, "env") || !ft_strcmp(str, "ENV"))
+		return (ENV);
+	if (!ft_strcmp(str, "exit") || !ft_strcmp(str, "EXIT"))
+		return (EXIT);
+	if (!ft_strcmp(str, "./minishell"))
+		return (DEF);
+return (FALSE);
 }

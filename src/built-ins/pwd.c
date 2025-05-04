@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:37:18 by arigonza          #+#    #+#             */
-/*   Updated: 2024/09/25 14:38:09 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:44:44 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_pwd(t_data *data)
 {
-	char *cwd;
+	char	*cwd;
 
-    cwd = getcwd(NULL, 0);
+	cwd = getcwd(NULL, 0);
 	if (cwd == NULL)
 		perror(PWD_ERR);
-    else
-    {
+	else
+	{
 		ft_putstr_fd(cwd, data->fdout);
 		ft_putchar_fd('\n', data->fdout);
 	}

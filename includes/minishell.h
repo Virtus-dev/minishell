@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/13 15:58:33 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:31:55 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,8 @@ void	ft_exit(t_data *data);
 void	ft_exec(t_data *data);
 
 //SIGNALS
-void	ft_handler(int sig);
-void	ft_child_handler(int sig);
-void	ft_signal(void);
-int		ft_set_signal(void);
-void	ft_ignore_signals(void);
+void	ft_setup_parent_signals(void);
+void	ft_restore_default_signals(void);
 
 //MAP UTILS
 void	ft_map_init(t_map *map);
@@ -100,10 +97,10 @@ char	*ft_getvar(t_map *map, char *key);
 //STRUCT UTILS
 t_data	*ft_init_data(int argc, char **env);
 void	ft_map_init(t_map *map);
-t_token	*get_next_token(t_token **token, int reset);
 void	ft_load_args(t_data *data, t_token *token);
 
 //TOKEN UTILS
+t_token	*get_next_token(t_token **token, int reset);
 int		ft_toklen(t_token **tokens);
 void	free_tokens(t_token **tokens);
 int		ft_matrix_size(char **matrix);
@@ -117,6 +114,9 @@ int		ft_check_expformat(char *argv);
 void	ft_free_matrix(char **str);
 void	ft_free_resources(t_data *data);
 int		ft_builtin_check(char *str);
+int		ft_is_env_builtin(char *input);
+void	ft_exec_env_builtin(t_data *data, char *input);
+int		ft_nonenv_builtin(char *str);
 void	ft_execpath(t_data* data);
 char	*ft_find_in_path(char *cmd, t_map *env);
 char    **ft_clean_redirections(char **tokens);
@@ -124,68 +124,73 @@ void    ft_clean_and_replace_args(t_data *data);
 
 /**
  * @brief Executes from path, looking on our ENV.
- * 
- * @param data 
+ *
+ * @param data
  */
 void	ft_runexec(t_data *data);
 /**
  * @brief Takes from our map format and reconverts it into a format
- * we can use to execute it. 
- * 
- * @param map 
- * @return char** 
+ * we can use to execute it.
+ *
+ * @param map
+ * @return char**
  */
 char	**ft_revert_env(t_map *map);
 
 void	ft_exec_built(t_data *data, char *input);
 
 /**
- * @brief Returns the exact position of a rediretion on a string.
+ * @brief Aplica redirecciones de entrada/salida a partir de los argumentos del token.
  * 
- * @param argv The string to search from.
- * @return (int)Redirection position.
+ * Recorre los argumentos de un comando (`t_token`) y aplica redirecciones según detecte
+ * los operadores `>`, `>>`, `<` o `<<`, usando los argumentos siguientes como nombre de archivo o delimitador.
+ * 
+ * @param data Estructura de datos principal con fds y entorno.
+ * @param token Token que contiene los argumentos del comando actual.
  */
-int 	ft_redir_pos(char **argv);
+void	ft_start_redi(t_data *data, t_token *token);
 
 /**
- * @brief Returns what type of IN redirection is,
- * simple or double.('<' or '<<')
+ * @brief Devuelve el tipo de redirección detectado en una cadena.
  * 
- * @param str 
- * @return int 
+ * Detecta si una cadena corresponde a un operador de redirección y devuelve un valor constante:
+ * S_OUT (`>`), D_OUT (`>>`), S_IN (`<`), D_IN (`<<`), o -1 si no es una redirección.
+ * 
+ * @param arg Cadena a evaluar.
+ * @return int Código de tipo de redirección o -1.
  */
-int		ft_redin_type(char *str);
+int		ft_redir_type(const char *arg);
 
 /**
- * @brief Returns what type of OUT redirection is,
- * simple or double.('<' or '<<')
+ * @brief Aplica redirección de salida estándar (overwrite o append).
  * 
- * @param str 
- * @return int 
+ * Abre el archivo correspondiente en modo escritura, y actualiza `data->fdout`.
+ * Cierra el fd anterior si era distinto de STDOUT.
+ * 
+ * @param data Estructura principal de shell con fdout.
+ * @param file Nombre del archivo destino.
+ * @param type Tipo de redirección: S_OUT (`>`) o D_OUT (`>>`).
  */
-int		ft_rediout_type(char *str);
+void	ft_redirout(t_data *data, char *file, int type);
 
 /**
- * @brief Implements OUTPUT redirections such as '>' and '>>'.access
- * redirects the output to a file descriptor, creating or opening
- *  the especified file. While '>' overwrite, '>>' appends.
+ * @brief Aplica redirección de entrada estándar o heredoc.
  * 
- * @param data 
- * @param redir 
- * @param redir_type 
+ * Abre el archivo para lectura o inicia un heredoc, y actualiza `data->fdin`.
+ * Cierra el fd anterior si era distinto de STDIN.
+ * 
+ * @param data Estructura principal de shell con fdin.
+ * @param file Nombre del archivo fuente o delimitador.
+ * @param type Tipo de redirección: S_IN (`<`) o D_IN (`<<`).
  */
-void	ft_redirout(t_data *data, char *redir, int redir_type);
-void	ft_redirin(t_data *data, char *redir, int redir_type);
-void	ft_start_redi(t_data *data);
-int		ft_is_din(char *str);
-int		ft_is_sin(char *str);
-int		ft_is_dout(char *str);
-int		ft_is_sout(char *str);
+void	ft_redirin(t_data *data, char *file, int type);
+
 void	ft_write_hd(t_data *data, char *dl);
-void	ft_here_doc(t_data *data);
+void	ft_here_doc(t_data *data, char *dl);
 
 //PARSING
 int		check_quotes(char *line);
+int	    ft_redi_ok(const char *input);
 int		check_line(char *line);
 int		is_in_quotes(char *line, int index);
 int		check_input(char *line);
@@ -204,9 +209,9 @@ void	ft_pipe_processing(t_data *data, int pipe_num);
 void	ft_swapfd(t_data *data, int i, int pipe_num);
 void	ft_close_fds(t_data *data);
 
-//VALIDATIONS  
+//VALIDATIONS
 int		validate_pipe(char *line , int index);
 int		validate_otredir(char *line , int index);
 int		validate_itredir(char *line , int index);
-int		validate_metachar(char *line);
+int		validate_metachar(char *line, int i);
 #endif

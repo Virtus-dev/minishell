@@ -6,7 +6,7 @@ Por alguna razon a apareido un problema que antes no existia, que consiste en qu
 
 ## HEREDOC
 
-Ya entra en HEREDOC, si usas `cat <<EOF` ,pero en cuanto haces un enter sale directamente del cat.
+Ya entra en HEREDOC, si usas `cat <<EOF` ,pero en cuanto haces un enter sale directamente del cat, esta parte esta arreglada, ahora necesitamos usar una variable global(la unica permitida en el proyecto), para que cuando ejecutemos ctrl+C, salga el prompt de la minishell actualmente al hacer ctrl+C directamente en minishell sale el ^C, pero se queda esperando a que escribas algo por teclado cuando deberia devolverte el control a minishell.
 
 `cat <<EOF`
 
@@ -25,6 +25,8 @@ Debe devolver el codigo de estatus del comando anterior.
 Al realizar comandos como `rm test.txt` si detecta un espacio al final de test.txt lo interpreta como otro argumento y ejecuta rm sobre una cadena vacia lo que devuelve `/usr/bin/rm: cannot remove '': No such file or directory`.
 
 Habria que revisar que hace el parser, podria ser que no esta haciendo bien el split por espacios.
+
+antes de tokenizer, depurar espacios para que solo haya 1 entre palabras, luego reservar memoria de manera dinamica, para que no de leaks!!
 
 ## Comandos bloqueantes **[SOLUCIONADO]**
 

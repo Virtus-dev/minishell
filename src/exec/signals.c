@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:06:17 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/23 16:38:04 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:43:12 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	sigint_parent(int sig)
     write(1, "\n", 1);
     rl_on_new_line();
     rl_replace_line("", 0);
-    rl_redisplay();
+    // if la variable global no esta en modo bloqueante
+        //rl_redisplay();
 }
 
 void	ft_setup_parent_signals(void)

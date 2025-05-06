@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:59:39 by fracurul          #+#    #+#             */
-/*   Updated: 2025/04/17 16:00:01 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:49:18 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_token	**tokenize_command(char **tokens)
 	int		cmdi;
 	int		argi;
 
-	cmds = (t_token **)ft_calloc(20, sizeof(t_token *));
+	cmds = (t_token **)ft_calloc(256, sizeof(t_token *));
 	i = 0;
 	cmdi = 0;
 	while (tokens[i])

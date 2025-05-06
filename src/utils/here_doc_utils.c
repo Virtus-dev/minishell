@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:53:36 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 13:18:48 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:46:04 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_write_hd(t_data *data, char *dl)
 		str = get_next_line(0);
 		if (!str)
 			break ;
-		if(ft_strncmp(str, dl, ft_strlen(dl)))
+		if(!ft_strncmp(str, dl, ft_strlen(dl)))
 		{
 			free(str);
 			break ;

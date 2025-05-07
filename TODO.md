@@ -18,7 +18,7 @@ no entra en heredoc, y actualmente estoy trabajando en ello para solucionarlo.
 
 Aún falta replicar el comportamiento exacto de este comando.
 
-## Expansion de $?
+## Expansion de $? **[ARREGLAR_LEAKS]**
 
 Debe devolver el codigo de estatus del comando anterior.
 

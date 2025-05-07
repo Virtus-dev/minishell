@@ -12,7 +12,7 @@ Ya entra en HEREDOC, si usas `cat <<EOF` ,pero en cuanto haces un enter sale dir
 
 no entra en heredoc, y actualmente estoy trabajando en ello para solucionarlo.
 
-## Comando echo
+## Comando echo **[SOLUCIONADO]**
 
 Aún falta replicar el comportamiento exacto de este comando.
 

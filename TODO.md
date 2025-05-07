@@ -4,7 +4,9 @@
 
 Por alguna razon a apareido un problema que antes no existia, que consiste en que cuando realizas un comando bloqueante, como por ejemplo `cat` y realizas CNTRL+C te saca a una subshell (porque?, ni idea) y si despues realizas CNTRL+D te lanza un error core dumped. Estoy trabajando en ello actualmente para averiguar porque, y asi poder arreglarlo. (Gracias por estos momentos minishell).
 
-## HEREDOC
+Hay que controlar cuando estamos en ejecutando con execve, si estamos en execve, flag global= 1 y hacer redisplay, cualquier otra cosa no hacer redisplay.
+
+## HEREDOC **[SOLUCIONADO]**
 
 Ya entra en HEREDOC, si usas `cat <<EOF` ,pero en cuanto haces un enter sale directamente del cat, esta parte esta arreglada, ahora necesitamos usar una variable global(la unica permitida en el proyecto), para que cuando ejecutemos ctrl+C, salga el prompt de la minishell actualmente al hacer ctrl+C directamente en minishell sale el ^C, pero se queda esperando a que escribas algo por teclado cuando deberia devolverte el control a minishell.
 
@@ -20,7 +22,7 @@ Aún falta replicar el comportamiento exacto de este comando.
 
 Debe devolver el codigo de estatus del comando anterior.
 
-## Parser
+## Parser **[SOLUCIONADO]**
 
 Al realizar comandos como `rm test.txt` si detecta un espacio al final de test.txt lo interpreta como otro argumento y ejecuta rm sobre una cadena vacia lo que devuelve `/usr/bin/rm: cannot remove '': No such file or directory`.
 

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/04 14:05:17 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:46:07 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,11 +203,12 @@ int		ft_is_all_space(char *input, t_data *data);
 void	ft_check_redir(t_data *data);
 int		ft_count_pipes(t_data *data);
 int		ft_is_expandable(char *var);
+int		ft_counterwords(const char *s, char c);
 
 //TOKENS
 int		is_op(char c);
-char	**tokenizer(const char *input);
-t_token	**tokenize_command(char **tokens);
+char	**tokenizer(const char *input, int *pos);
+t_token	**tokenize_command(char **tokens, int *pos);
 
 //PIPES
 void	ft_pipe_processing(t_data *data, int pipe_num);

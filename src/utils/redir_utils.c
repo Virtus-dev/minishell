@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 15:43:09 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 13:17:23 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:25:37 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**ft_clean_redirections(char **tokens)
 
 	i = 0;
 	j = 0;
-	cleaned = malloc(sizeof(char *) * (ft_matrix_size(tokens) + 1));
+	cleaned = ft_calloc(sizeof(char *), (ft_matrix_size(tokens) + 1));
 	if (!cleaned)
 		return (NULL);
 	while (tokens[i])
@@ -35,7 +35,6 @@ char	**ft_clean_redirections(char **tokens)
 		}
 		cleaned[j++] = ft_strdup(tokens[i++]);
 	}
-	cleaned[j] = NULL;
 	return (cleaned);
 }
 

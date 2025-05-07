@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 19:31:33 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:59:34 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ static void	print_expanded(char *arg, t_data *data, int fd)
 			ft_quoted_handler(data, arg, &i, fd);
 		if (arg[i] == '$')
 			i = ft_var_handler(data, arg, i + 1, fd);
-		else
+		else if (arg[i])
 			ft_putchar_fd(arg[i++], fd);
 	}
 }
@@ -138,4 +138,5 @@ void	ft_echo(t_data *data)
 	}
 	if (!flag)
 		ft_putchar_fd('\n', data->fdout);
+	data->status = 0;
 }

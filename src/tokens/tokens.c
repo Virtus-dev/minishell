@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/06 18:49:14 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:51:43 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,15 @@ static int	word_handler(char **tokens, const char *input, int *i, int j)
 	return (j + 1);
 }
 
-char	**tokenizer(const char *input)
+char	**tokenizer(const char *input, int *pos)
 {
 	char	**tokens;
 	int		i;
 	int		j;
 
 	// Tenemos leaks e memoria en esta parte
-	tokens = (char **)ft_calloc(256, sizeof(char *));
+	*pos = ft_counterwords(input, ' ');
+	tokens = (char **)ft_calloc(*pos + 1, sizeof(char *));
 	i = 0;
 	j = 0;
 	while (input[i])
@@ -103,6 +104,5 @@ char	**tokenizer(const char *input)
 		else
 			j = word_handler(tokens, input, &i, j);
 	}
-	tokens[j] = NULL;
 	return (tokens);
 }

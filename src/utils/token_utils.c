@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:57:01 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 17:30:29 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/07 18:09:32 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	free_tokens(t_token **tokens)
 			free(tokens[i]->cmd);
 			tokens[i]->cmd = NULL;
 		}
-		if (tokens[i]->cargs[0] && tokens[i]->cargs)
+		if (/*/tokens[i]->cargs[0] &&*/ tokens[i]->cargs)
 		{
 			ft_free_matrix(tokens[i]->cargs);
 			tokens[i]->cargs = NULL;
@@ -60,5 +60,4 @@ void	free_tokens(t_token **tokens)
 		tokens[i] = NULL;
 	}
 	free(tokens);
-	tokens = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/08 13:34:31 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/08 18:37:54 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,24 @@ int	ft_counterwords(const char *s, char c)
 
 	i = 0;
 	words = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		while (s[i] == c && s[i] != '\0')
+		while(s[i] == c)
 			i++;
-		if (s[i] != '\0')
+		if (is_op(s[i]))
+		{
 			words++;
-		while (s[i] != c && s[i] != '\0')
-			i++;
+			if ((s[i] == '>' || s[i] == '<') && s[i] == s[i + 1])
+				i += 2;
+			else
+				i++;
+		}
+		else
+		{
+			words++;
+			while (s[i] && s[i] != c && !is_op(s[i]))
+				i++;
+		}
 	}
 	return (words);
 }

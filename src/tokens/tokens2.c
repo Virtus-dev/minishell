@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:59:39 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/07 18:07:00 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/08 12:42:30 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_token	**tokenize_command(char **tokens, int *pos)
 	while (tokens[i])
 	{
 		argi = 0;
-		cmds[cmdi] = ft_calloc(1, sizeof(t_token));
+		cmds[cmdi] = ft_calloc(*pos, sizeof(t_token));
 		cmds[cmdi]->cmd = ft_strdup(tokens[i++]);
 		cmds[cmdi]->cargs = ft_calloc(*pos, sizeof(char *));
-		while (tokens[i] && ft_strcmp(tokens[i], "|") != 0)
+		while (tokens[i] && (ft_strcmp(tokens[i], "|") != 0))
 			cmds[cmdi]->cargs[argi++] = ft_strdup(tokens[i++]);
 		if (tokens[i] && !ft_strcmp(tokens[i], "|"))
 			i++;

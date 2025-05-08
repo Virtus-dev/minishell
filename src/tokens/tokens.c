@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/07 17:51:43 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/08 15:26:09 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	quotes_handler(char **tokens, const char *input, int *i, int j)
 		(*i)++;
 	if (!input[*i])
 	{
-		ft_putstr_fd("You must close quotes", 2);
+		ft_putstr_fd("You must close quotes\n", 2);
 		return (j);
 	}
 	str = ft_substr(input, start, *i - start);

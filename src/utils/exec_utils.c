@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/09 12:07:53 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/09 13:37:47 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int	ft_path_replace(t_data *data, char **argv, char **paths)
 	char	*replacement;
 
 	i = 0;
+	if (!argv[0])
+		argv[0] = ft_strdup("");
 	while (paths[i])
 	{
 		replacement = ft_full_path(paths[i], argv[0]);

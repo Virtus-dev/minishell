@@ -18,6 +18,12 @@ no entra en heredoc, y actualmente estoy trabajando en ello para solucionarlo.
 
 Aún falta replicar el comportamiento exacto de este comando.
 
+## Expansion directa en minishell
+
+Todas estas expansiones se deben tratar tambien directamente desde minishell.
+$PWD,$HOME, export a=hola $a, todo este tipo de expansiones debe poder ejecutarse
+directamente desde minishell, sin necesidad de usar echo.
+
 ## Expansion de $? **[ARREGLADO]**
 
 Debe devolver el codigo de estatus del comando anterior.

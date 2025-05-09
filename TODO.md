@@ -1,6 +1,6 @@
 # TODO
 
-## FALLO CRiTCO
+## FALLO CRiTCO **[SOLUCIONADO]**
 
 Por alguna razon a apareido un problema que antes no existia, que consiste en que cuando realizas un comando bloqueante, como por ejemplo `cat` y realizas CNTRL+C te saca a una subshell (porque?, ni idea) y si despues realizas CNTRL+D te lanza un error core dumped. Estoy trabajando en ello actualmente para averiguar porque, y asi poder arreglarlo. (Gracias por estos momentos minishell).
 

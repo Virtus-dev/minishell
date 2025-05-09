@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:53:36 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/08 18:45:35 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/09 11:25:44 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_write_hd(t_data *data, char *dl)
 	{
 		write(1, "> ", 2);
 		str = get_next_line(0);
-		//write(1, str, ft_strlen(str));
 		if (!str)
 			break ;
 		if(!ft_strncmp(str, dl, ft_strlen(dl)))

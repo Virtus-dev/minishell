@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/01 09:54:04 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/09 11:53:08 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+int	g_block;
 
-void    ft_minishell_init(t_data *data)
+void	ft_minishell_init(t_data *data)
 {
-    while (1)
+	while (1)
 	{
 		ft_setup_parent_signals();
 		data->input = readline("$minishell>");
@@ -39,7 +40,7 @@ void    ft_minishell_init(t_data *data)
 				data->tokens = NULL;
 				ft_free_matrix(data->argv);
 				data->argv = NULL;
-				
+
 			}
 		}
 		free(data->input);
@@ -50,7 +51,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
 	(void)argv;
-	
+
 	using_history();
 	data = ft_init_data(argc, env);
 	ft_minishell_init(data);

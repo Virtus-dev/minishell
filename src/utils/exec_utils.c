@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/08 18:23:49 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/09 12:07:53 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	ft_runexec(t_data *data)
 {
 	char	**env;
 
-	printf("execve: %s\n", data->argv[0]);
 	env = ft_revert_env(data->env);
 	dup2(data->fdin, STDIN_FILENO);
 	dup2(data->fdout, STDOUT_FILENO);

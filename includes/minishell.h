@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 16:05:48 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:26:40 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,15 @@ typedef struct s_data
 	int			status;
 }				t_data;
 
+//Global
+extern int	g_block;
+
 //BUILT_INS
 void	ft_echo(t_data *data);
 void	ft_pwd(t_data *data);
 void	ft_cd(t_data *data, char *owd);
 void	ft_env(t_data *data);
-void	ft_export(t_data *data);
+void	ft_export(t_data *data, char **splited, int i);
 void	ft_unset(t_data *data);
 void	ft_exit(t_data *data);
 
@@ -105,9 +108,12 @@ t_token	*get_next_token(t_token **token, int reset);
 int		ft_toklen(t_token **tokens);
 void	free_tokens(t_token **tokens);
 int		ft_matrix_size(char **matrix);
+int		export_quoted_input(char *token);
+
+//Echo utils
+int		skip_flag(char **av, int *nl);
 
 //UTILS
-//void	ft_oldpwd(t_data *data, char *owd, char *nwd);
 void	ft_oldpwd(t_data *data, char *owd);
 void	ft_update_dir(t_data *data, char *owd);
 int		ft_flag_exist(char *str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/01 09:23:07 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:03:40 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_exec_built(t_data *data, char *input)
 	else if (builtin == ENV)
 		ft_env(data);
 	else if (builtin == EXP)
-		ft_export(data);
+		ft_export(data, NULL, 0);
 	else if (builtin == EXIT)
 		ft_exit(data);
 	else if (builtin == PWD)

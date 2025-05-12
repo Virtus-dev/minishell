@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/07 17:55:00 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 15:58:42 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,24 @@ int	ft_counterwords(const char *s, char c)
 
 	i = 0;
 	words = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		while (s[i] == c && s[i] != '\0')
+		while(s[i] == c)
 			i++;
-		if (s[i] != '\0')
+		if (is_op(s[i]))
+		{
 			words++;
-		while (s[i] != c && s[i] != '\0')
-			i++;
+			if ((s[i] == '>' || s[i] == '<') && s[i] == s[i + 1])
+				i += 2;
+			else
+				i++;
+		}
+		else
+		{
+			words++;
+			while (s[i] && s[i] != c && !is_op(s[i]))
+				i++;
+		}
 	}
 	return (words);
 }
@@ -65,7 +75,8 @@ void	ft_check_redir(t_data *data)
 	int		i;
 
 	i = 0;
-	check_input(data->input);
+	if(!check_input(data->input))
+		return ;
 	pipe_num = ft_count_pipes(data);
 	c_input = ft_strtrim(data->input, " ");
 	data->tokens = tokenize_command(tokenizer(c_input, &i), &i);

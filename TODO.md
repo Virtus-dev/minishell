@@ -1,6 +1,6 @@
 # TODO
 
-## FALLO CRiTCO
+## FALLO CRiTCO **[SOLUCIONADO]**
 
 Por alguna razon a apareido un problema que antes no existia, que consiste en que cuando realizas un comando bloqueante, como por ejemplo `cat` y realizas CNTRL+C te saca a una subshell (porque?, ni idea) y si despues realizas CNTRL+D te lanza un error core dumped. Estoy trabajando en ello actualmente para averiguar porque, y asi poder arreglarlo. (Gracias por estos momentos minishell).
 
@@ -20,7 +20,13 @@ no entra en heredoc, y actualmente estoy trabajando en ello para solucionarlo.
 
 Aún falta replicar el comportamiento exacto de este comando.
 
-## Expansion de $? **[ARREGLAR_LEAKS]**
+## Expansion directa en minishell
+
+Todas estas expansiones se deben tratar tambien directamente desde minishell.
+$PWD,$HOME, export a=hola $a, todo este tipo de expansiones debe poder ejecutarse
+directamente desde minishell, sin necesidad de usar echo.
+
+## Expansion de $? **[ARREGLADO]**
 
 Debe devolver el codigo de estatus del comando anterior.
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 21:28:30 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/08 11:47:10 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,11 @@ void	ft_load_args(t_data *data, t_token *token)
 	}
 	i = 0;
 	data->argv[i] = ft_strdup(token->cmd);
+	printf ("cmd = %s\n", data->argv[i]);
 	while (token->cargs[i])
 	{
 		data->argv[i + 1] = ft_strdup(token->cargs[i]);
+		printf ("data->argv[%d] = %s\n", i +1 ,token->cargs[i]);
 		i++;
 	}
 	data->argv[i + 1] = NULL;

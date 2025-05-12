@@ -12,6 +12,8 @@ Ya entra en HEREDOC, si usas `cat <<EOF` ,pero en cuanto haces un enter sale dir
 
 `cat <<EOF`
 
+**Actualización**: Si realizas `cat <<EOF` salta un `SIGSEV` mientras que si realizas `cat << EOF` se comporta exactamente como se detalla mas arriba.
+
 no entra en heredoc, y actualmente estoy trabajando en ello para solucionarlo.
 
 ## Comando echo **[SOLUCIONADO]**

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/07 17:46:07 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:05:48 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_restore_default_signals(void);
 //MAP UTILS
 void	ft_map_init(t_map *map);
 t_key	*ft_new_key(char *name, const char *value);
+char	*ft_getenv(t_map *env, char *key);
 t_key	*ft_get_keymap(t_map *map, char *key);
 t_key	*ft_get_valmap(t_map *map, char *value);
 void	ft_add_key(t_map *map, t_key *key);
@@ -204,6 +205,16 @@ void	ft_check_redir(t_data *data);
 int		ft_count_pipes(t_data *data);
 int		ft_is_expandable(char *var);
 int		ft_counterwords(const char *s, char c);
+char	*ft_expand(const char *input, t_map *env);
+/**
+ * @brief Expande la variable $VAR que comienza en input[i]
+ * 
+ * @param input La cadena original
+ * @param i     Puntero al índice actual.
+ * @param env   Mapa de entorno
+ * @return char* Cadena expandida para reemplazar la variable
+ */
+char	*ft_expand_variable(const char *input, int *i, t_map *env, char *res);
 
 //TOKENS
 int		is_op(char c);

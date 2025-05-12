@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 13:09:34 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:16:21 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 			perror("Command token not found\n");
 			break ;
 		}
+		//printf("curr_token->cmd = %s, curr_token->argv[0] = %s\n", curr_token->cmd, curr_token->cargs[0]);
 		ft_load_args(data, curr_token);
 		ft_clean_and_replace_args(data);
 		ft_swapfd(data, i, pipe_num);

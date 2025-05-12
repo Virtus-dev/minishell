@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+         #
+#    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 10:03:05 by arigonza          #+#    #+#              #
-#    Updated: 2025/05/07 17:45:23 by fracurul         ###   ########.fr        #
+#    Updated: 2025/05/12 16:04:03 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ COMMON_SRC = src/built-ins/cd.c src/built-ins/echo.c src/built-ins/env.c src/bui
 		src/utils/redir_utils.c \
 		src/utils/structs_init.c src/utils/token_utils.c src/utils/utils.c \
 		src/validations/validations.c \
-
+		src/exec/expandable.c \
+		
 SRC = $(COMMON_SRC) $(MAIN)
 
 all : $(NAME)

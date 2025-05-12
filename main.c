@@ -6,7 +6,7 @@
 /*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/01 09:54:04 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:20:59 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-
 
 void    ft_minishell_init(t_data *data)
 {
@@ -34,12 +33,13 @@ void    ft_minishell_init(t_data *data)
 			add_history(data->input);
 			if (!ft_is_all_space(data->input, data))
 			{
+				if (ft_is_expandable(data->input))
+					ft_putstr_fd(ft_expand(data->input, data->env), data->fdout);
 				ft_check_redir(data);
 				free_tokens(data->tokens);
 				data->tokens = NULL;
 				ft_free_matrix(data->argv);
 				data->argv = NULL;
-				
 			}
 		}
 		free(data->input);

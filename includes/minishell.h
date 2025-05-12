@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 12:05:23 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 12:13:27 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_echo(t_data *data);
 void	ft_pwd(t_data *data);
 void	ft_cd(t_data *data, char *owd);
 void	ft_env(t_data *data);
-void	ft_export(t_data *data);
+void	ft_export(t_data *data, char **splited, int i);
 void	ft_unset(t_data *data);
 void	ft_exit(t_data *data);
 

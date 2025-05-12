@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:55:05 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/12 18:31:13 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 12:12:36 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,18 @@
 /**
  * @brief Replicates the 'export' command, wich creates
  *  or modifies enviromental variables.
- * 
+ *
  * @param data The structure that contains all the information
  *  we need, such as the arguments passed for the 'export' command.
  */
-void	ft_export(t_data *data)
+void	ft_export(t_data *data, char **splited, int i)
 {
-	int		i;
-	char	**splited;
-
-	i = 1;
-	if (!data->argv[i])
+	if (!data->argv[1])
 	{
 		ft_print_map(data, data->exp);
 		return ;
 	}
-	while (data->argv[i])
+	while (data->argv[++i])
 	{
 		splited = ft_mini_split(data->argv[i], '=');
 		if (ft_check_expformat(splited[0]))
@@ -49,6 +45,5 @@ void	ft_export(t_data *data)
 			ft_putendl_fd(data->argv[i], STDERR_FILENO);
 		}
 		ft_free_matrix(splited);
-		i++;
 	}
 }

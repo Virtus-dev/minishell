@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/09 11:53:49 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 12:05:23 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_data
 }				t_data;
 
 //Global
-extern int g_block;
+extern int	g_block;
 
 //BUILT_INS
 void	ft_echo(t_data *data);
@@ -108,8 +108,10 @@ int		ft_toklen(t_token **tokens);
 void	free_tokens(t_token **tokens);
 int		ft_matrix_size(char **matrix);
 
+//Echo utils
+int		skip_flag(char **av, int *nl);
+
 //UTILS
-//void	ft_oldpwd(t_data *data, char *owd, char *nwd);
 void	ft_oldpwd(t_data *data, char *owd);
 void	ft_update_dir(t_data *data, char *owd);
 int		ft_flag_exist(char *str);

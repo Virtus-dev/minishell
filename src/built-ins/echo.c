@@ -6,36 +6,11 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:14 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/07 18:59:34 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 11:56:32 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	skip_flag(char **av, int *nl)
-{
-	int	i;
-	int	j;
-
-	*nl = 0;
-	i = 1;
-	while (av[i])
-	{
-		if (av[i][0] != '-' || av[i][1] != 'n')
-			break ;
-		j = 2;
-		while (av[i][j] == 'n')
-			j++;
-		if (av[i][j] != '\0')
-			break ;
-		i++;
-	}
-	if (i > 1 && av[i] && av[i][0] == '-' && av[i][1] != 'n')
-		*nl = 0;
-	else if (i > 1)
-		*nl = 1;
-	return (i);
-}
 
 static void	ft_print_var(t_data *data, char *var, int fd)
 {

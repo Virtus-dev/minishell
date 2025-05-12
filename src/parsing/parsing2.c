@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/08 18:37:54 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 15:58:42 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	ft_check_redir(t_data *data)
 	int		i;
 
 	i = 0;
-	check_input(data->input);
+	if(!check_input(data->input))
+		return ;
 	pipe_num = ft_count_pipes(data);
 	c_input = ft_strtrim(data->input, " ");
 	data->tokens = tokenize_command(tokenizer(c_input, &i), &i);

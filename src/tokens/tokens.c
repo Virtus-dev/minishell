@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/08 16:44:20 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:00:27 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ char	**tokenizer(const char *input, int *pos)
 	int		i;
 	int		j;
 
-	// Tenemos leaks e memoria en esta parte
 	*pos = ft_counterwords(input, ' ');
 	tokens = (char **)ft_calloc(*pos + 1, sizeof(char *));
 	i = 0;

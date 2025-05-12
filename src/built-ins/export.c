@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:55:05 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 12:12:36 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 15:20:18 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
  */
 void	ft_export(t_data *data, char **splited, int i)
 {
+	/*printf("🧪 DEBUG: argumentos que llegan a export:\n");
+	for (int x = 0; data->argv[x]; x++)
+	printf("  argv[%d] = [%s]\n", x, data->argv[x]);*/
+
 	if (!data->argv[1])
 	{
 		ft_print_map(data, data->exp);

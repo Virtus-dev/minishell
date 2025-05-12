@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 12:13:27 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/12 15:58:02 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ t_token	*get_next_token(t_token **token, int reset);
 int		ft_toklen(t_token **tokens);
 void	free_tokens(t_token **tokens);
 int		ft_matrix_size(char **matrix);
+int		export_quoted_input(char *token);
 
 //Echo utils
 int		skip_flag(char **av, int *nl);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 16:26:40 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:21:02 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int		ft_toklen(t_token **tokens);
 void	free_tokens(t_token **tokens);
 int		ft_matrix_size(char **matrix);
 int		export_quoted_input(char *token);
+char	*wrap_export_input(const char *input, int start, char *str);
 
 //Echo utils
 int		skip_flag(char **av, int *nl);
@@ -196,7 +197,6 @@ void	ft_redirout(t_data *data, char *file, int type);
  * @param type Tipo de redirección: S_IN (`<`) o D_IN (`<<`).
  */
 void	ft_redirin(t_data *data, char *file, int type);
-
 void	ft_write_hd(t_data *data, char *dl);
 void	ft_here_doc(t_data *data, char *dl);
 
@@ -214,7 +214,7 @@ int		ft_counterwords(const char *s, char c);
 char	*ft_expand(const char *input, t_map *env);
 /**
  * @brief Expande la variable $VAR que comienza en input[i]
- * 
+ *
  * @param input La cadena original
  * @param i     Puntero al índice actual.
  * @param env   Mapa de entorno
@@ -224,6 +224,7 @@ char	*ft_expand_variable(const char *input, int *i, t_map *env, char *res);
 
 //TOKENS
 int		is_op(char c);
+char	*ft_wrap_quotes(char *str, char quote);
 char	**tokenizer(const char *input, int *pos);
 t_token	**tokenize_command(char **tokens, int *pos);
 

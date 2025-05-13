@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 16:26:12 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:38:14 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	g_block;
 
 void	ft_minishell_init(t_data *data)
 {
+	char	*expand;
+
 	while (1)
 	{
 		ft_setup_parent_signals();
@@ -35,7 +37,11 @@ void	ft_minishell_init(t_data *data)
 			if (!ft_is_all_space(data->input, data))
 			{
 				if (ft_is_expandable(data->input))
-					ft_putstr_fd(ft_expand(data->input, data->env), data->fdout);
+				{
+					expand = ft_expand(data->input, data->env);
+					ft_putstr_fd(expand, data->fdout);
+					free(expand);
+				}
 				ft_check_redir(data);
 				free_tokens(data->tokens);
 				data->tokens = NULL;

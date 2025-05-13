@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandable.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:51:32 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 16:05:24 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:28:46 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	*ft_expand_variable(const char *input, int *i, t_map *env, char *res)
 	int		start;
 	char	*var;
 	char	*val;
+	char	*tmp;
 
 	start = *i + 1;
 	*i = start;
@@ -53,9 +54,9 @@ char	*ft_expand_variable(const char *input, int *i, t_map *env, char *res)
 	free(var);
 	if (!val)
 		val = ft_strdup("");
-	var = res;
-	res = ft_strjoin(var, val);
-	free(var);
+	tmp = ft_strjoin(res, val);
+	free(res);
+	res = tmp;
 	free(val);
 	return (res);
 }
@@ -63,7 +64,7 @@ char	*ft_expand_variable(const char *input, int *i, t_map *env, char *res)
 char	*ft_getenv(t_map *env, char *key)
 {
 	t_key *found;
-	
+
 	found = ft_get_keymap(env, key);
 	if (!found || !found->value)
 		return (NULL);

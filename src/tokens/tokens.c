@@ -6,13 +6,13 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/12 16:00:27 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:42:20 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*ft_wrap_quotes(char *str, char quote)
+char	*ft_wrap_quotes(char *str, char quote)
 {
 	char	*tmp;
 	char	*res;
@@ -40,18 +40,21 @@ static int	quotes_handler(char **tokens, const char *input, int *i, int j)
 	while (input[*i] && input[*i] != quote)
 		(*i)++;
 	if (!input[*i])
-	{
-		ft_putstr_fd("You must close quotes\n", 2);
-		return (j);
-	}
+		return (ft_putstr_fd("You must close quotes\n", 2), j);
 	str = ft_substr(input, start, *i - start);
-	if (quote == '\'' || quote == '\"')
+	/*if (quote == '\'' || quote == '\"')
 	{
 		tmp = ft_wrap_quotes(str, quote);
 		free(str);
 		str = tmp;
 	}
-	tokens[j] = str;
+	tokens[j] = str;*/
+	if (start >= 2 && input[start - 2] == '=')
+		tmp = wrap_export_input(input, start, str);
+	else
+		tmp = ft_wrap_quotes(str, quote);
+	free(str);
+	tokens[j] = tmp;
 	(*i)++;
 	return (j + 1);
 }
@@ -70,14 +73,30 @@ static int	op_handler(char **tokens, const char *input, int *i, int j)
 
 static int	word_handler(char **tokens, const char *input, int *i, int j)
 {
-	int	start;
+	/*int	start;
 
 	start = *i;
 	while (input[*i] && input[*i] != ' '
 		&& input[*i] != '\t' && !is_op(input[*i]))
 		(*i)++;
 	tokens[j] = ft_substr(input, start, *i - start);
-	return (j + 1);
+	return (j);*/
+	int start = *i;
+	// Si vemos un = y luego una comilla, tratamos toda la asignación
+	while (input[*i] && input[*i] != ' ' && input[*i] != '\t'
+			&& !is_op(input[*i]))
+	{
+		if (input[*i] == '=' && (input[*i+1] == '"' || input[*i+1] == '\''))
+		{
+			// saltamos el '=' y dejamos que quotes_handler agrupe el resto
+			*i += 1;
+			j = quotes_handler(tokens, input, i, j);
+			return (j);
+		}
+		(*i)++;
+	}
+	tokens[j++] = ft_substr(input, start, *i - start);
+	return (j);
 }
 
 char	**tokenizer(const char *input, int *pos)

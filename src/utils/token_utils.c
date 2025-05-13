@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:57:01 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/09 11:26:58 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:25:10 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,25 @@ void	free_tokens(t_token **tokens)
 		tokens[i] = NULL;
 	}
 	free(tokens);
+}
+
+char	*wrap_export_input(const char *input, int start, char *str)
+{
+	char	*pre;
+	char	*quoted;
+	char	*join;
+	int		i;
+
+	i = start - 2;
+	while (i > 0 && input[i - 1] != ' ' && !is_op(input[i - 1]))
+		i--;
+	pre = ft_substr(input, i, start  - i - 1);
+	if (str[0] == '"' && str[ft_strlen(str) - 1] == '"')
+		quoted = ft_strdup(str);
+	else
+		quoted = ft_wrap_quotes(str, '"');
+	join = ft_strjoin(pre, quoted);
+	free(pre);
+	free(quoted);
+	return (join);
 }

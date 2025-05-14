@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 16:26:30 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/14 18:06:56 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 			perror("Command token not found\n");
 			break ;
 		}
-		//printf("curr_token->cmd = %s, curr_token->argv[0] = %s\n", curr_token->cmd, curr_token->cargs[0]);
 		ft_load_args(data, curr_token);
 		ft_clean_and_replace_args(data);
 		ft_swapfd(data, i, pipe_num);

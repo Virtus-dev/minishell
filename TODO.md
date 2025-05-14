@@ -1,10 +1,10 @@
-# TODO
+# TO_DO
 
-## FALLO CRiTCO **[SOLUCIONADO]**
+## FALLO CRITICO **[SOLUCIONADO]**
 
 Por alguna razon a apareido un problema que antes no existia, que consiste en que cuando realizas un comando bloqueante, como por ejemplo `cat` y realizas CNTRL+C te saca a una subshell (porque?, ni idea) y si despues realizas CNTRL+D te lanza un error core dumped. Estoy trabajando en ello actualmente para averiguar porque, y asi poder arreglarlo. (Gracias por estos momentos minishell).
 
-Hay que controlar cuando estamos en ejecutando con execve, si estamos en execve, flag global= 1 y hacer redisplay, cualquier otra cosa no hacer redisplay.
+Hay que controlar cuando estamos ejecutando con execve, si estamos en execve, flag global= 1 y hacer redisplay, cualquier otra cosa no hacer redisplay.
 
 ## HEREDOC **[SOLUCIONADO]**
 
@@ -22,13 +22,15 @@ no entra en heredoc, y actualmente estoy trabajando en ello para solucionarlo.
 
 Aún falta replicar el comportamiento exacto de este comando.
 
-## Expansion directa en minishell
+## Expansion directa en minishell **[ARREGLAR]**
 
 Todas estas expansiones se deben tratar tambien directamente desde minishell.
 $PWD,$HOME, export a=hola $a, todo este tipo de expansiones debe poder ejecutarse
 directamente desde minishell, sin necesidad de usar echo.
 
-## Expansion de $? **[ARREGLADO]**
+`cd $HOME` debe funcionar(no funciona)
+
+## Expansion de $? **[SOLUCIONADO]**
 
 Debe devolver el codigo de estatus del comando anterior.
 
@@ -78,3 +80,8 @@ En el caso de:
 
 Debe de crear los 3 archivos pero escribir tan solo en el ultimo.
 Es decir, que `cat test3.txt` deberia imprimir lo que devolvia `ls -l`.
+
+## LEAKS
+1. `cat | cat | ls` -> leaks
+2. `export a="ls -la" | ls` ->leaks
+Conclusion: leaks en pipes (revisar)

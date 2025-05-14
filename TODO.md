@@ -16,6 +16,8 @@ Ya entra en HEREDOC, si usas `cat <<EOF` ,pero en cuanto haces un enter sale dir
 
 no entra en heredoc, y actualmente estoy trabajando en ello para solucionarlo.
 
+**MIRAR** he conseguido que se detecte `<< EOF` pero no abre el heredoc
+
 ## Comando echo **[SOLUCIONADO]**
 
 Aún falta replicar el comportamiento exacto de este comando.

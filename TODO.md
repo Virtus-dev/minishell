@@ -81,7 +81,13 @@ En el caso de:
 Debe de crear los 3 archivos pero escribir tan solo en el ultimo.
 Es decir, que `cat test3.txt` deberia imprimir lo que devolvia `ls -l`.
 
+## EJECUCION
+
+Actualmente no podemos ejecutar ./minishell cuando ya estamos dentro de una minishell
+(revisar exec_utils.c y exec)
+
 ## LEAKS
+
 1. `cat | cat | ls` -> leaks
 2. `export a="ls -la" | ls` ->leaks
 Conclusion: leaks en pipes (revisar)

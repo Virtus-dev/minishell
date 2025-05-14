@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:39:10 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/13 16:42:20 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/14 12:35:44 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	word_handler(char **tokens, const char *input, int *i, int j)
 	while (input[*i] && input[*i] != ' ' && input[*i] != '\t'
 			&& !is_op(input[*i]))
 	{
-		if (input[*i] == '=' && (input[*i+1] == '"' || input[*i+1] == '\''))
+		if (input[*i] == '=' && (input[*i + 1] == '"' || input[*i + 1] == '\''))
 		{
 			// saltamos el '=' y dejamos que quotes_handler agrupe el resto
 			*i += 1;

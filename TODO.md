@@ -81,7 +81,7 @@ En el caso de:
 Debe de crear los 3 archivos pero escribir tan solo en el ultimo.
 Es decir, que `cat test3.txt` deberia imprimir lo que devolvia `ls -l`.
 
-## EJECUCION
+## EJECUCION **[SOLUCIONADO]**
 
 Actualmente no podemos ejecutar ./minishell cuando ya estamos dentro de una minishell
 (revisar exec_utils.c y exec)

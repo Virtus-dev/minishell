@@ -16,7 +16,7 @@ Ya entra en HEREDOC, si usas `cat <<EOF` ,pero en cuanto haces un enter sale dir
 
 no entra en heredoc, y actualmente estoy trabajando en ello para solucionarlo.
 
-**MIRAR** he conseguido que se detecte `<< EOF` pero no abre el heredoc
+**Actualzacion** he conseguido que se detecte `<< EOF` pero no abre el heredoc
 
 ## Comando echo **[SOLUCIONADO]**
 
@@ -85,3 +85,7 @@ Es decir, que `cat test3.txt` deberia imprimir lo que devolvia `ls -l`.
 1. `cat | cat | ls` -> leaks
 2. `export a="ls -la" | ls` ->leaks
 Conclusion: leaks en pipes (revisar)
+
+## NORMINETTE
+
+Revisar archivos y cumplir norma42!

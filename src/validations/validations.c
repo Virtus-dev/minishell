@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:01:25 by fracurul          #+#    #+#             */
-/*   Updated: 2025/04/17 17:42:14 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/14 12:58:11 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	validate_itredir(char *line, int index)
 {
 	if (line[index + 1] == '<')
 	{
-		if (index == 0 || line[index + 2] == '\0' || line[index + 2] == '|')
+		if (line[index + 2] == '\0' || line[index + 2] == '|')
 			return (FALSE);
 		else
 			return (TRUE);
@@ -74,7 +74,7 @@ int	validate_metachar(char *line, int i)
 		}
 		else if (line[i] == '<' && !is_in_quotes(line, i))
 		{
-			if (validate_itredir(line, i))
+			if (!validate_itredir(line, i))
 				return (FALSE);
 			if (line[i + 1] == '<')
 				i++;

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 16:03:40 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/14 18:25:22 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,12 @@ int	ft_is_env_builtin(char *input)
 int	ft_nonenv_builtin(char *str)
 {
 	if (!ft_strcmp(str, "echo") || !ft_strcmp(str, "ECHO"))
-	return (ECHO);
+		return (ECHO);
 	if (!ft_strcmp(str, "pwd") || !ft_strcmp(str, "PWD"))
 		return (PWD);
 	if (!ft_strcmp(str, "env") || !ft_strcmp(str, "ENV"))
 		return (ENV);
 	if (!ft_strcmp(str, "exit") || !ft_strcmp(str, "EXIT"))
 		return (EXIT);
-	if (!ft_strcmp(str, "./minishell"))
-		return (DEF);
-return (FALSE);
+	return (FALSE);
 }

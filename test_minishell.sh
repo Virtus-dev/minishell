@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/13 18:43:32 by arigonza          #+#    #+#              #
-#    Updated: 2025/04/16 23:50:55 by arigonza         ###   ########.fr        #
+#    Updated: 2025/05/16 13:14:06 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,11 @@ tests=(
   'export a'
   'export a=b'
   'unset a'
+  '$PWD'
+  '$PWD$HOME'
+  'echo $HOME'
+  'echo $HOME$PWD'
+  'echo $HOME $PWD'
 )
 
 pass=0; fail=0
@@ -37,32 +42,32 @@ total=${#tests[@]}
 
 echo "Running $total tests..."
 for t in "${tests[@]}"; do
-  # 1) Ejecutar en minishell
-  printf "%s\nexit\n" "$t" | $MINISHELL >"$TMP_MS" 2>&1
+  # Ejecuta en minishell
+  printf "%s\nexit\n" "$t" | $MINISHELL > "$TMP_MS" 2>&1
 
-  # 2) Ejecutar en bash de forma adecuada
+  # 2) Ejecutar en bash
   case "$t" in
-    env)        bash -c "env" >"$TMP_BASH" 2>&1 ;;
-    export)     bash -c "export -p" >"$TMP_BASH" 2>&1 ;;
-    unset\ *)   # unset sin imprimir nada
-                bash -c "$t" >"$TMP_BASH" 2>&1 ;;
-    *)
-                bash -c "$t" >"$TMP_BASH" 2>&1 ;;
+    env)        bash -c "env" > "$TMP_BASH" 2>&1 ;;
+    export)     bash -c "export -p" > "$TMP_BASH" 2>&1 ;;
+    unset\ *)   bash -c "$t" > "$TMP_BASH" 2>&1 ;; # unset no imprime
+    *)          bash -c "$t" > "$TMP_BASH" 2>&1 ;;
   esac
 
-  # 3) Limpiar minishell output
+  # Limpia minishell output
   sed -i '/^exit$/d' "$TMP_MS"
-  first=$(head -n1 "$TMP_MS")
-  [ "$first" = "$t" ] && tail -n +2 "$TMP_MS" > tmp && mv tmp "$TMP_MS"
+  sed -i '/^\$minishell>/d' "$TMP_MS"
+  # Quita línea exacta que coincida con el comando
+  sed -i "\|^$t\$|d" "$TMP_MS"
 
-  # 4) Comparar
+
+  # Compara salidas
   if diff -u "$TMP_MS" "$TMP_BASH" >/dev/null; then
     echo -e "[\033[0;32mPASS\033[0m] $t"
     ((pass++))
   else
     echo -e "[\033[0;31mFAIL\033[0m] $t"
-    echo "→ Minishell output:";  cat "$TMP_MS"
-    echo "→ Bash output:";      cat "$TMP_BASH"
+    echo "→ Minishell output:"; cat "$TMP_MS"
+    echo "→ Bash output:"; cat "$TMP_BASH"
     ((fail++))
   fi
 done
@@ -73,4 +78,3 @@ echo "Tests failed: $fail"
 
 # Limpieza
 rm -f prueba.txt "$TMP_MS" "$TMP_BASH"
-

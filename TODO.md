@@ -1,5 +1,22 @@
 # TO_DO
 
+## Redirecciones
+
+Cuando hacemos uso de las redirecciones sin usar un comando antes, por ejemplo ` > prueba.txt` no genera el archivo, dberia de generar el archivo aunque este estuviese vacio.
+De igual manera no funciona para las redirecciones de entrada `<` o heredoc `<<`, por ejemplo `<< EOF`.
+
+Aqui podemos ver perfectamente el fallo, y uno añadido que no habiamos detectado y es que al no poner un espacio antes de la redirección tokenizer no funciona correctamente y da el token como nulo.
+
+````
+$minishell>> prueba.txt
+Token NULL
+: Success
+$minishell> > prueba.txt
+cmd = >
+data->argv[1] = prueba.txt
+bash: /home/arigonza/.vscode-server/bin/17baf841131aa23349f217ca7c570c76ee87b957/bin/remote-cli/: command not found
+````
+
 ## FALLO CRITICO **[SOLUCIONADO]**
 
 Por alguna razon a apareido un problema que antes no existia, que consiste en que cuando realizas un comando bloqueante, como por ejemplo `cat` y realizas CNTRL+C te saca a una subshell (porque?, ni idea) y si despues realizas CNTRL+D te lanza un error core dumped. Estoy trabajando en ello actualmente para averiguar porque, y asi poder arreglarlo. (Gracias por estos momentos minishell).

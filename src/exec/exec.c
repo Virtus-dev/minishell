@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:52:21 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/17 13:03:51 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/17 19:03:26 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_signal_handler(t_data *data, int stat)
 			}
 			data->status = 128 + WTERMSIG(stat);
 		}
-		g_block = 0;
+		//g_block = 0;
 }
 
 void	ft_exec(t_data *data)
@@ -53,4 +53,5 @@ void	ft_exec(t_data *data)
 	}
 	else
 		perror(FORK_ERR);
+	g_block = 0;
 }

@@ -6,11 +6,27 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:52:21 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/09 12:08:15 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/17 13:03:51 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	ft_signal_handler(t_data *data, int stat)
+{
+	if (WIFEXITED(stat))
+			data->status = WEXITSTATUS(stat);
+		else if (WIFSIGNALED(stat))
+		{
+			if (WTERMSIG(stat) == SIGQUIT)
+			{
+				write(2, "Quit (core dumped)\n", 18);
+				write(1, "\n", 1);
+			}
+			data->status = 128 + WTERMSIG(stat);
+		}
+		g_block = 0;
+}
 
 void	ft_exec(t_data *data)
 {
@@ -33,9 +49,7 @@ void	ft_exec(t_data *data)
 	else if (data->child > 0)
 	{
 		waitpid(data->child, &stat, WUNTRACED);
-		g_block = 0;
-		if (WIFEXITED(stat))
-			data->status = WEXITSTATUS(stat);
+		ft_signal_handler(data, stat);
 	}
 	else
 		perror(FORK_ERR);

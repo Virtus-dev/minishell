@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/17 15:31:09 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/17 15:47:08 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,6 @@ void	ft_redirout(t_data *data, char *file, int type);
  * @param type Tipo de redirección: S_IN (`<`) o D_IN (`<<`).
  */
 void	ft_redirin(t_data *data, char *file, int type);
-void	ft_write_hd(t_data *data, char *dl);
 void	ft_here_doc(t_data *data, char *dl);
 
 //PARSING

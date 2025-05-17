@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:13:55 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/03 13:10:49 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:34:18 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_start_redi(t_data *data, t_token *token)
 			if (token->cargs[j + 1])
 			{
 				ft_redirout(data, token->cargs[j + 1], type);
-				j++; // skip filename
+				j++;
 			}
 		}
 		else if (type == S_IN || type == D_IN)
@@ -34,14 +34,14 @@ void	ft_start_redi(t_data *data, t_token *token)
 			if (token->cargs[j + 1])
 			{
 				ft_redirin(data, token->cargs[j + 1], type);
-				j++; // skip filename or delimiter
+				j++;
 			}
 		}
 		j++;
 	}
 }
 
-int ft_redir_type(const char *arg)
+int	ft_redir_type(const char *arg)
 {
 	if (!arg)
 		return (-1);
@@ -68,7 +68,7 @@ void	ft_redirout(t_data *data, char *file, int type)
 	{
 		perror("redirout");
 		data->status = 1;
-		return;
+		return ;
 	}
 	if (data->fdout != STDOUT_FILENO)
 		close(data->fdout);
@@ -90,7 +90,7 @@ void	ft_redirin(t_data *data, char *file, int type)
 	{
 		perror("redirin");
 		data->status = 1;
-		return;
+		return ;
 	}
 	if (data->fdin != STDIN_FILENO)
 		close(data->fdin);

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/14 18:17:37 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/17 17:31:38 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-int	g_block;
+int	g_block = 0;
 
 void	ft_minishell_init(t_data *data)
 {

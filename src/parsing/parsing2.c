@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/19 13:24:45 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:30:56 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_check_redir(t_data *data)
 		return ;
 	pipe_num = ft_count_pipes(data);
 	c_input = ft_strtrim(data->input, " ");
-	data->tokens = tokenize_command(tokenizer(c_input, &i), &i);
+	data->tokens = tokenize_command(tokenizer(c_input, &i), &i, 0, 0);
 	free(c_input);
 	ft_pipe_processing(data, pipe_num);
 }

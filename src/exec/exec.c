@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:52:21 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/17 19:03:26 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:21:58 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 static void	ft_signal_handler(t_data *data, int stat)
 {
 	if (WIFEXITED(stat))
-			data->status = WEXITSTATUS(stat);
-		else if (WIFSIGNALED(stat))
+		data->status = WEXITSTATUS(stat);
+	else if (WIFSIGNALED(stat))
+	{
+		if (WTERMSIG(stat) == SIGQUIT)
 		{
-			if (WTERMSIG(stat) == SIGQUIT)
-			{
-				write(2, "Quit (core dumped)\n", 18);
-				write(1, "\n", 1);
-			}
-			data->status = 128 + WTERMSIG(stat);
+			write(2, "Quit (core dumped)\n", 18);
+			write(1, "\n", 1);
 		}
-		//g_block = 0;
+		data->status = 128 + WTERMSIG(stat);
+	}
 }
 
 void	ft_exec(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:51:32 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/13 11:28:46 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:20:31 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ char	*ft_expand_variable(const char *input, int *i, t_map *env, char *res)
 
 char	*ft_getenv(t_map *env, char *key)
 {
-	t_key *found;
+	t_key	*found;
 
 	found = ft_get_keymap(env, key);
 	if (!found || !found->value)
 		return (NULL);
-	return ft_strdup(found->value);
+	return (ft_strdup(found->value));
 }

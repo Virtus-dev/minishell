@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:06:17 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/17 20:09:31 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:22:45 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	ft_signals(void)
 
 static void	sigint_parent(int sig)
 {
-
 	if (!g_block && sig == SIGINT)
 		ft_signals();
 	else if (!g_block && sig != SIGINT)
@@ -32,13 +31,13 @@ static void	sigint_parent(int sig)
 		ft_signals();
 		exit(130);
 	}
-	else if (g_block == 1 && sig == SIGINT )
+	else if (g_block == 1 && sig == SIGINT)
 	{
 		write(1, "\033[K\n", 5);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 	}
-	else if (g_block == 3 )
+	else if (g_block == 3)
 		write(1, "\033[K\n", 5);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/14 18:06:56 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:21:28 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 		ft_load_args(data, curr_token);
 		ft_clean_and_replace_args(data);
 		ft_swapfd(data, i, pipe_num);
-		if (ft_nonenv_builtin(curr_token->cmd) || (ft_is_env_builtin(curr_token->cmd) && !next_token))
+		if (ft_nonenv_builtin(curr_token->cmd)
+			|| (ft_is_env_builtin(curr_token->cmd) && !next_token))
 			ft_exec_built(data, curr_token->cmd);
 		else
 			ft_exec(data);

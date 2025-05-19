@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:53:36 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/17 20:36:08 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:07:08 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,17 @@ void	ft_here_doc(t_data *data, char *dl)
 }*/
 
 //PRUEBA
-/*static void	sigquit_handler(int sig)
+static void	sigquit_handler(int sig)
 {
 	(void)sig;
-	write(1, "\033[K\n", 5);
-}*/
+	write(1, "\033[2D  \033[2D", 10);
+}
 void	ft_child_write_hd(char *dl, int hd)
 {
 	char	*str;
 
 	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, sigquit_handler);
 	while (1)
 	{
 		write(1, "> ", 2);

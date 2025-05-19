@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:59:39 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/14 12:59:57 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:30:25 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	export_quoted_input(char *token)
 	len = ft_strlen(token);
 	if (!token)
 		return (0);
-	equal= ft_strchr(token, '=');
+	equal = ft_strchr(token, '=');
 	if (!equal)
 		return (0);
 	dquote = ft_strchr(equal + 1, '"');
@@ -35,16 +35,12 @@ int	export_quoted_input(char *token)
 	return (0);
 }
 
-t_token	**tokenize_command(char **tokens, int *pos)
+t_token	**tokenize_command(char **tokens, int *pos, int i, int cmdi)
 {
 	t_token	**cmds;
-	int		i;
-	int		cmdi;
 	int		argi;
 
 	cmds = (t_token **)ft_calloc(*pos + 1, sizeof(t_token *));
-	i = 0;
-	cmdi = 0;
 	while (tokens[i])
 	{
 		argi = 0;

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/17 17:31:38 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:09:35 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,8 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+
 int	g_block = 0;
-
-void	ft_minishell_init(t_data *data)
-{
-	char	*expand;
-
-	while (1)
-	{
-		ft_setup_parent_signals();
-		data->input = readline("$minishell>");
-		if (data->input == NULL)
-		{
-			ft_exit(data);
-			//escribir exit\n
-			break ;
-		}
-		if (data->input[0] != '\0')
-		{
-			add_history(data->input);
-			if (!ft_is_all_space(data->input, data))
-			{
-				if (ft_is_expandable(data->input))
-				{
-					expand = ft_expand(data->input, data->env);
-					ft_putstr_fd(expand, data->fdout);
-					free(expand);
-				}
-				ft_check_redir(data);
-				free_tokens(data->tokens);
-				data->tokens = NULL;
-				ft_free_matrix(data->argv);
-				data->argv = NULL;
-			}
-		}
-		free(data->input);
-	}
-}
 
 int	main(int argc, char **argv, char **env)
 {

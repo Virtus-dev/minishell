@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/17 19:53:37 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 16:13:10 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,13 +129,14 @@ void	ft_execpath(t_data *data);
 char	*ft_find_in_path(char *cmd, t_map *env);
 char	**ft_clean_redirections(char **tokens);
 void	ft_clean_and_replace_args(t_data *data);
+void	ft_minishell_init(t_data *data);
 
 /**
  * @brief Executes from path, looking on our ENV.
  *
  * @param data
  */
-void	ft_runexec(t_data *data);
+void	ft_runexec(t_data *data, char **env, int fdin, int fdout);
 /**
  * @brief Takes from our map format and reconverts it into a format
  * we can use to execute it.
@@ -225,7 +226,7 @@ char	*ft_expand_variable(const char *input, int *i, t_map *env, char *res);
 int		is_op(char c);
 char	*ft_wrap_quotes(char *str, char quote);
 char	**tokenizer(const char *input, int *pos);
-t_token	**tokenize_command(char **tokens, int *pos);
+t_token	**tokenize_command(char **tokens, int *pos, int i, int cmdi);
 
 //PIPES
 void	ft_pipe_processing(t_data *data, int pipe_num);

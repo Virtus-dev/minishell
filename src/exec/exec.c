@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:52:21 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/19 13:21:58 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:34:21 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_exec(t_data *data)
 		ft_restore_default_signals();
 		if (data->env->keys[0] != NULL)
 			ft_execpath(data);
-		ft_runexec(data);
+		ft_runexec(data, NULL, 0, 0);
 	}
 	else if (data->child > 0)
 	{

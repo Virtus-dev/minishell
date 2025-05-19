@@ -6,38 +6,11 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:54:14 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/14 12:48:57 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:24:45 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
-/*static char	*ft_epur(char *str)
-{
-	int		i;
-	int		j;
-	char	*c_input;
-
-	i = 0;
-	j = 0;
-	c_input = ft_calloc(256, sizeof(char));
-	while(str[i] != '\0')
-	{
-		if (str[i] && (str[i] == ' ' || str[i] == '\t'))
-		{
-			c_input[j] = str[i];
-			j++;
-			while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-				i++;
-		}
-		c_input[j] = str[i];
-		j++;
-		i++;
-	}
-	j++;
-	return (c_input);
-}*/
 
 int	ft_counterwords(const char *s, char c)
 {
@@ -48,7 +21,7 @@ int	ft_counterwords(const char *s, char c)
 	words = 0;
 	while (s[i])
 	{
-		while(s[i] == c)
+		while (s[i] == c)
 			i++;
 		if (is_op(s[i]))
 		{
@@ -75,7 +48,7 @@ void	ft_check_redir(t_data *data)
 	int		i;
 
 	i = 0;
-	if(!check_input(data->input))
+	if (!check_input(data->input))
 		return ;
 	pipe_num = ft_count_pipes(data);
 	c_input = ft_strtrim(data->input, " ");

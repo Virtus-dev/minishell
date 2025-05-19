@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 10:10:38 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/17 17:57:28 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:34:11 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,36 +63,15 @@ void	ft_execpath(t_data *data)
 	ft_path_replace(data, data->argv, path_dirs);
 	ft_free_matrix(path_dirs);
 }
-/*ORIGINAL
-void	ft_runexec(t_data *data)
-{
-	char	**env;
 
+void	ft_runexec(t_data *data, char **env, int fdin, int fdout)
+{
+	fdin = dup(STDIN_FILENO);
+	fdout = dup(STDOUT_FILENO);
 	env = ft_revert_env(data->env);
 	if (data->fdin != STDIN_FILENO)
 		dup2(data->fdin, STDIN_FILENO);
-	if(data->fdout != STDOUT_FILENO)
-		dup2(data->fdout, STDOUT_FILENO);
-	if (execve(data->argv[0], data->argv, env) == -1)
-	{
-		ft_putstr_fd("bash: ", data->fdout);
-		ft_putstr_fd(data->argv[0], data->fdout);
-		ft_putstr_fd(": command not found\n", data->fdout);
-		ft_free_matrix(env);
-		exit(EXIT_FAILURE);
-	}
-}*/
-
-//PRUEBA
-void	ft_runexec(t_data *data)
-{
-	char	**env;
-	int orig_stdin = dup(STDIN_FILENO);
-	int orig_stdout = dup(STDOUT_FILENO);
-	env = ft_revert_env(data->env);
-	if (data->fdin != STDIN_FILENO)
-		dup2(data->fdin, STDIN_FILENO);
-	if(data->fdout != STDOUT_FILENO)
+	if (data->fdout != STDOUT_FILENO)
 		dup2(data->fdout, STDOUT_FILENO);
 	if (execve(data->argv[0], data->argv, env) == -1)
 	{
@@ -105,10 +84,10 @@ void	ft_runexec(t_data *data)
 	if (data->status == 131)
 	{
 		ft_free_matrix(env);
-		dup2(orig_stdin, STDIN_FILENO);
-		dup2(orig_stdout, STDOUT_FILENO);
-		close(orig_stdin);
-		close(orig_stdout);
+		dup2(fdin, STDIN_FILENO);
+		dup2(fdout, STDOUT_FILENO);
+		close(fdin);
+		close(fdout);
 		exit(0);
 	}
 }

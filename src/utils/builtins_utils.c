@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/14 18:25:22 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:34:20 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	ft_is_env_builtin(char *input)
 		return (TRUE);
 	return (FALSE);
 }
+
 int	ft_nonenv_builtin(char *str)
 {
 	if (!ft_strcmp(str, "echo") || !ft_strcmp(str, "ECHO"))

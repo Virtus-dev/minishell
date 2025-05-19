@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/12 16:27:25 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/19 15:59:42 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,21 @@ t_token	*get_next_token(t_token **token, int reset)
 	return (token[position++]);
 }
 
-void	ft_load_args(t_data *data, t_token *token)
+static void	token_check(t_data *data)
 {
-	int	i;
-	int	args_size;
-
 	if (!data->tokens)
 	{
 		perror("No tokens found\n");
 		return ;
 	}
+}
+
+void	ft_load_args(t_data *data, t_token *token)
+{
+	int	i;
+	int	args_size;
+
+	token_check(data);
 	if (token->cargs)
 	{
 		args_size = ft_matrix_size(token->cargs);
@@ -87,11 +92,9 @@ void	ft_load_args(t_data *data, t_token *token)
 	}
 	i = 0;
 	data->argv[i] = ft_strdup(token->cmd);
-	printf ("cmd = %s\n", data->argv[i]);
 	while (token->cargs[i])
 	{
 		data->argv[i + 1] = ft_strdup(token->cargs[i]);
-		printf ("data->argv[%d] = %s\n", i +1 ,token->cargs[i]);
 		i++;
 	}
 	data->argv[i + 1] = NULL;

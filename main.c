@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:17:03 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/19 16:09:35 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:48:01 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	g_block = 0;
 int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
-	(void)argv;
 
+	(void)argv;
 	using_history();
 	data = ft_init_data(argc, env);
 	ft_minishell_init(data);

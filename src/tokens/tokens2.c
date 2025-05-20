@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 15:59:39 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/19 13:30:25 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:18:12 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_op(char c)
 {
-	return (c == '>' || c == '<' || c == '|');
+	return (c == '>' || c == '<' || c == '|' || c == '"' || c == '\'');
 }
 
 int	export_quoted_input(char *token)

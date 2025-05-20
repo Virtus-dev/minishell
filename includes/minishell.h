@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/19 16:13:10 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:13:22 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,14 @@ typedef struct s_map
 	t_key		**keys;
 	size_t		size;
 	size_t		capacity;
-}				t_map;
+}	t_map;
+
+typedef struct s_unwrap
+{
+	char		*str;
+	int			expand;
+}	t_unwrap;
+
 
 typedef struct s_data
 {
@@ -211,7 +218,7 @@ void	ft_check_redir(t_data *data);
 int		ft_count_pipes(t_data *data);
 int		ft_is_expandable(char *var);
 int		ft_counterwords(const char *s, char c);
-char	*ft_expand(const char *input, t_map *env);
+char	*ft_expand(t_data *data, const char *input);
 /**
  * @brief Expande la variable $VAR que comienza en input[i]
  *
@@ -220,7 +227,7 @@ char	*ft_expand(const char *input, t_map *env);
  * @param env   Mapa de entorno
  * @return char* Cadena expandida para reemplazar la variable
  */
-char	*ft_expand_variable(const char *input, int *i, t_map *env, char *res);
+char	*ft_expand_variable(t_data *data, int *i, char *res);
 
 //TOKENS
 int		is_op(char c);

@@ -6,15 +6,28 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:50:15 by arigonza          #+#    #+#             */
-/*   Updated: 2025/04/17 15:58:05 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:57:08 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static int ft_strchr_mn(char *str, int c)
+{
+	if (!str)
+		return (FALSE);
+	while (*str)
+	{
+		if (*str == c)
+			return (TRUE);
+		str++;
+	}
+	return (FALSE);
+}
+
 int	ft_is_expandable(char *var)
 {
-	if (var[0] != '\'' && ft_strchr_np(var, '$'))
+	if (var[0] != '\'' && ft_strchr_mn(var, '$'))
 		return (TRUE);
 	else
 		return (FALSE);

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:09:20 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/19 15:59:42 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:11:01 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_data	*ft_init_data(int argc, char **env)
 	data->argc = argc;
 	data->fdin = STDIN_FILENO;
 	data->fdout = STDOUT_FILENO;
+	data->expand = NULL;
 	return (data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 10:03:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/20 18:13:22 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/21 12:06:42 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_data
 	int			fdin;
 	int			fdout;
 	int			status;
+	char		*expand;
 }				t_data;
 
 //Global

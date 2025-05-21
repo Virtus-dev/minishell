@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:43:55 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/19 16:01:09 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/21 18:37:02 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,24 @@ void	ft_free_resources(t_data *data)
 		ft_free_map(data->exp);
 	if (data)
 		free(data);
+}
+
+char	**ft_revert_env(t_map *map)
+{
+	char	*tmp;
+	char	**joined;
+	int		i;
+
+	i = 0;
+	joined = (char **)ft_calloc(map->size + 1, sizeof(char *));
+	if (!joined)
+		return (NULL);
+	while (map->keys[i])
+	{
+		tmp = ft_strjoin(map->keys[i]->key, "=");
+		joined[i] = ft_strjoin(tmp, map->keys[i]->value);
+		free(tmp);
+		i++;
+	}
+	return (joined);
 }

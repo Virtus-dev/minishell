@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:53:36 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/19 15:48:36 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/21 19:20:41 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	sigquit_handler(int sig)
 	write(1, "\033[2D  \033[2D", 10);
 }
 
-void	ft_child_write_hd(char *dl, int hd)
+static void	ft_child_write_hd(t_data *data, char *dl, int hd)
 {
 	char	*str;
 
@@ -35,16 +35,19 @@ void	ft_child_write_hd(char *dl, int hd)
 		if (!ft_strncmp(str, dl, ft_strlen(dl)) && str[ft_strlen(dl)] == '\n')
 		{
 			free(str);
+			str = NULL;
 			break ;
 		}
 		ft_putstr_fd(str, hd);
 		free(str);
+		str = NULL;
 	}
 	close(hd);
+	ft_free_resources(data);
 	exit(0);
 }
 
-static void	fork_process(pid_t pid, int hd, char *dl)
+static void	fork_process(t_data *data, pid_t pid, int hd, char *dl)
 {
 	if (pid == -1)
 	{
@@ -53,7 +56,7 @@ static void	fork_process(pid_t pid, int hd, char *dl)
 		return ;
 	}
 	if (pid == 0)
-		ft_child_write_hd(dl, hd);
+		ft_child_write_hd(data, dl, hd);
 }
 
 void	ft_write_hd(t_data *data, char *dl)
@@ -71,7 +74,7 @@ void	ft_write_hd(t_data *data, char *dl)
 		return ;
 	}
 	pid = fork();
-	fork_process(pid, hd, dl);
+	fork_process(data, pid, hd, dl);
 	close(hd);
 	waitpid(pid, &status, 0);
 	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)

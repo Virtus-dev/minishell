@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:51:32 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/20 18:57:23 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/21 19:21:15 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,52 +112,3 @@ char	*ft_expand(t_data *data, const char *input)
 	}
 	return (res);
 }
-
-/*char	*ft_expand(const char *input, t_map *env)
-{
-	char	*res;
-	char	*tmp;
-	int		i;
-	char	buf[2];
-
-	res = ft_strdup("");
-	i = 0;
-	while (input[i])
-	{
-		if (input[i] == '$' && input[i + 1] && ft_isalpha(input[i + 1]))
-		{
-			res = ft_expand_variable(input, &i, env, res);
-			continue ;
-		}
-		buf[0] = input[i];
-		buf[1] = '\0';
-		tmp = res;
-		res = ft_strjoin(tmp, buf);
-		free(tmp);
-		i++;
-	}
-	return (res);
-}
-
-char	*ft_expand_variable(const char *input, int *i, t_map *env, char *res)
-{
-	int		start;
-	char	*var;
-	char	*val;
-	char	*tmp;
-
-	start = *i + 1;
-	*i = start;
-	while (input[*i] && (ft_isalnum(input[*i]) || input[*i] == '_'))
-		(*i)++;
-	var = ft_substr(input, start, *i - start);
-	val = ft_getenv(env, var);
-	free(var);
-	if (!val)
-		val = ft_strdup("");
-	tmp = ft_strjoin(res, val);
-	free(res);
-	res = tmp;
-	free(val);
-	return (res);
-}*/

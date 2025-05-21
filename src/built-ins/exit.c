@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 12:07:58 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/19 16:20:30 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:46:22 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ void	ft_exit(t_data *data)
 		ft_check_exit(data);
 	if (data->lvl > 1)
 	{
-		ft_putstr_fd("exit\n", data->fdout);
+		ft_putstr_fd("Exit\n", data->fdout);
 		printf("data->lvl = %d\n", data->lvl);
 		data->lvl -= 1;
 	}
 	else
 	{
+		ft_putstr("Exit\n");
 		ft_free_resources(data);
 		exit(EXIT_SUCCESS);
 	}

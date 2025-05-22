@@ -6,7 +6,7 @@
 #    By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/13 18:43:32 by arigonza          #+#    #+#              #
-#    Updated: 2025/05/16 13:14:06 by arigonza         ###   ########.fr        #
+#    Updated: 2025/05/22 11:07:43 by arigonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,8 @@ for t in "${tests[@]}"; do
   esac
 
   # Limpia minishell output
-  sed -i '/^exit$/d' "$TMP_MS"
-  sed -i '/^\$minishell>/d' "$TMP_MS"
+  sed -i '/^Exit$/d' "$TMP_MS"
+  sed -i '/^minishell>/d' "$TMP_MS"
   # Quita línea exacta que coincida con el comando
   sed -i "\|^$t\$|d" "$TMP_MS"
 

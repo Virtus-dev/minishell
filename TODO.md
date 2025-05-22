@@ -1,9 +1,13 @@
 # TO_DO
 
+## Exit
+
+Algo de lo que has modificado ha roto la funcion exit, y ya no sale de minishell, tan solo muestra el mensaje "Exit".
+
 ## PROBLEMON
 
-echo hola >> output.txt no funciona
-ls | grep "minishell" >> output.txt no funciona
+echo hola >> output.txt no funciona **[SOLUCIONADO]**
+ls | grep "minishell" >> output.txt no funciona -> PARECE SER QUE EL PROBLEMA VIENE DE LA GESTION DE LOS FD, SEGURAMENTE POR LA DIFERENCIA QUE HACEMOS ENTRE PROCESOS HIJOS Y PADRE, HE INTENTADO CAMBIAR LA FORMA EN QUE PIPEPROCESING SE COMPORTA, USANDOLO COMO UN MERO ORQUESTADOR PERO SIGUE DANDO EL MISMO PROBLEMA.
 cd .. | pwd funciona correcto
 
 Hay problemas en las pipes y en la redirecciones motivo ni idea.

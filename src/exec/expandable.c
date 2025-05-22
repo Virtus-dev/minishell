@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expandable.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:51:32 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/21 19:21:15 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:08:28 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*ft_expand(t_data *data, const char *input)
 
 	i = 0;
 	res = ft_strdup("");
-	printf("INPUT A EXPANDIR: [%s]\n", data->input);
+	//printf("INPUT A EXPANDIR: [%s]\n", data->input);
 	while (input[i])
 	{
 		if (input[i] == '\'' || input[i] == '"')

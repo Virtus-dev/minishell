@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 13:12:31 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/19 13:34:20 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/23 00:15:54 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_exec_built(t_data *data, char *input)
 	int	builtin;
 
 	builtin = ft_builtin_check(input);
+	//printf("EN ENV BUILTIN, value = %d\n", builtin);
 	if (builtin == CD)
 		ft_cd(data, NULL);
 	else if (builtin == ECHO)
@@ -66,7 +67,6 @@ void	ft_exec_built(t_data *data, char *input)
 int	ft_is_env_builtin(char *input)
 {
 	int	builtin;
-
 	builtin = ft_builtin_check(input);
 	if (builtin == CD)
 		return (TRUE);

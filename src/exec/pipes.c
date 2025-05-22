@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/22 19:58:51 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/23 01:35:42 by arigonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	ft_close_fds(t_data *data)
 	data->fdin = STDIN_FILENO;
 	data->fdout = STDOUT_FILENO;
 }
-
-/*void	ft_pipe_processing(t_data *data, int pipe_num)
+/*
+void	ft_pipe_processing(t_data *data, int pipe_num)
 {
 	int		i;
 	t_token	*curr_token;
@@ -79,8 +79,6 @@ void	ft_close_fds(t_data *data)
 		ft_load_args(data, curr_token);
 		ft_clean_and_replace_args(data);
 		ft_swapfd(data, i, pipe_num);
-		//printf("comando a ejecutar: %s\n", data->argv[0]);
-		//printf("comando a ejecutar: %d\n", curr_token->cmd[0]);
 		if (ft_nonenv_builtin(curr_token->cmd)
 			|| (ft_is_env_builtin(curr_token->cmd) && !next_token))
 			ft_exec_built(data, curr_token->cmd);
@@ -89,66 +87,53 @@ void	ft_close_fds(t_data *data)
 		i++;
 	}
 	ft_close_fds(data);
-}*/
-//PRUEBA
-static void	ft_dup_io(t_data *data)
+}
+*/
+
+void	ft_child_process(t_data *data, t_token *curr, t_token *next)
+{
+	ft_restore_default_signals();
+	if (data->fdin != STDIN_FILENO)
+		dup2(data->fdin, STDIN_FILENO);
+	if (data->fdout != STDOUT_FILENO)
+		dup2(data->fdout, STDOUT_FILENO);
+	if (has_redirection(curr))
+		ft_start_redi(data, curr);
+	if (ft_nonenv_builtin(curr->cmd)
+		|| (ft_is_env_builtin(curr->cmd) && !next))
+		ft_exec_built(data, curr->cmd);
+	else if (!ft_builtin_check(curr->cmd))
+		ft_exec(data);
+	exit(data->status);
+}
+
+void	ft_parent_cleanup(t_data *data)
 {
 	if (data->fdin != STDIN_FILENO)
-	{
-		dup2(data->fdin, STDIN_FILENO);
 		close(data->fdin);
-	}
 	if (data->fdout != STDOUT_FILENO)
-	{
-		dup2(data->fdout, STDOUT_FILENO);
 		close(data->fdout);
-	}
-}
-
-static void	ft_execute_pipe_cmd(t_data *data, t_token *curr, t_token *next)
-{
-	pid_t	pid;
-
-	(void)next;
-	pid = fork();
-	if (pid == 0)
-	{
-		ft_dup_io(data);
-		if (ft_builtin_check(curr->cmd))
-			ft_exec_built(data, curr->cmd);
-		else
-			ft_exec(data);
-		exit(data->status);
-	}
-	else
-		waitpid(pid, &data->status, 0);
-}
-
-static void	ft_perror_and_exit(char *msg)
-{
-	perror(msg);
-	exit(1);
 }
 
 void	ft_pipe_processing(t_data *data, int pipe_num)
 {
 	int		i;
-	t_token	*curr;
-	t_token	*next;
+	pid_t	pid;
 
 	i = 0;
 	while (i <= pipe_num)
 	{
-		curr = data->tokens[i];
-		next = data->tokens[i + 1];
-		if (!curr || !curr->cmd)
-			return (ft_perror_and_exit("Command not found"));
-
-		ft_load_args(data, curr);
+		ft_load_args(data, data->tokens[i]);
 		ft_clean_and_replace_args(data);
 		ft_swapfd(data, i, pipe_num);
-		ft_execute_pipe_cmd(data, curr, next);
+		pid = fork();
+		if (pid == 0)
+			ft_child_process(data, data->tokens[i], data->tokens[i + 1]);
+		else if (pid < 0)
+			perror("fork");
+		ft_parent_cleanup(data);
 		i++;
 	}
-	ft_close_fds(data);
+	while (wait(NULL) > 0)
+		;
 }

@@ -1,5 +1,13 @@
 # TO_DO
 
+## PROBLEMON
+
+echo hola >> output.txt no funciona
+ls | grep "minishell" >> output.txt no funciona
+cd .. | pwd funciona correcto
+
+Hay problemas en las pipes y en la redirecciones motivo ni idea.
+
 ## Redirecciones
 
 Cuando hacemos uso de las redirecciones sin usar un comando antes, por ejemplo ` > prueba.txt` no genera el archivo, dberia de generar el archivo aunque este estuviese vacio.

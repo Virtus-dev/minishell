@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arigonza <arigonza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:14:16 by arigonza          #+#    #+#             */
-/*   Updated: 2025/05/23 01:35:42 by arigonza         ###   ########.fr       */
+/*   Updated: 2025/05/23 15:43:10 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,11 @@ void	ft_pipe_processing(t_data *data, int pipe_num)
 		ft_load_args(data, data->tokens[i]);
 		ft_clean_and_replace_args(data);
 		ft_swapfd(data, i, pipe_num);
+		if (pipe_num == 0 && ft_builtin_check(data->tokens[i]->cmd) == EXIT)
+		{
+			ft_exec_built(data, data->tokens[i]->cmd);
+			return ;
+		}
 		pid = fork();
 		if (pid == 0)
 			ft_child_process(data, data->tokens[i], data->tokens[i + 1]);

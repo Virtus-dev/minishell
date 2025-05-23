@@ -14,6 +14,10 @@ cd .. | pwd funciona correcto
 
 Hay problemas en las pipes y en la redirecciones motivo ni idea.
 
+Cuando ejecutas ./minishell y haces un ps, en los procesos abiertos se pueden ver que se estan ejecutando 2 minishell. Motivo, no se? ME VUELVO LOCOOOOO
+
+LAS SEÑALES SE HAN VUELTO A ROMPER
+
 ## Redirecciones
 
 Cuando hacemos uso de las redirecciones sin usar un comando antes, por ejemplo ` > prueba.txt` no genera el archivo, dberia de generar el archivo aunque este estuviese vacio.

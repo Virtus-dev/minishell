@@ -1,5 +1,7 @@
 # TO_DO
 
+Aritz yo no se que cojones le pasa a la minishell que he tocado o modificado, pero las cosas que he estado arreglando a la largo de estas 2 semanas estan completamente rotas y la vd que no entiendo nada.
+
 ## Exit
 
 Algo de lo que has modificado ha roto la funcion exit, y ya no sale de minishell, tan solo muestra el mensaje "Exit".

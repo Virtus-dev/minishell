@@ -20,7 +20,7 @@ De igual manera no funciona para las redirecciones de entrada `<` o heredoc `<<`
 Aqui podemos ver perfectamente el fallo, y uno añadido que no habiamos detectado y es que al no poner un espacio antes de la redirección tokenizer no funciona correctamente y da el token como nulo.
 
 ````
-$minishell>> prueba.txt
+$minishell>> prueba.txt -> esto debe ser tema de parseo, si no recuerdo mal, no permito que la linea empieze por >>, > o < u <<
 Token NULL
 : Success
 $minishell> > prueba.txt

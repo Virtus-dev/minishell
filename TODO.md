@@ -1,6 +1,6 @@
 # TO_DO
 
-Aritz yo no se que cojones le pasa a la minishell que he tocado o modificado, pero las cosas que he estado arreglando a la largo de estas 2 semanas estan completamente rotas y la vd que no entiendo nada.
+Hay que tener cuidado con pipeprocessing use la 1era version que teniamos de pipeproccesing y se arreglaron los problemas de señales y del exit, asi que hay que mirar bien eso para que no rompa lo demas
 
 ## Exit
 
@@ -14,9 +14,7 @@ cd .. | pwd funciona correcto
 
 Hay problemas en las pipes y en la redirecciones motivo ni idea.
 
-Cuando ejecutas ./minishell y haces un ps, en los procesos abiertos se pueden ver que se estan ejecutando 2 minishell. Motivo, no se? ME VUELVO LOCOOOOO
-
-LAS SEÑALES SE HAN VUELTO A ROMPER
+Cuando ejecutas ./minishell y haces un ps, en los procesos abiertos se pueden ver que se estan ejecutando 2 minishell. Motivo, no se?
 
 ## Redirecciones
 

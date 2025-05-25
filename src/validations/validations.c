@@ -6,7 +6,7 @@
 /*   By: fracurul <fracurul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:01:25 by fracurul          #+#    #+#             */
-/*   Updated: 2025/05/14 12:58:11 by fracurul         ###   ########.fr       */
+/*   Updated: 2025/05/25 13:44:17 by fracurul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	validate_otredir(char *line, int index)
 	}
 	else
 	{
-		if (index == 0 || line[index + 1] == '\0' || line[index + 1] == '|')
+		if (line[index + 1] == '\0' || line[index + 1] == '|')
 			return (FALSE);
 		else
 			return (TRUE);
@@ -49,7 +49,7 @@ int	validate_itredir(char *line, int index)
 	}
 	else
 	{
-		if (index == 0 || line[index + 1] == '\0' || line[index + 1] == '|')
+		if (line[index + 1] == '\0' || line[index + 1] == '|')
 			return (FALSE);
 		else
 			return (TRUE);
@@ -60,19 +60,19 @@ int	validate_metachar(char *line, int i)
 {
 	while (line[i])
 	{
-		if (line[i] == '|' && !is_in_quotes(line, i))
+		if (line[i] == '|' && is_in_quotes(line, i))
 		{
 			if (!validate_pipe(line, i))
 				return (FALSE);
 		}
-		else if (line[i] == '>' && !is_in_quotes(line, i))
+		else if (line[i] == '>' && is_in_quotes(line, i))
 		{
 			if (!validate_otredir(line, i))
 				return (FALSE);
 			if (line[i + 1] == '>')
 				i++;
 		}
-		else if (line[i] == '<' && !is_in_quotes(line, i))
+		else if (line[i] == '<' && is_in_quotes(line, i))
 		{
 			if (!validate_itredir(line, i))
 				return (FALSE);

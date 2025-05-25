@@ -128,3 +128,22 @@ Conclusion: leaks en pipes (revisar)
 ## NORMINETTE
 
 Revisar archivos y cumplir norma42!
+
+## Compilacion_con_supresion_de_readline
+
+valgrind --suppressions=readline.supp --leak-check=full --show-leak-kinds=all ./minishell
+
+To "ignore" leaks related to the readline and add_history functions, create a file called readline.supp with the following content:
+
+ {
+     leak readline
+     Memcheck:Leak
+     ...
+     fun:readline
+ }
+ {
+     leak add_history
+     Memcheck:Leak
+     ...
+     fun:add_history
+ }

@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+/*
 static void	ft_signal_handler(t_data *data, int stat)
 {
 	if (WIFEXITED(stat))
@@ -26,31 +27,13 @@ static void	ft_signal_handler(t_data *data, int stat)
 		data->status = 128 + WTERMSIG(stat);
 	}
 }
-
+*/
 void	ft_exec(t_data *data)
 {
-	int	stat;
-
+	printf("Enft_exec\n");
 	g_block = 1;
-	data->child = fork();
-	if (data->child == -1)
-	{
-		perror(FORK_ERR);
-		exit(EXIT_FAILURE);
-	}
-	if (data->child == 0)
-	{
-		ft_restore_default_signals();
-		if (data->env->keys[0] != NULL)
-			ft_execpath(data);
-		ft_runexec(data, NULL, 0, 0);
-	}
-	else if (data->child > 0)
-	{
-		waitpid(data->child, &stat, WUNTRACED);
-		ft_signal_handler(data, stat);
-	}
-	else
-		perror(FORK_ERR);
+	if (data->env->keys[0] != NULL)
+		ft_execpath(data);
+	ft_runexec(data, NULL, data->fdin, data->fdout);
 	g_block = 0;
 }

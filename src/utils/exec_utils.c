@@ -67,6 +67,8 @@ void	ft_execpath(t_data *data)
 
 static void	ft_executor(t_data *data, char **env, int fdin, int fdout)
 {
+	printf("cmd->%s\n", data->argv[0]);
+	printf("child exec: fdin = %d, fdout = %d\n", data->fdin, data->fdout);
 	if (execve(data->argv[0], data->argv, env) == -1)
 	{
 		ft_putstr_fd("bash: ", data->fdout);
@@ -86,12 +88,14 @@ static void	ft_executor(t_data *data, char **env, int fdin, int fdout)
 		close(fdout);
 		exit(0);
 	}
+
 }
 
 void	ft_runexec(t_data *data, char **env, int fdin, int fdout)
 {
-	fdin = dup(STDIN_FILENO);
-	fdout = dup(STDOUT_FILENO);
+	printf("EN RUNEXEC!!\n");
+	/*fdin = dup(STDIN_FILENO);
+	fdout = dup(STDOUT_FILENO);*/
 	env = ft_revert_env(data->env);
 	if (data->fdin != STDIN_FILENO)
 		dup2(data->fdin, STDIN_FILENO);

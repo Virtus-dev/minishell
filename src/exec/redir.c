@@ -17,6 +17,7 @@ void	ft_start_redi(t_data *data, t_token *token)
 	int		j;
 	int		type;
 
+	printf("EN START REDIRECTIONS!!\n");
 	j = 0;
 	while (token->cargs && token->cargs[j])
 	{

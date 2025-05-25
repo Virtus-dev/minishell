@@ -32,6 +32,11 @@ cmd = >
 data->argv[1] = prueba.txt
 bash: /home/arigonza/.vscode-server/bin/17baf841131aa23349f217ca7c570c76ee87b957/bin/remote-cli/: command not found
 ````
+`> 1` -> crea archivo
+`>> 1` -> crea archivo
+`< 1` -> solo funciona si el archivo ya existe, si no error
+`<< EOF` -> abre heredoc.
+
 
 ## FALLO CRITICO **[SOLUCIONADO]**
 
@@ -147,4 +152,12 @@ To "ignore" leaks related to the readline and add_history functions, create 
      ...
      fun:add_history
  }
+ {
+   leak get_next_line
+   Memcheck:Leak
+   match-leak-kinds: definite
+   fun:malloc
+   ...
+   fun:get_next_line
+}
 ejecuta junto a make re

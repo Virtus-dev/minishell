@@ -75,13 +75,13 @@ Pipelines: cada segmento se ejecuta en un proceso hijo.
 
 Redirecciones:
 
-> sobreescribe
+`>` sobreescribe
 
->> añade
+`>>` añade
 
-< lee de archivo
+`<` lee de archivo
 
-<< DELIM heredoc
+`<<` DELIM heredoc
 
 ⚙️ Señales
 Shell principal:
